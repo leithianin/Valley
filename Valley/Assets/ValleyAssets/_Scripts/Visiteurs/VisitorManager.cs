@@ -34,7 +34,7 @@ public class VisitorManager : MonoBehaviour
         return true;
     }
 
-    public static void MakeVisitorWait(float waitTime, Action callback)
+    public static void MakeVisitorWait(float waitTime, Action callback) //CODE REVIEW : Voir pour eviter de passer par 3 fonctions pour faire un Wait
     {
         instance.StartWaitCoroutine(waitTime, callback);
     }
