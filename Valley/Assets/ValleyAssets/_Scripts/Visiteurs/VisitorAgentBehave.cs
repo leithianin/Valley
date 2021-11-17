@@ -6,27 +6,40 @@ using UnityEngine.AI;
 
 public class VisitorAgentBehave : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private VisitorData datas = new VisitorData();
 
     private bool isWalking;
 
     private Action StartPath;
     private Action EndPath;
 
+    [Header("Tests")]
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private PathPoint lastPoint;
+    [SerializeField] private PathPoint currentPoint;
+
+    private void Awake()
+    {
+        datas.agent = agent;
+        datas.lastPoint = lastPoint;
+        datas.currentPoint = currentPoint;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        datas.path = VisitorManager.ChoosePath();
         AskToWalk();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!agent.pathPending && isWalking)
+        if (!datas.agent.pathPending && isWalking)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
             {
-                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f)
                 {
                     ReachDestination();
                 }
@@ -36,12 +49,12 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void AskToWalk()
     {
-        isWalking = VisitorManager.ChooseNextDestination(agent);
+        isWalking = VisitorManager.ChooseNextDestination(datas);
     }
 
     private void ReachDestination()
     {
         isWalking = false;
-        VisitorManager.MakeVisitorWait(5f, AskToWalk);
+        VisitorManager.MakeVisitorWait(.5f, AskToWalk);
     }
 }

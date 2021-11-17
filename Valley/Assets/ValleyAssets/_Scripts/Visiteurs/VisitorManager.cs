@@ -22,14 +22,15 @@ public class VisitorManager : MonoBehaviour
         Instantiate(visitorPrefab, visitorSpawnPosition, false);
     }
 
-    public static void ChoosePath()
+    public static Valley_PathData ChoosePath()
     {
-
+        return Valley_PathManager.GetRandomPath();
     }
 
-    public static bool ChooseNextDestination(NavMeshAgent visitor)
+    public static bool ChooseNextDestination(VisitorData visitor)
     {
-        visitor.destination = instance.transTest[UnityEngine.Random.Range(0, instance.transTest.Count)].position;
+        PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
+        visitor.SetDestination(newPathpoint);
         return true;
     }
 
