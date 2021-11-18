@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[Serializable]
 public class VisitorData
 {
     public NavMeshAgent agent;

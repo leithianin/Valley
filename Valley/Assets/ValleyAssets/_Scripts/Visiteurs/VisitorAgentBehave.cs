@@ -9,18 +9,11 @@ public class VisitorAgentBehave : MonoBehaviour
     [Header("Dev datas")]
     [SerializeField] private VisitorData datas = new VisitorData();
 
-    [SerializeField] private NavMeshAgent agent;
-
     private PathPoint spawnPoint;
     private bool isWalking;
 
     private Action StartPath;
     private Action EndPath;
-
-    private void Awake()
-    {
-        datas.agent = agent;
-    }
 
     // Update is called once per frame
     void Update()
