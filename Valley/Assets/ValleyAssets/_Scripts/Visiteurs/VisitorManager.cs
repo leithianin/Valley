@@ -8,18 +8,35 @@ public class VisitorManager : MonoBehaviour
 {
     private static VisitorManager instance;
 
-    [SerializeField] private Transform visitorSpawnPosition;
+    [SerializeField] private PathPoint visitorSpawnPoint;
     [SerializeField] private GameObject visitorPrefab;
     [SerializeField] private List<Transform> transTest;
+
+    [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
     private void Awake()
     {
         instance = this;
     }
 
+    private void Start()
+    {
+        StartCoroutine(SpawnVisitorContinue());
+    }
+
     private void SpawnVisitor()
     {
-        Instantiate(visitorPrefab, visitorSpawnPosition, false);
+        VisitorAgentBehave newVisitor = GetAvailableVisitor();
+
+        if (newVisitor != null)
+        {
+            newVisitor.SetVisitor(visitorSpawnPoint);
+        }
+    }
+
+    public static void RemoveVisitor(VisitorAgentBehave toRemove)
+    {
+        toRemove.UnsetVisitor();
     }
 
     public static Valley_PathData ChoosePath()
@@ -48,5 +65,24 @@ public class VisitorManager : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         callback?.Invoke();
+    }
+
+    IEnumerator SpawnVisitorContinue()
+    {
+        SpawnVisitor();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(SpawnVisitorContinue());
+    }
+
+    private VisitorAgentBehave GetAvailableVisitor()
+    {
+        for(int i = 0; i < visitorPool.Count; i++)
+        {
+            if(!visitorPool[i].gameObject.activeSelf)
+            {
+                return visitorPool[i];
+            }
+        }
+        return null;
     }
 }

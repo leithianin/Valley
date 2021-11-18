@@ -6,30 +6,20 @@ using UnityEngine.AI;
 
 public class VisitorAgentBehave : MonoBehaviour
 {
+    [Header("Dev datas")]
     [SerializeField] private VisitorData datas = new VisitorData();
 
+    [SerializeField] private NavMeshAgent agent;
+
+    private PathPoint spawnPoint;
     private bool isWalking;
 
     private Action StartPath;
     private Action EndPath;
 
-    [Header("Tests")]
-    [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private PathPoint lastPoint;
-    [SerializeField] private PathPoint currentPoint;
-
     private void Awake()
     {
         datas.agent = agent;
-        datas.lastPoint = lastPoint;
-        datas.currentPoint = currentPoint;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        datas.path = VisitorManager.ChoosePath();
-        AskToWalk();
     }
 
     // Update is called once per frame
@@ -47,6 +37,34 @@ public class VisitorAgentBehave : MonoBehaviour
         }
     }
 
+    public void SetVisitor(PathPoint nSpawnPoint)
+    {
+        spawnPoint = nSpawnPoint;
+
+        datas.lastPoint = null;
+        datas.currentPoint = nSpawnPoint;
+
+        transform.position = nSpawnPoint.Position;
+
+        gameObject.SetActive(true);
+
+        datas.path = VisitorManager.ChoosePath();
+        AskToWalk();
+
+        if (datas.currentPoint == nSpawnPoint)
+        {
+            datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
+            AskToWalk();
+        }
+    }
+
+    public void UnsetVisitor()
+    {
+        datas.currentPoint = null;
+
+        gameObject.SetActive(false);
+    }
+
     private void AskToWalk()
     {
         isWalking = VisitorManager.ChooseNextDestination(datas);
@@ -55,6 +73,13 @@ public class VisitorAgentBehave : MonoBehaviour
     private void ReachDestination()
     {
         isWalking = false;
-        VisitorManager.MakeVisitorWait(.5f, AskToWalk);
+        if (datas.currentPoint == spawnPoint)
+        {
+            VisitorManager.RemoveVisitor(this);
+        }
+        else
+        {
+            VisitorManager.MakeVisitorWait(.5f, AskToWalk);
+        }
     }
 }

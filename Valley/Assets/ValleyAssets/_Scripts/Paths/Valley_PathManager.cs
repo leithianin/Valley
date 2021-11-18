@@ -30,6 +30,7 @@ public class Valley_PathManager : MonoBehaviour
             path2.pathPoints.Add(secondPathPoints[i]);
         }
         existingPaths.Add(path2);
+        Debug.Log(existingPaths.Count);
     }
 
     /// <summary>
@@ -38,6 +39,8 @@ public class Valley_PathManager : MonoBehaviour
     /// <returns>Le chemin choisit.</returns>
     public static Valley_PathData GetRandomPath()
     {
-        return instance.existingPaths[Random.Range(0, instance.existingPaths.Count)];
+        int result = Random.Range(0, instance.existingPaths.Count);
+
+        return instance.existingPaths[result];
     }
 }
