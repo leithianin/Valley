@@ -120,10 +120,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - FoamAmount: 8.62
-    - FoamCutoff: 0
-    - FoamScale: 100
-    - FoamSpeed: 1
+    - FoamAmount: 2
+    - FoamCutoff: 4
+    - FoamScale: 10
+    - FoamSpeed: 0.31
     - RefractionScale: 1
     - RefractionSpeed: 0.5
     - RefractionStrength: 2
