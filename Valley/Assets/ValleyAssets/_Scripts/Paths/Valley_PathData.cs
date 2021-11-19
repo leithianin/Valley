@@ -1,7 +1,9 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Valley_PathData
 {
     public List<PathPoint> pathPoints = new List<PathPoint>(); // Liste des points du chemins.
