@@ -67,4 +67,9 @@ public class ToolManager : MonoBehaviour
     {
         firstObjectToLink.GetComponent<VisibleLink>().EndPoint(firstObjectToLink);
     }
+
+    public static void ResetLink(GameObject firstObjectToLink)
+    {
+        firstObjectToLink.GetComponent<VisibleLink>().ResetPoint();
+    }
 }

@@ -49,4 +49,16 @@ public class VisibleLink : MonoBehaviour
         line.positionCount--;
         line = null;
     }
+
+    public void ResetPoint()
+    {
+        index--;
+        line.positionCount--;
+    }
+
+    public void SetLine(LineRenderer ln)
+    {
+        line = ln;
+        index = ln.positionCount++;
+    }
 }

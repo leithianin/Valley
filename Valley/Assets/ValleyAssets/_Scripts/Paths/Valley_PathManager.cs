@@ -18,25 +18,7 @@ public class Valley_PathManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-
-        /*
-        // Zone de test pour avoir des chemins pr�g�n�r�.
-        Valley_PathData path = new Valley_PathData();
-        for(int i = 0; i < firstPathPoints.Count; i++)
-        {
-            path.pathPoints.Add(firstPathPoints[i]);
-        }
-        existingPaths.Add(path);
-
-        Valley_PathData path2 = new Valley_PathData();
-        for (int i = 0; i < secondPathPoints.Count; i++)
-        {
-            path2.pathPoints.Add(secondPathPoints[i]);
-        }
-        existingPaths.Add(path2);
-        */
-        
+        instance = this;    
     }
 
     /// <summary>
@@ -56,13 +38,44 @@ public class Valley_PathManager : MonoBehaviour
         currentPathOn = path; 
     }
 
+    public static void SetCurrentPath(Valley_PathData path)
+    {
+        currentPathOn = path;
+    }
+
     public static void EndPath()
     {
-        instance.existingPaths.Add(currentPathOn);
+        instance.OnEndPath();
+
+    }
+
+    private void OnEndPath()
+    {
+        if(!existingPaths.Contains(currentPathOn))
+        {
+            existingPaths.Add(currentPathOn);
+        }
     }
 
     public static Valley_PathData GetCurrentPath()
     {
         return currentPathOn;
+    }
+
+    public static int GetNumberOfPathPoints(PathPoint pathPoint)
+    {
+        int n = 0;
+
+        for (int i = 0; i < instance.existingPaths.Count; i++)
+        {
+            if(instance.existingPaths[i].ContainsPoint(pathPoint))
+            {
+                UIManager.pathToModify.Add(instance.existingPaths[i]);
+                n++;
+            }                 
+        }
+
+        Debug.Log(n);
+        return n;
     }
 }
