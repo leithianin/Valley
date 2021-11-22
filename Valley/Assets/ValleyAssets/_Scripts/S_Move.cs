@@ -11,24 +11,25 @@ public class S_Move : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     [Header("Camera Zoom")]
-    [SerializeField] private AnimationCurve zoomCurve;
-    [SerializeField] private AnimationCurve accelerationCurve;
-    [SerializeField] private float exponentialCoef = -.05f;
-    [SerializeField] private float zoomLimitUp = 10f;
+    [SerializeField] private AnimationCurve decelerationCurve;
+    [SerializeField] private float decelerationSpeed = 0.3f;
+    [SerializeField] private float angleByScroll = 10f;
     [SerializeField] private float angleLimitUp = -70f;
     [SerializeField] private float angleLimitDown = -10f;
-    [SerializeField] private float zoomAccelerationMax = .5f;
-    [SerializeField] private float zoomDeceleration = .5f;
+    [SerializeField] private float positionLimitUp = 40f;
+
 
     private ValleyInputActions _playerActions;
     private Rigidbody _rbody;
     private Vector3 _moveInput;
 
     private float zoomAcceleration;
-    private float currentZoomLevel = 0;
+    private float currentAngle = 70f;
     private float scrollSpeed;
-    private float zoomLimitDown = 0f;
+    private float currentDeceleration = 0;
 
+    private float lerpTarget = 0;
+    private float startLerp = 0;
 
     private void Awake()
     {
@@ -36,6 +37,8 @@ public class S_Move : MonoBehaviour
         _rbody = GetComponent<Rigidbody>();
         if (_rbody is null)
             Debug.LogError("Rigidbody2D is NULL");
+
+        currentAngle = angleLimitUp;
     }
 
     private void OnEnable()
@@ -64,51 +67,47 @@ public class S_Move : MonoBehaviour
 
         scrollSpeed = Input.mouseScrollDelta.y * 120f;
 
-        Debug.Log(scrollSpeed);
         if (scrollSpeed != 0)
         {
-            if(zoomAcceleration > 0 & scrollSpeed < 0 || zoomAcceleration < 0 && scrollSpeed > 0)
+            currentDeceleration = 1;
+
+            startLerp = currentAngle;
+            if (scrollSpeed < 0)
             {
-                zoomAcceleration = 0;
+                lerpTarget = angleByScroll + startLerp;
+                if(lerpTarget > angleLimitUp)
+                {
+                    lerpTarget = angleLimitUp;
+                }
             }
-            zoomAcceleration += (scrollSpeed / 120f) * 10 * accelerationCurve.Evaluate(GetZoomCoef());
+            else if(scrollSpeed > 0)
+            {
+                lerpTarget = -angleByScroll + startLerp;
+                if (lerpTarget < angleLimitDown)
+                {
+                    lerpTarget = angleLimitDown;
+                }
+            }
         }
 
-        if(zoomAcceleration != 0)
+        if(currentDeceleration != 0)
         {
-            if (zoomAcceleration > accelerationCurve.Evaluate(GetZoomCoef()) * zoomAccelerationMax)
-            {
-                zoomAcceleration = accelerationCurve.Evaluate(GetZoomCoef()) * zoomAccelerationMax;
-            }
-            else if (zoomAcceleration < -accelerationCurve.Evaluate(GetZoomCoef()) * zoomAccelerationMax)
-            {
-                zoomAcceleration = -accelerationCurve.Evaluate(GetZoomCoef()) * zoomAccelerationMax;
-            }
+            zoomAcceleration = decelerationCurve.Evaluate(1 - currentDeceleration);
+            currentAngle = Mathf.Lerp(startLerp, lerpTarget, zoomAcceleration);
 
-            currentZoomLevel += zoomAcceleration * Time.deltaTime;
-            currentZoomLevel = Mathf.Clamp(currentZoomLevel, zoomLimitDown, zoomLimitUp);
+            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, CalculatePosition(), cameraTransform.localPosition.z);
+            cameraTransform.localEulerAngles = new Vector3(currentAngle, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
 
-            cameraTransform.localPosition = new Vector3(cameraTransform.localPosition.x, zoomLimitUp - currentZoomLevel, cameraTransform.localPosition.z);
-            cameraTransform.localEulerAngles = new Vector3(CalculateCameraRotation(), cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
-        }
-
-        if (Mathf.Abs(zoomAcceleration) > 0)
-        {
-            zoomAcceleration -= (zoomDeceleration * accelerationCurve.Evaluate(GetZoomCoef())) * Time.deltaTime * (zoomAcceleration / Mathf.Abs(zoomAcceleration));
-            if (Mathf.Abs(zoomAcceleration) < 0)
+            currentDeceleration -= decelerationSpeed * Time.deltaTime;
+            if(currentDeceleration < 0)
             {
-                zoomAcceleration = 0;
+                currentDeceleration = 0;
             }
         }
     }
 
-    private float CalculateCameraRotation()
+    private float CalculatePosition()
     {
-        return zoomCurve.Evaluate(GetZoomCoef()) * (angleLimitUp - angleLimitDown) + angleLimitDown;
-    }
-
-    private float GetZoomCoef()
-    {
-        return (currentZoomLevel - zoomLimitDown) / (zoomLimitUp - zoomLimitDown);
+        return ((currentAngle + angleLimitDown) / (angleLimitUp + angleLimitDown)) * positionLimitUp;
     }
 }
