@@ -22,7 +22,7 @@ public class VisitorAgentBehave : MonoBehaviour
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
             {
-                if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f)
+                if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f) //CODE REVIEW : Voir pour simplifier les "if" et les rassembler
                 {
                     ReachDestination();
                 }
@@ -72,7 +72,7 @@ public class VisitorAgentBehave : MonoBehaviour
         }
         else
         {
-            VisitorManager.MakeVisitorWait(.5f, AskToWalk);
+            VisitorManager.MakeVisitorWait(UnityEngine.Random.Range(0.5f,1.5f), AskToWalk);
         }
     }
 }

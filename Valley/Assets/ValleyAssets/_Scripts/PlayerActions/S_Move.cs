@@ -65,7 +65,7 @@ public class S_Move : MonoBehaviour
     {
         //scrollSpeed = _playerActions.Camera.Zoom.ReadValue<Vector2>().y;
 
-        scrollSpeed = Input.mouseScrollDelta.y * 120f;
+        scrollSpeed = Input.GetAxis("Mouse ScrollWheel"); //= Input.mouseScrollDelta.y * 120f;
 
         if (scrollSpeed != 0)
         {

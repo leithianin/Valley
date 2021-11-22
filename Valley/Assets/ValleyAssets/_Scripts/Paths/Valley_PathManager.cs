@@ -14,11 +14,33 @@ public class Valley_PathManager : MonoBehaviour
     /*[Header("Tests")]
     [SerializeField] private List<PathPoint> firstPathPoints;
     [SerializeField] private List<PathPoint> secondPathPoints;*/
-    
+
+    public static bool HasAvailablePath => instance.CheckForAvailablePath();
 
     private void Awake()
     {
         instance = this;    
+    }
+
+    private bool CheckForAvailablePath()
+    {
+        for(int i = 0; i < existingPaths.Count; i++)
+        {
+            if(CheckPathUsability(existingPaths[i]))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool CheckPathUsability(Valley_PathData pathToCheck)
+    {
+        if(pathToCheck.pathPoints.Count > 1)
+        {
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -28,6 +50,13 @@ public class Valley_PathManager : MonoBehaviour
     public static Valley_PathData GetRandomPath()
     {
         int result = Random.Range(0, instance.existingPaths.Count);
+        int i = 0;
+
+        while(instance.CheckPathUsability(instance.existingPaths[result]) && i < 100)
+        {
+            result = Random.Range(0, instance.existingPaths.Count);
+            i++;
+        }
 
         return instance.existingPaths[result];
     }

@@ -26,11 +26,14 @@ public class VisitorManager : MonoBehaviour
 
     private void SpawnVisitor()
     {
-        VisitorAgentBehave newVisitor = GetAvailableVisitor();
-
-        if (newVisitor != null)
+        if (Valley_PathManager.HasAvailablePath)
         {
-            newVisitor.SetVisitor(visitorSpawnPoint);
+            VisitorAgentBehave newVisitor = GetAvailableVisitor();
+
+            if (newVisitor != null)
+            {
+                newVisitor.SetVisitor(visitorSpawnPoint);
+            }
         }
     }
 
@@ -67,14 +70,14 @@ public class VisitorManager : MonoBehaviour
         callback?.Invoke();
     }
 
-    IEnumerator SpawnVisitorContinue()
+    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
         SpawnVisitor();
         yield return new WaitForSeconds(1f);
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private VisitorAgentBehave GetAvailableVisitor()
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {
