@@ -16,6 +16,7 @@ public class LandInteractions : MonoBehaviour
 
     private GameObject firstMarker;                                            //First path's marker
     private GameObject selectedMarker;
+    private GameObject currentMarker;
 
     private void Update()
     {
@@ -108,7 +109,10 @@ public class LandInteractions : MonoBehaviour
         {
             ToolManager.AddLink(_marker, firstMarker);
             Valley_PathManager.GetCurrentPath().pathPoints.Add(_marker.GetComponent<PathPoint>());
+            Valley_PathManager.AddPathPoint(_marker);
         }
+
+        currentMarker = _marker;
     }
 
     //Click on a marker
@@ -126,7 +130,11 @@ public class LandInteractions : MonoBehaviour
         {
             Valley_PathManager.GetCurrentPath().pathPoints.Add(markerAlreadyPlace.GetComponent<PathPoint>());
             ToolManager.AddLink(markerAlreadyPlace, firstMarker);
+            Valley_PathManager.AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);
+            
         }
+
+        currentMarker = markerAlreadyPlace;
     }
 
     public void ModifyPath(Valley_PathData _pathData)
@@ -152,6 +160,7 @@ public class LandInteractions : MonoBehaviour
     private void DeletePreviousMarker()
     {
         ToolManager.ResetLink(firstMarker);
+        Valley_PathManager.RemovePathPoint(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject);
         Valley_PathManager.GetCurrentPath().pathPoints.Remove(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1]);
         Destroy(markersList.transform.GetChild(markersList.transform.childCount-1).gameObject);
     }

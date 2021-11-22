@@ -50,4 +50,21 @@ public class PathPoint : MonoBehaviour
         }
         return toReturn;
     }
+
+    public void AddPoint(PathPoint pathPoint)
+    {
+        linkedPoints.Add(pathPoint);
+    }
+
+    public void RemovePoint(PathPoint pathPoint)
+    {
+        foreach(PathPoint pp in linkedPoints)
+        {
+            if(pp == pathPoint)
+            {
+                linkedPoints.Remove(pp);
+                return;
+            }
+        }
+    }
 }
