@@ -91,6 +91,57 @@ public class Valley_PathManager : MonoBehaviour
         return currentPathOn;
     }
 
+    public static void AddPathPoint(GameObject marker)
+    {
+        PathPoint currentPathPoint = marker.GetComponent<PathPoint>();
+        PathPoint previousPathPoint = instance.GetPreviousPathPoint(currentPathPoint);
+
+        previousPathPoint.AddPoint(currentPathPoint);
+        currentPathPoint.AddPoint(previousPathPoint);
+    }
+
+    public static void AddPathPointWithoutMarker(GameObject targetMarker, GameObject previousMarker)
+    {
+        PathPoint currentPathPoint = targetMarker.GetComponent<PathPoint>();
+        PathPoint previousPathPoint = previousMarker.GetComponent<PathPoint>();
+
+        currentPathPoint.AddPoint(previousPathPoint);
+        previousPathPoint.AddPoint(currentPathPoint);
+    }
+
+    public static void RemovePathPoint(GameObject marker)
+    {
+        PathPoint currentPathPoint = marker.GetComponent<PathPoint>();
+        PathPoint PreviousPathPoint = instance.GetPreviousPathPoint(currentPathPoint);
+
+        PreviousPathPoint.RemovePoint(currentPathPoint);
+    }
+
+    private PathPoint GetPreviousPathPoint(PathPoint currentPathPoint)
+    {
+        int pathPointIndex = FindIndex(currentPathPoint);
+
+        if(pathPointIndex > 0)
+        {
+            return currentPathOn.pathPoints[pathPointIndex-1];
+        }
+
+        return null;
+    }
+
+    private int FindIndex(PathPoint currentPathPoint)
+    {
+        for (int i = 0; i < currentPathOn.pathPoints.Count; i++)
+        {
+            if(currentPathOn.pathPoints[i] == currentPathPoint)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
     public static int GetNumberOfPathPoints(PathPoint pathPoint)
     {
         int n = 0;

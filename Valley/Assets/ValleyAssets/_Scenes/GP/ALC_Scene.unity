@@ -898,7 +898,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c947c09448428b4fb33f55a8bc97994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 40
+  axisSpeed: 0
+  cameraTransform: {fileID: 0}
+  decelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelerationSpeed: 0.3
+  angleByScroll: 10
+  angleLimitUp: -70
+  angleLimitDown: -10
+  positionLimitUp: 40
 --- !u!114 &478007362
 MonoBehaviour:
   m_ObjectHideFlags: 0
