@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,18 +28,20 @@ public class PathPoint : MonoBehaviour
     [SerializeField]
     private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
 
+    public Action OnPointDestroyed;
+
     /// <summary>
     /// Permet de prendre un point aléatoire dans la liste des points existants
     /// </summary>
     /// <returns>Renvoie un point de la liste.</returns>
     public PathPoint GetRandomPoint()
     {
-        return linkedPoints[Random.Range(0, linkedPoints.Count)].point;
+        return linkedPoints[UnityEngine.Random.Range(0, linkedPoints.Count)].point;
     }
 
     public PathPoint GetRandomPointFromList(List<PathPoint> toSearch)
     {
-        return toSearch[Random.Range(0, toSearch.Count)];
+        return toSearch[UnityEngine.Random.Range(0, toSearch.Count)];
     }
 
     /// <summary>
@@ -95,5 +98,10 @@ public class PathPoint : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        OnPointDestroyed?.Invoke();
     }
 }

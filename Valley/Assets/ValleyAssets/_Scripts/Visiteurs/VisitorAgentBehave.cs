@@ -49,6 +49,8 @@ public class VisitorAgentBehave : MonoBehaviour
             datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
             AskToWalk();
         }
+
+        datas.currentPoint.OnPointDestroyed += UnsetVisitor;
     }
 
     public void UnsetVisitor()
@@ -60,7 +62,15 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void AskToWalk()
     {
-        isWalking = VisitorManager.ChooseNextDestination(datas);
+        if (enabled)
+        {
+            isWalking = VisitorManager.ChooseNextDestination(datas);
+            if (isWalking)
+            {
+                datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
+                datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+            }
+        }
     }
 
     private void ReachDestination()
@@ -73,6 +83,22 @@ public class VisitorAgentBehave : MonoBehaviour
         else
         {
             VisitorManager.MakeVisitorWait(UnityEngine.Random.Range(0.5f,1.5f), AskToWalk);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (datas.currentPoint != null)
+        {
+            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(datas.currentPoint != null)
+        {
+            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
         }
     }
 }

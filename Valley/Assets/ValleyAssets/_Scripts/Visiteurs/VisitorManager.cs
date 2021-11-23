@@ -49,9 +49,13 @@ public class VisitorManager : MonoBehaviour
 
     public static bool ChooseNextDestination(VisitorData visitor)
     {
-        PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
-        visitor.SetDestination(newPathpoint);
-        return true;
+        if (visitor.currentPoint != null)
+        {
+            PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
+            visitor.SetDestination(newPathpoint);
+            return true;
+        }
+        return false;
     }
 
     public static void MakeVisitorWait(float waitTime, Action callback) //CODE REVIEW : Voir pour eviter de passer par 3 fonctions pour faire un Wait
