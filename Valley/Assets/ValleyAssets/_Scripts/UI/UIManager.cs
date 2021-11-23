@@ -48,11 +48,20 @@ public class UIManager : MonoBehaviour
 
     public static void ModifyPathCount(int nb)
     {
-        for(int i=1; i<=nb;i++)
+        for(int i=1; i<=3;i++)
         {
-            GameObject button = instance.buttonsList.transform.GetChild(i).gameObject;
-            button.GetComponent<PathLinked>().path = pathToModify[i - 1];
-            button.SetActive(true);
+            if (i <= nb)
+            {
+                GameObject button = instance.buttonsList.transform.GetChild(i).gameObject;
+                button.GetComponent<PathLinked>().path = pathToModify[i - 1];
+                button.SetActive(true);
+            }
+            else
+            {
+                GameObject button = instance.buttonsList.transform.GetChild(i).gameObject;
+                button.GetComponent<PathLinked>().path = null;
+                button.SetActive(false);
+            }
         }
 
         instance.OnHideButtons();
@@ -62,6 +71,7 @@ public class UIManager : MonoBehaviour
     {
         _landInteraction.ModifyPath(pathLinked.path);
         instance.OnHideButtons();
+        pathToModify.Clear();
     }
 
 

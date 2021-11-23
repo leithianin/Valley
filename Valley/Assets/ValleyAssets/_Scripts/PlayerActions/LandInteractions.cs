@@ -14,7 +14,7 @@ public class LandInteractions : MonoBehaviour
 
     private bool isNewPath = true;
 
-    private GameObject firstMarker;                                            //First path's marker
+    public GameObject firstMarker;                                            //First path's marker
     private GameObject selectedMarker;
     private GameObject currentMarker;
 
