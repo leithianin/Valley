@@ -4,10 +4,28 @@ using UnityEngine;
 
 public class PathPoint : MonoBehaviour
 {
+    [System.Serializable]
+    public class LinkedPointData
+    {
+        public PathPoint point;
+        public Valley_PathData path;
+
+        public LinkedPointData()
+        {
+
+        }
+
+        public LinkedPointData(PathPoint nPoint, Valley_PathData nPath)
+        {
+            point = nPoint;
+            path = nPath;
+        }
+    }
+
     public Vector3 Position => transform.position;
 
     [SerializeField]
-    private List<PathPoint> linkedPoints;
+    private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
 
     /// <summary>
     /// Permet de prendre un point aléatoire dans la liste des points existants
@@ -15,7 +33,12 @@ public class PathPoint : MonoBehaviour
     /// <returns>Renvoie un point de la liste.</returns>
     public PathPoint GetRandomPoint()
     {
-        return linkedPoints[Random.Range(0, linkedPoints.Count)];
+        return linkedPoints[Random.Range(0, linkedPoints.Count)].point;
+    }
+
+    public PathPoint GetRandomPointFromList(List<PathPoint> toSearch)
+    {
+        return toSearch[Random.Range(0, toSearch.Count)];
     }
 
     /// <summary>
@@ -31,9 +54,9 @@ public class PathPoint : MonoBehaviour
         List<PathPoint> usablePoints = new List<PathPoint>(); // Liste des points appartenants au chemin d'entrée
         for(int i = 0; i < linkedPoints.Count; i++)
         {
-            if(path.ContainsPoint(linkedPoints[i]))
+            if(linkedPoints[i].path == path)
             {
-                usablePoints.Add(linkedPoints[i]);
+                usablePoints.Add(linkedPoints[i].point);
             }
         }
 
@@ -41,7 +64,7 @@ public class PathPoint : MonoBehaviour
         {
             while (toReturn == lastPoint) //Tant qu'on connait le point choisit, on en rechoisit un
             {
-                PathPoint newPoint = GetRandomPoint();
+                PathPoint newPoint = GetRandomPointFromList(usablePoints);
                 if (path.ContainsPoint(newPoint))
                 {
                     toReturn = newPoint;
@@ -56,18 +79,19 @@ public class PathPoint : MonoBehaviour
         return linkedPoints.Count;
     }
 
-    public void AddPoint(PathPoint pathPoint)
+    public void AddPoint(PathPoint pathPoint, Valley_PathData path)
     {
-        linkedPoints.Add(pathPoint);
+        LinkedPointData toAdd = new LinkedPointData(pathPoint, path);
+        linkedPoints.Add(new LinkedPointData(pathPoint, path));
     }
 
     public void RemovePoint(PathPoint pathPoint)
     {
-        foreach(PathPoint pp in linkedPoints)
+        for(int i = 0; i < linkedPoints.Count; i++)
         {
-            if(pp == pathPoint)
+            if(pathPoint == linkedPoints[i].point)
             {
-                linkedPoints.Remove(pp);
+                linkedPoints.RemoveAt(i);
                 return;
             }
         }

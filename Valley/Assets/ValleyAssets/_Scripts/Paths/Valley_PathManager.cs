@@ -113,8 +113,8 @@ public class Valley_PathManager : MonoBehaviour
         PathPoint currentPathPoint = marker.GetComponent<PathPoint>();
         PathPoint previousPathPoint = instance.GetPreviousPathPoint(currentPathPoint);
 
-        previousPathPoint.AddPoint(currentPathPoint);
-        currentPathPoint.AddPoint(previousPathPoint);
+        previousPathPoint.AddPoint(currentPathPoint, currentPathOn);
+        currentPathPoint.AddPoint(previousPathPoint, currentPathOn);
     }
 
     public static void AddPathPointWithoutMarker(GameObject targetMarker, GameObject previousMarker)
@@ -122,8 +122,8 @@ public class Valley_PathManager : MonoBehaviour
         PathPoint currentPathPoint = targetMarker.GetComponent<PathPoint>();
         PathPoint previousPathPoint = previousMarker.GetComponent<PathPoint>();
 
-        currentPathPoint.AddPoint(previousPathPoint);
-        previousPathPoint.AddPoint(currentPathPoint);
+        currentPathPoint.AddPoint(previousPathPoint, currentPathOn);
+        previousPathPoint.AddPoint(currentPathPoint, currentPathOn);
     }
 
     public static void RemovePathPoint(GameObject marker)

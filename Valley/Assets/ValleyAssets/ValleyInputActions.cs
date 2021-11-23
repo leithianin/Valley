@@ -845,7 +845,7 @@ public class @ValleyInputActions : IInputActionCollection, IDisposable
                     ""name"": ""Zoom"",
                     ""type"": ""Value"",
                     ""id"": ""bba36806-06a9-47b9-b8ba-28ee94e78b3b"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -986,9 +986,9 @@ public class @ValleyInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""494b6af8-a9f3-4df8-aad4-e04dfe4e0b9b"",
-                    ""path"": ""<Mouse>/scroll"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""AxisDeadzone(max=1),Scale(factor=1000)"",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Zoom"",
                     ""isComposite"": false,
