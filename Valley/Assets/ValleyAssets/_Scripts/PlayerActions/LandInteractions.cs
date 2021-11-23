@@ -62,7 +62,7 @@ public class LandInteractions : MonoBehaviour
             ToolManager.ActivePathTool();
         }
 
-        if (Input.GetKeyDown(KeyCode.Delete))
+        if (Input.GetKeyDown(KeyCode.Delete) && markersList.transform.childCount > 0)
         {
             DeletePreviousMarker();
         }
@@ -163,7 +163,7 @@ public class LandInteractions : MonoBehaviour
 
     private void DeletePreviousMarker()
     {
-        GameObject localMarker = Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject;
+      GameObject localMarker = Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject;
         ToolManager.ResetLink(firstMarker);
         Valley_PathManager.RemovePathPoint(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1].gameObject);
         Valley_PathManager.GetCurrentPath().pathPoints.RemoveAt(Valley_PathManager.GetCurrentPath().pathPoints.Count-1);
@@ -184,6 +184,7 @@ public class LandInteractions : MonoBehaviour
     private void CreateOrModifyPath(GameObject selectedMarker)
     {
         CheckHowManyPathToModify(selectedMarker.GetComponent<PathPoint>());
+
         //Check in Existing point if we find the Path Point in several paths
         UIManager.ShowButtonsUI(selectedMarker);
     }

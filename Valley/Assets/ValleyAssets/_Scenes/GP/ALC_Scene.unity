@@ -1034,7 +1034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c947c09448428b4fb33f55a8bc97994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: 40
+  axisSpeed: 100
   cameraTransform: {fileID: 297509918}
   decelerationCurve:
     serializedVersion: 2
