@@ -157,7 +157,6 @@ public class Valley_PathManager : MonoBehaviour
             }                 
         }
 
-        Debug.Log(n);
         return n;
     }
 }
