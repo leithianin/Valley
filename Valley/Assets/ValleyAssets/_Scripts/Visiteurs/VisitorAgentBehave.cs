@@ -41,7 +41,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        datas.path = VisitorManager.ChoosePath();
+        datas.path = VisitorManager.ChoosePath(spawnPoint);
         AskToWalk();
 
         if (datas.currentPoint == nSpawnPoint)

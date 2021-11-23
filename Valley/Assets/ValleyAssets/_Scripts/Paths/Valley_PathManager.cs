@@ -61,6 +61,20 @@ public class Valley_PathManager : MonoBehaviour
         return instance.existingPaths[result];
     }
 
+    public static Valley_PathData GetRandomPath(PathPoint startPoint)
+    {
+        Valley_PathData path = GetRandomPath();
+        int i = 0; 
+
+        while(!path.ContainsPoint(startPoint) && i < 100)
+        {
+            path = GetRandomPath();
+            i++;
+        }
+
+        return path;
+    }
+
     public static void CreatePath()
     {
         Valley_PathData path = new Valley_PathData();

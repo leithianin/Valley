@@ -42,9 +42,9 @@ public class VisitorManager : MonoBehaviour
         toRemove.UnsetVisitor();
     }
 
-    public static Valley_PathData ChoosePath()
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint)
     {
-        return Valley_PathManager.GetRandomPath();
+        return Valley_PathManager.GetRandomPath(spawnPoint);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
