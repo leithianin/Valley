@@ -26,7 +26,7 @@ public class VisitorManager : MonoBehaviour
 
     private void SpawnVisitor()
     {
-        if (Valley_PathManager.HasAvailablePath)
+        if (Valley_PathManager.HasAvailablePath(visitorSpawnPoint))
         {
             VisitorAgentBehave newVisitor = GetAvailableVisitor();
 

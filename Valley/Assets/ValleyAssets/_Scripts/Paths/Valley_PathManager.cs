@@ -15,18 +15,21 @@ public class Valley_PathManager : MonoBehaviour
     [SerializeField] private List<PathPoint> firstPathPoints;
     [SerializeField] private List<PathPoint> secondPathPoints;*/
 
-    public static bool HasAvailablePath => instance.CheckForAvailablePath();
+    public static bool HasAvailablePath(PathPoint spawnPoint)
+    {
+        return instance.CheckForAvailablePath(spawnPoint);
+    }
 
     private void Awake()
     {
         instance = this;    
     }
 
-    private bool CheckForAvailablePath()
+    private bool CheckForAvailablePath(PathPoint spawnPoint)
     {
         for(int i = 0; i < existingPaths.Count; i++)
         {
-            if(CheckPathUsability(existingPaths[i]))
+            if(CheckPathUsability(existingPaths[i]) && existingPaths[i].ContainsPoint(spawnPoint))
             {
                 return true;
             }
