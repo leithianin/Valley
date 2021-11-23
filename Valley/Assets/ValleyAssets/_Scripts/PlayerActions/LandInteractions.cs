@@ -18,6 +18,8 @@ public class LandInteractions : MonoBehaviour
     private GameObject selectedMarker;
     private GameObject currentMarker;
 
+    private int test = 1;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -96,6 +98,8 @@ public class LandInteractions : MonoBehaviour
     private void PlaceMarker()
     {
         GameObject _marker = Instantiate(marker, GetHitPoint(), Quaternion.identity, markersList.transform);
+        _marker.name = "Marker_" + test;
+        test++;
 
         if (isNewPath)
         {
@@ -159,10 +163,22 @@ public class LandInteractions : MonoBehaviour
 
     private void DeletePreviousMarker()
     {
+        GameObject localMarker = Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject;
         ToolManager.ResetLink(firstMarker);
-        Valley_PathManager.RemovePathPoint(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject);
-        Valley_PathManager.GetCurrentPath().pathPoints.Remove(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1]);
-        Destroy(markersList.transform.GetChild(markersList.transform.childCount-1).gameObject);
+        Valley_PathManager.RemovePathPoint(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1].gameObject);
+        Valley_PathManager.GetCurrentPath().pathPoints.RemoveAt(Valley_PathManager.GetCurrentPath().pathPoints.Count-1);
+
+        //if (Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject.GetComponent<PathPoint>().GetNbLinkedPoint()>2)
+        if(localMarker.GetComponent<PathPoint>().GetNbLinkedPoint()>0)
+        {
+            //Dont deztroy
+        }
+        else
+        {
+            Destroy(localMarker);
+        }
+
+        currentMarker = Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1].gameObject;
     }
 
     private void CreateOrModifyPath(GameObject selectedMarker)

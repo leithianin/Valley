@@ -51,6 +51,11 @@ public class PathPoint : MonoBehaviour
         return toReturn;
     }
 
+    public int GetNbLinkedPoint()
+    {
+        return linkedPoints.Count;
+    }
+
     public void AddPoint(PathPoint pathPoint)
     {
         linkedPoints.Add(pathPoint);

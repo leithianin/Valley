@@ -112,9 +112,11 @@ public class Valley_PathManager : MonoBehaviour
     public static void RemovePathPoint(GameObject marker)
     {
         PathPoint currentPathPoint = marker.GetComponent<PathPoint>();
-        PathPoint PreviousPathPoint = instance.GetPreviousPathPoint(currentPathPoint);
 
-        PreviousPathPoint.RemovePoint(currentPathPoint);
+        PathPoint previousPathPoint = GetCurrentPath().pathPoints[GetCurrentPath().pathPoints.Count - 2];
+
+        previousPathPoint.RemovePoint(currentPathPoint);
+        currentPathPoint.RemovePoint(previousPathPoint);
     }
 
     private PathPoint GetPreviousPathPoint(PathPoint currentPathPoint)
