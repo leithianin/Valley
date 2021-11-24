@@ -1455,6 +1455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!114 &610462560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,6 +1664,7 @@ MonoBehaviour:
   existingPaths:
   - pathPoints:
     - {fileID: 610410488}
+    lineRenderer: {fileID: 2093542386}
 --- !u!4 &745537089
 Transform:
   m_ObjectHideFlags: 0
@@ -2068,6 +2070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!1 &967653321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,6 +2125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!114 &967653324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,6 +2573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!1 &1398147398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,6 +2973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!1 &1643411310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,6 +3708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     pathPoints: []
+    lineRenderer: {fileID: 0}
 --- !u!114 &1936149830
 MonoBehaviour:
   m_ObjectHideFlags: 0
