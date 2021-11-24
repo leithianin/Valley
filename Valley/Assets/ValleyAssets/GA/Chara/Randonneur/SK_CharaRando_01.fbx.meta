@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: 357d1d1f66440b041a7fa31b66968cf0
+guid: b94b7b4ad081d1e488686b1f9d26355f
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
-      74: -2877597226078034732
-    second: Armature_Touriste|Action
+      74: -297254116598858455
+    second: Armature_Rando|ArmatureAction
   - first:
-      74: 7470229150588492966
-    second: Armature_Touriste|Idle
+      74: -3806304212510524916
+    second: Armature_Rando|Idle_Rando
   - first:
-      74: 5489204633899305127
-    second: Armature_Touriste|Pose
-  - first:
-      74: 1508759648345175802
-    second: Armature_Touriste|Walk
+      74: -2214569356975527288
+    second: Armature_Rando|Pose
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -44,8 +41,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature_Touriste|Action
-      takeName: Armature_Touriste|Action
+      name: Armature_Rando|ArmatureAction
+      takeName: Armature_Rando|ArmatureAction
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -73,8 +70,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature_Touriste|Idle
-      takeName: Armature_Touriste|Idle
+      name: Armature_Rando|Idle_Rando
+      takeName: Armature_Rando|Idle_Rando
       internalID: 0
       firstFrame: 1
       lastFrame: 49
@@ -102,37 +99,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature_Touriste|Pose
-      takeName: Armature_Touriste|Pose
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Armature_Touriste|Walk
-      takeName: Armature_Touriste|Walk
+      name: Armature_Rando|Pose
+      takeName: Armature_Rando|Pose
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -214,7 +182,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature_Touriste
+    rootMotionBoneName: Armature_Rando
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

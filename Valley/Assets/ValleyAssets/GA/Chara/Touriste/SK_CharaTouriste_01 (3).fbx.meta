@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff14ef0cd17f7594f90e1d0d47d01fad
+guid: 8ca3d74810c540743862e5f4e057757c
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
@@ -73,8 +73,8 @@ ModelImporter:
       name: Armature_Touriste|Idle_Touriste
       takeName: Armature_Touriste|Idle_Touriste
       internalID: 0
-      firstFrame: 0
-      lastFrame: 50
+      firstFrame: 1
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -182,7 +182,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Armature_Touriste
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
