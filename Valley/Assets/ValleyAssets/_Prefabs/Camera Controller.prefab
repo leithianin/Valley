@@ -61,7 +61,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c947c09448428b4fb33f55a8bc97994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 40
+  axisSpeed: 40
+  cameraTransform: {fileID: 2544045657299463086}
+  decelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0
+      outSlope: -0
+      tangentMode: 0
+      weightedMode: 2
+      inWeight: 0
+      outWeight: 0.16515426
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.0026177273
+      outSlope: -0.0026177273
+      tangentMode: 0
+      weightedMode: 1
+      inWeight: 0.90199554
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelerationSpeed: 0.8
+  angleByScroll: 5
+  angleLimitUp: 55
+  angleLimitDown: 35
+  positionLimitUp: 100
 --- !u!1 &2544045657299463083
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,13 +118,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2544045657299463083}
-  m_LocalRotation: {x: 0.2756884, y: -0, z: -0, w: 0.9612471}
-  m_LocalPosition: {x: 416.8258, y: 57.82744, z: -45.589417}
+  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2544045657077047280}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 32.006, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
 --- !u!20 &2544045657299463085
 Camera:
   m_ObjectHideFlags: 0

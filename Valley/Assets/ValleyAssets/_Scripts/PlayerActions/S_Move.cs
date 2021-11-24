@@ -108,6 +108,6 @@ public class S_Move : MonoBehaviour
 
     private float CalculatePosition()
     {
-        return ((currentAngle + angleLimitDown) / (angleLimitUp + angleLimitDown)) * positionLimitUp;
+        return ((currentAngle - angleLimitDown) / (angleLimitUp - angleLimitDown)) * positionLimitUp;
     }
 }
