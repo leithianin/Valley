@@ -1,17 +1,17 @@
-; FBX 7.4.0 project file
+; FBX 7.3.0 project file
 ; ----------------------------------------------------
 
 FBXHeaderExtension:  {
 	FBXHeaderVersion: 1003
-	FBXVersion: 7400
+	FBXVersion: 7300
 	CreationTimeStamp:  {
 		Version: 1000
 		Year: 2021
 		Month: 11
-		Day: 22
-		Hour: 17
-		Minute: 12
-		Second: 11
+		Day: 24
+		Hour: 11
+		Minute: 40
+		Second: 27
 		Millisecond: 110
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.1.1"
@@ -34,13 +34,13 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2022"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "22/11/2021 16:12:11.109"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "24/11/2021 10:40:27.109"
 			P: "Original|FileName", "KString", "", "", "D:\VALLEY\UNITYVALLEY\Valley\Valley\Assets\ValleyAssets\GA\Enviro\House\SM_House_LOD2.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2022"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "22/11/2021 16:12:11.109"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "24/11/2021 10:40:27.109"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\a.delannoy\Documents\3ds Max 2022"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "D:\VALLEY\testUnity\refuge.max"
 		}
@@ -77,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1999532276336, "", "Scene" {
+	Document: 1895374889328, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -274,7 +274,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1999503002400, "Geometry::", "Mesh" {
+	Geometry: 1895306416752, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0,0,0
 		}
@@ -290,16 +290,13 @@ Objects:  {
 		} 
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
-			Version: 102
+			Version: 101
 			Name: ""
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
 			Normals: *324 {
 				a: 0.722166538238525,0,-0.691719233989716,0,0,-1,0,0,-1,0.722166478633881,0,-0.691719174385071,0,0,1,0,0,1,-0.684454381465912,0,0.729055821895599,-0.684454202651978,0,0.729055762290955,0,-1,0,0,-1,0,0,-1,0,0,-1,0,-0.834811210632324,0,-0.550536334514618,-0.834811210632324,0,-0.550536334514618,-0.834811210632324,0,-0.550536334514618,-0.834811210632324,0,-0.550536334514618,5.97665897011219e-15,1,3.07889962414265e-08,1.02647362609787e-07,1,3.07889855832855e-08,1.02647369715214e-07,1,3.07889855832855e-08,8.69759603558786e-15,1,3.07889926887128e-08,0,0,-1,0,0,-1,-0.722166538238525,0,-0.691719174385071,-0.72216659784317,0,-0.691719174385071,0.684454381465912,0,0.729055821895599,0,0,1,0,0,1,0.684454202651978,0,0.729055762290955,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0.83481103181839,0,-0.550536453723907,0.83481103181839,0,-0.550536453723907,0.83481103181839,0,-0.550536453723907,0.83481103181839,0,-0.550536453723907,5.97665897011219e-15,1,3.07889962414265e-08,8.69759603558786e-15,1,3.07889926887128e-08,-1.02647355504359e-07,1,3.07890033468539e-08,-1.02647341293505e-07,1,3.07890033468539e-08,0,-1,0,0,-1,0,0,-1,0,0,-1,0,-0.999071359634399,-5.65188975087949e-06,0.0430869311094284,-0.999071359634399,-5.65188929613214e-06,0.0430869273841381,-0.999071359634399,-5.65188884138479e-06,0.0430869236588478,-0.999071359634399,-5.65188929613214e-06,0.0430869311094284,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0.999071359634399,-5.65188929613214e-06,0.0430869311094284,0.999071359634399,-5.65188929613214e-06,0.0430869311094284,0.999071359634399,-5.65188838663744e-06,0.0430869236588478,0.999071359634399,-5.65188884138479e-06,0.0430869273841381,-1.05171800157677e-08,1,3.26348832402346e-08,-1.05171800157677e-08,1,3.26348832402346e-08,4.54129673709019e-16,1,3.26348832402346e-08,5.64794792965589e-16,1,3.26348867929482e-08,0,0,1,0,0,1,0,0,1,0,0,1,0,-1,0,0,-1,0,0,-1,0,0,-1,0,1,0,0,1,0,0,1,0,0,1,0,0,0,1,0,0,1,0,0,1,0,0,1,0,-1,0,0,-1,0,0,-1,0,0,-1,0,0,0,0.999999940395355,0,0,1,0,0,0.999999940395355,0,0,1,0,0,1,0,0,1,0,0,1,0,0,1,0,0.996782302856445,-2.29785285910111e-07,-0.080156147480011,
 0.996782302856445,-2.29785300120966e-07,-0.080156147480011,0.996782302856445,-2.29785285910111e-07,-0.080156147480011,0.996782302856445,-2.29785300120966e-07,-0.080156147480011,-0.996782302856445,0,-0.080156147480011,-0.996782302856445,0,-0.080156147480011,-0.996782302856445,0,-0.080156147480011,-0.996782302856445,0,-0.080156147480011,-0.380493342876434,0,0.924783706665039,-0.380493342876434,0,0.924783706665039,-0.380493342876434,0,0.924783706665039,-0.380493342876434,0,0.924783706665039,0.380493342876434,-4.65094593948834e-08,0.924783706665039,0.380493342876434,-4.65094593948834e-08,0.924783647060394,0.380493342876434,-4.65094629475971e-08,0.924783706665039,0.380493342876434,-4.65094593948834e-08,0.924783706665039,5.64794792965589e-16,1,3.26348867929482e-08,4.54129673709019e-16,1,3.26348832402346e-08,1.05171809039462e-08,1,3.26348867929482e-08,1.05171809039462e-08,1,3.26348867929482e-08
-			} 
-			NormalsW: *108 {
-				a: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 			} 
 		}
 		LayerElementUV: 0 {
@@ -339,24 +336,25 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1999752554240, "Model::SM_House03_01", "Mesh" {
+	Model: 1896539892304, "Model::SM_House03_01", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
-			P: "GeometricTranslation", "Vector3D", "Vector", "",-6.191969871521,146.352661132813,-5.37785339355469
-			P: "GeometricRotation", "Vector3D", "Vector", "",-90,-0,0
+			P: "GeometricTranslation", "Vector3D", "Vector", "",6.191969871521,146.352645874023,5.37784004211426
+			P: "GeometricRotation", "Vector3D", "Vector", "",-89.9999847412109,-180,-4.0711089555924e-13
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,0
+			P: "Lcl Translation", "Lcl Translation", "", "A",1.9111465215683,0,-52.1483268737793
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,-1.00179122421397e-05
 			P: "Lcl Scaling", "Lcl Scaling", "", "A",1.8514,1.8514,1.8514
 			P: "MaxHandle", "int", "Integer", "UH",34
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1999665329408, "Material::Material #25", "" {
+	Material: 1896560972736, "Material::Material #25", "" {
 		Version: 102
 		ShadingModel: "unknown"
 		MultiLayer: 0
@@ -466,7 +464,7 @@ Objects:  {
 			P: "3dsMax|Parameters|displacement_map_amt", "Float", "", "A",1
 		}
 	}
-	Implementation: 1999665996736, "Implementation::Material #25_Implementation", "" {
+	Implementation: 1896541755952, "Implementation::Material #25_Implementation", "" {
 		Version: 100
 		Properties70:  {
 			P: "ShaderLanguage", "KString", "", "", "AiOSL"
@@ -474,7 +472,7 @@ Objects:  {
 			P: "RootBindingName", "KString", "", "", "root"
 		}
 	}
-	BindingTable: 1999534072592, "BindingTable::root 19", "" {
+	BindingTable: 1894633655376, "BindingTable::root 7", "" {
 		Version: 100
 		Properties70:  {
 			P: "TargetName", "KString", "", "", "root"
@@ -569,25 +567,25 @@ Objects:  {
 		Entry: "3dsMax|Parameters|cutout_map_on", "FbxPropertyEntry", "cutout_map_on", "FbxSemanticEntry"
 		Entry: "3dsMax|Parameters|displacement_map_amt", "FbxPropertyEntry", "displacement_map_amt", "FbxSemanticEntry"
 	}
-	AnimationStack: 1997549886368, "AnimStack::Take 001", "" {
+	AnimationStack: 1896525376080, "AnimStack::Take 001", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",153953860000
 			P: "ReferenceStop", "KTime", "Time", "",153953860000
 		}
 	}
-	AnimationLayer: 1998465457728, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 1896535022992, "AnimLayer::BaseLayer", "" {
 	}
-	CollectionExclusive: 1999664510464, "DisplayLayer::LOD00", "DisplayLayer" {
+	CollectionExclusive: 1896539491008, "DisplayLayer::LOD00", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.83921568627451,0.898039215686275,0.650980392156863
 		}
 	}
-	CollectionExclusive: 1999664518912, "DisplayLayer::LOD1", "DisplayLayer" {
+	CollectionExclusive: 1896539491584, "DisplayLayer::LOD1", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.894117647058824,0.6,0.72156862745098
 		}
 	}
-	CollectionExclusive: 1999664517376, "DisplayLayer::LOD02", "DisplayLayer" {
+	CollectionExclusive: 1896539489856, "DisplayLayer::LOD02", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.0235294117647059,0.529411764705882,0.443137254901961
 		}
@@ -600,25 +598,25 @@ Objects:  {
 Connections:  {
 	
 	;Model::SM_House03_01, Model::RootNode
-	C: "OO",1999752554240,0
+	C: "OO",1896539892304,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1998465457728,1997549886368
+	C: "OO",1896535022992,1896525376080
 	
 	;Geometry::, Model::SM_House03_01
-	C: "OO",1999503002400,1999752554240
+	C: "OO",1895306416752,1896539892304
 	
 	;Material::Material #25, Model::SM_House03_01
-	C: "OO",1999665329408,1999752554240
+	C: "OO",1896560972736,1896539892304
 	
 	;Material::Material #25, Implementation::Material #25_Implementation
-	C: "OO",1999665329408,1999665996736
+	C: "OO",1896560972736,1896541755952
 	
-	;BindingTable::root 19, Implementation::Material #25_Implementation
-	C: "OO",1999534072592,1999665996736
+	;BindingTable::root 7, Implementation::Material #25_Implementation
+	C: "OO",1894633655376,1896541755952
 	
 	;Model::SM_House03_01, DisplayLayer::LOD02
-	C: "OO",1999752554240,1999664517376
+	C: "OO",1896539892304,1896539489856
 }
 ;Takes section
 ;----------------------------------------------------

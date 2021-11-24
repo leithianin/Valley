@@ -8,11 +8,11 @@ FBXHeaderExtension:  {
 		Version: 1000
 		Year: 2021
 		Month: 11
-		Day: 23
-		Hour: 17
-		Minute: 15
-		Second: 37
-		Millisecond: 941
+		Day: 24
+		Hour: 11
+		Minute: 48
+		Second: 19
+		Millisecond: 683
 	}
 	Creator: "FBX SDK/FBX Plugins version 2020.1.1"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -34,14 +34,15 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "3ds Max"
 			P: "Original|ApplicationVersion", "KString", "", "", "2022"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "23/11/2021 16:15:37.941"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "24/11/2021 10:48:19.682"
 			P: "Original|FileName", "KString", "", "", "D:\VALLEY\UNITYVALLEY\Valley\Valley\Assets\ValleyAssets\GA\Enviro\Prevention Sign\SM_Prevention_01_LOD0.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "3ds Max"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2022"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "23/11/2021 16:15:37.941"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "24/11/2021 10:48:19.682"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\a.delannoy\Documents\3ds Max 2022"
+			P: "Original|ApplicationNativeFile", "KString", "", "", "D:\VALLEY\testUnity\prevention sign\prevention sign.max"
 		}
 	}
 }
@@ -76,7 +77,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1363714613872, "", "Scene" {
+	Document: 2141393575984, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", ""
@@ -236,7 +237,7 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	Geometry: 1361999724896, "Geometry::", "Mesh" {
+	Geometry: 2142828369280, "Geometry::", "Mesh" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.0313725490196078,0.0313725490196078,0.533333333333333
 		}
@@ -295,40 +296,40 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1363881558720, "Model::SM_PreventionSign_01_LOD0", "Mesh" {
+	Model: 2143052763200, "Model::SM_PreventionSign_01_LOD0", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "PreRotation", "Vector3D", "Vector", "",-90,-0,0
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
-			P: "GeometricRotation", "Vector3D", "Vector", "",-89.9999923706055,180,1.79177061454538e-06
+			P: "GeometricRotation", "Vector3D", "Vector", "",-90,3.58353509000153e-06,-3.58354054696974e-06
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-			P: "Lcl Rotation", "Lcl Rotation", "", "A",90.0000025044781,-0,-179.999991348578
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",89.9999993167547,-0,0
 			P: "MaxHandle", "int", "Integer", "UH",10
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	AnimationStack: 1363724851184, "AnimStack::Take 001", "" {
+	AnimationStack: 2143307994080, "AnimStack::Take 001", "" {
 		Properties70:  {
 			P: "LocalStop", "KTime", "Time", "",153953860000
 			P: "ReferenceStop", "KTime", "Time", "",153953860000
 		}
 	}
-	AnimationLayer: 1363890747312, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 2141109801936, "AnimLayer::BaseLayer", "" {
 	}
-	CollectionExclusive: 1363878670816, "DisplayLayer::panneau LOD0", "DisplayLayer" {
+	CollectionExclusive: 2143315381984, "DisplayLayer::panneau LOD0", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.87843137254902,0.337254901960784,0.337254901960784
 		}
 	}
-	CollectionExclusive: 1363878667168, "DisplayLayer::lod1", "DisplayLayer" {
+	CollectionExclusive: 2143315381600, "DisplayLayer::lod1", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.580392156862745,0.694117647058824,0.105882352941176
 		}
 	}
-	CollectionExclusive: 1363878668704, "DisplayLayer::LOD2", "DisplayLayer" {
+	CollectionExclusive: 2143315377568, "DisplayLayer::LOD2", "DisplayLayer" {
 		Properties70:  {
 			P: "Color", "ColorRGB", "Color", "",0.650980392156863,0.898039215686275,0.898039215686275
 		}
@@ -341,16 +342,16 @@ Objects:  {
 Connections:  {
 	
 	;Model::SM_PreventionSign_01_LOD0, Model::RootNode
-	C: "OO",1363881558720,0
+	C: "OO",2143052763200,0
 	
 	;AnimLayer::BaseLayer, AnimStack::Take 001
-	C: "OO",1363890747312,1363724851184
+	C: "OO",2141109801936,2143307994080
 	
 	;Geometry::, Model::SM_PreventionSign_01_LOD0
-	C: "OO",1361999724896,1363881558720
+	C: "OO",2142828369280,2143052763200
 	
 	;Model::SM_PreventionSign_01_LOD0, DisplayLayer::panneau LOD0
-	C: "OO",1363881558720,1363878670816
+	C: "OO",2143052763200,2143315381984
 }
 ;Takes section
 ;----------------------------------------------------
