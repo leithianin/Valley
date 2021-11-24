@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathPoint : MonoBehaviour
+public class PathPoint : Construction
 {
     [System.Serializable]
     public class LinkedPointData
@@ -103,5 +103,29 @@ public class PathPoint : MonoBehaviour
     private void OnDestroy()
     {
         OnPointDestroyed?.Invoke();
+    }
+
+    protected override bool OnPlaceObject(Vector3 position)
+    {
+        // Récupère le chemin actuel depuis le Manager
+        // Récupère le dernier point poser depuis le Manager
+        //   (On peut aussi appeler le manager pour SetPoint depuis ce dernier)
+        // Vérifie si on peut le poser ou non (Pour l'instant, on retourne toujours True
+        return true;
+    }
+
+    protected override void OnRemoveObject()
+    {
+        // On peut mettre la logique de DeletePreviousMarker ici
+        /*
+        if (localMarker.GetComponent<PathPoint>().GetNbLinkedPoint() > 0)
+        {
+            //Dont deztroy
+        }
+        else
+        {
+            Destroy(localMarker);
+        }
+        */
     }
 }
