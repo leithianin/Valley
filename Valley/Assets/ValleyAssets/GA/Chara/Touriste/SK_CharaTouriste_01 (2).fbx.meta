@@ -1,20 +1,20 @@
 fileFormatVersion: 2
-guid: ff14ef0cd17f7594f90e1d0d47d01fad
+guid: 357d1d1f66440b041a7fa31b66968cf0
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+      74: -2877597226078034732
+    second: Armature_Touriste|Action
   - first:
-      74: -8945691123924629249
-    second: Armature|Idle
+      74: 7470229150588492966
+    second: Armature_Touriste|Idle
   - first:
-      74: 8286213966144421055
-    second: Armature|Idle_01
+      74: 5489204633899305127
+    second: Armature_Touriste|Pose
   - first:
-      74: 8032951814183105950
-    second: Armature|Pose
+      74: 1508759648345175802
+    second: Armature_Touriste|Walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -44,8 +44,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction
-      takeName: Armature|ArmatureAction
+      name: Armature_Touriste|Action
+      takeName: Armature_Touriste|Action
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -73,11 +73,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
-      takeName: Armature|Idle
+      name: Armature_Touriste|Idle
+      takeName: Armature_Touriste|Idle
       internalID: 0
-      firstFrame: 0
-      lastFrame: 1
+      firstFrame: 1
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -85,7 +85,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -102,25 +102,25 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle_01
-      takeName: Armature|Idle_01
+      name: Armature_Touriste|Pose
+      takeName: Armature_Touriste|Pose
       internalID: 0
-      firstFrame: 1
-      lastFrame: 49
+      firstFrame: 0
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -131,8 +131,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Pose
-      takeName: Armature|Pose
+      name: Armature_Touriste|Walk
+      takeName: Armature_Touriste|Walk
       internalID: 0
       firstFrame: 0
       lastFrame: 1
@@ -214,7 +214,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature
+    rootMotionBoneName: Armature_Touriste
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
