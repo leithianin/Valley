@@ -145,7 +145,9 @@ public class LandInteractions : MonoBehaviour
     {
         isNewPath = false;
         firstMarker = _pathData.pathPoints[0].gameObject;
-        firstMarker.GetComponent<VisibleLink>().SetLine(firstMarker.transform.GetChild(1).GetComponent<LineRenderer>());
+
+        firstMarker.GetComponent<VisibleLink>().SetLine(_pathData.lineRenderer);
+
         Valley_PathManager.SetCurrentPath(_pathData);
         //ToolManager.AddLink(_pathData.pathPoints[_pathData.pathPoints.Count-1].gameObject, firstMarker);
 

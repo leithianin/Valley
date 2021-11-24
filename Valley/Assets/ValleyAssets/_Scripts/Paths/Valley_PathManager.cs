@@ -165,6 +165,7 @@ public class Valley_PathManager : MonoBehaviour
 
     public static int GetNumberOfPathPoints(PathPoint pathPoint)
     {
+        UIManager.pathToModify.Clear();
         int n = 0;
 
         for (int i = 0; i < instance.existingPaths.Count; i++)

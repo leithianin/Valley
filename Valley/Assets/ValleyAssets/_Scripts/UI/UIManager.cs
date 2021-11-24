@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
 
     public static void ModifyPathCount(int nb)
     {
-        for(int i=1; i<=3;i++)
+        for(int i=1; i<=6;i++)
         {
             if (i <= nb)
             {
@@ -71,7 +71,6 @@ public class UIManager : MonoBehaviour
     {
         _landInteraction.ModifyPath(pathLinked.path);
         instance.OnHideButtons();
-        pathToModify.Clear();
     }
 
 
