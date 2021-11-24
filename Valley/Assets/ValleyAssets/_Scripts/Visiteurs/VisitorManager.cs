@@ -26,11 +26,14 @@ public class VisitorManager : MonoBehaviour
 
     private void SpawnVisitor()
     {
-        VisitorAgentBehave newVisitor = GetAvailableVisitor();
-
-        if (newVisitor != null)
+        if (Valley_PathManager.HasAvailablePath(visitorSpawnPoint))
         {
-            newVisitor.SetVisitor(visitorSpawnPoint);
+            VisitorAgentBehave newVisitor = GetAvailableVisitor();
+
+            if (newVisitor != null)
+            {
+                newVisitor.SetVisitor(visitorSpawnPoint);
+            }
         }
     }
 
@@ -39,16 +42,20 @@ public class VisitorManager : MonoBehaviour
         toRemove.UnsetVisitor();
     }
 
-    public static Valley_PathData ChoosePath()
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint)
     {
-        return Valley_PathManager.GetRandomPath();
+        return Valley_PathManager.GetRandomPath(spawnPoint);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
     {
-        PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
-        visitor.SetDestination(newPathpoint);
-        return true;
+        if (visitor.currentPoint != null)
+        {
+            PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
+            visitor.SetDestination(newPathpoint);
+            return true;
+        }
+        return false;
     }
 
     public static void MakeVisitorWait(float waitTime, Action callback) //CODE REVIEW : Voir pour eviter de passer par 3 fonctions pour faire un Wait
@@ -67,14 +74,14 @@ public class VisitorManager : MonoBehaviour
         callback?.Invoke();
     }
 
-    IEnumerator SpawnVisitorContinue()
+    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
         SpawnVisitor();
         yield return new WaitForSeconds(1f);
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private VisitorAgentBehave GetAvailableVisitor()
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {

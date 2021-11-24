@@ -12,6 +12,7 @@ public class ToolManager : MonoBehaviour
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
     public GameObject markerPlaceHolder;
+    public GameObject lineRendererObject;
 
     private void Awake()
     {
@@ -53,7 +54,9 @@ public class ToolManager : MonoBehaviour
 
     public static void CreateLink(GameObject firstObjectToLink)
     {
-        LineRenderer ln = firstObjectToLink.AddComponent<LineRenderer>();
+        GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
+
+        LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
         firstObjectToLink.GetComponent<VisibleLink>().line = ln;
         firstObjectToLink.GetComponent<VisibleLink>().FirstPoint();
     }
@@ -66,5 +69,10 @@ public class ToolManager : MonoBehaviour
     public static void EndLink(GameObject firstObjectToLink)
     {
         firstObjectToLink.GetComponent<VisibleLink>().EndPoint(firstObjectToLink);
+    }
+
+    public static void ResetLink(GameObject firstObjectToLink)
+    {
+        firstObjectToLink.GetComponent<VisibleLink>().ResetPoint();
     }
 }

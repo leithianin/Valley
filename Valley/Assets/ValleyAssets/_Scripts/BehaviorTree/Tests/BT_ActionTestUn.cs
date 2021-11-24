@@ -14,7 +14,7 @@ public class BT_ActionTestUn : BT_TreeAction
 
     public override void OnPlayAction()
     {
-        isUsable = (isUsable + 1) % 6;
+        isUsable++;
         Debug.Log(gameObject);
         EndAction();
     }
