@@ -62,7 +62,7 @@ public class LandInteractions : MonoBehaviour
             ToolManager.ActivePathTool();
         }
 
-        if (Input.GetKeyDown(KeyCode.Delete) && markersList.transform.childCount > 0)
+        if (Input.GetKeyDown(KeyCode.Delete) && markersList.transform.childCount > 0 && Valley_PathManager.GetCurrentPath() != null)
         {
             DeletePreviousMarker();
         }
@@ -134,8 +134,7 @@ public class LandInteractions : MonoBehaviour
         {
             Valley_PathManager.GetCurrentPath().pathPoints.Add(markerAlreadyPlace.GetComponent<PathPoint>());
             ToolManager.AddLink(markerAlreadyPlace, firstMarker);
-            Valley_PathManager.AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);
-            
+            Valley_PathManager.AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);     
         }
 
         currentMarker = markerAlreadyPlace;
@@ -145,7 +144,9 @@ public class LandInteractions : MonoBehaviour
     {
         isNewPath = false;
         firstMarker = _pathData.pathPoints[0].gameObject;
-        firstMarker.GetComponent<VisibleLink>().SetLine(firstMarker.transform.GetChild(1).GetComponent<LineRenderer>());
+
+        firstMarker.GetComponent<VisibleLink>().SetLine(_pathData.lineRenderer);
+
         Valley_PathManager.SetCurrentPath(_pathData);
         //ToolManager.AddLink(_pathData.pathPoints[_pathData.pathPoints.Count-1].gameObject, firstMarker);
 
@@ -162,13 +163,12 @@ public class LandInteractions : MonoBehaviour
     }
 
     private void DeletePreviousMarker()
-    {
+    {        
         GameObject localMarker = Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject;
         ToolManager.ResetLink(firstMarker);
         Valley_PathManager.RemovePathPoint(Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count-1].gameObject);
         Valley_PathManager.GetCurrentPath().pathPoints.RemoveAt(Valley_PathManager.GetCurrentPath().pathPoints.Count-1);
 
-        //if (Valley_PathManager.GetCurrentPath().pathPoints[Valley_PathManager.GetCurrentPath().pathPoints.Count - 1].gameObject.GetComponent<PathPoint>().GetNbLinkedPoint()>2)
         if(localMarker.GetComponent<PathPoint>().GetNbLinkedPoint()>0)
         {
             //Dont deztroy
@@ -185,6 +185,7 @@ public class LandInteractions : MonoBehaviour
         }
         else
         {
+            Valley_PathManager.RemovePathData();
             isNewPath = true;
             currentMarker = null;
         }

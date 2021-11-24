@@ -57,6 +57,7 @@ public class ToolManager : MonoBehaviour
         GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
 
         LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
+        Valley_PathManager.GetCurrentPath().lineRenderer = ln;
         firstObjectToLink.GetComponent<VisibleLink>().line = ln;
         firstObjectToLink.GetComponent<VisibleLink>().FirstPoint();
     }
