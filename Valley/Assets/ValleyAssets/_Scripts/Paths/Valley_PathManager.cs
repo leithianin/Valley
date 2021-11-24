@@ -108,6 +108,12 @@ public class Valley_PathManager : MonoBehaviour
         return currentPathOn;
     }
 
+    public static void RemovePathData()
+    {
+        instance.existingPaths.Remove(currentPathOn);
+        currentPathOn = null;
+    }
+
     public static void AddPathPoint(GameObject marker)
     {
         PathPoint currentPathPoint = marker.GetComponent<PathPoint>();
