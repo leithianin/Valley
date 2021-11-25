@@ -1,20 +1,11 @@
 fileFormatVersion: 2
-guid: 6e6f9f96a97f7844f82cbdc266266c4f
+guid: f58f5123416febd49b6bb352c708ddcd
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
-      74: -4757330287771834075
-    second: Chara_Chapeau_01.002|ArmatureAction
-  - first:
-      74: 2212603470718843684
-    second: Chara_Chapeau_01.002|Idle
-  - first:
-      74: -7390346665122643518
-    second: Chara_Chapeau_01.002|Idle_01
-  - first:
-      74: 1395224832838812258
-    second: Chara_Chapeau_01.002|Pose
+      74: 4074619756435056492
+    second: Armature_Touriste|Idle_Touriste
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -42,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature_Touriste|Idle_Touriste
+      takeName: Armature_Touriste|Idle_Touriste
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -98,7 +118,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Armature_Touriste
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -106,7 +126,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
