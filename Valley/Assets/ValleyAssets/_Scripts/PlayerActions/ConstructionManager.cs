@@ -18,7 +18,6 @@ public class ConstructionManager : MonoBehaviour
         if(toPlace.CanPlaceObject(positionToPlace))
         {
             Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity);
-            Debug.Log(placedObject.gameObject.name);
             placedObject.PlaceObject(positionToPlace);
             return true;
         }

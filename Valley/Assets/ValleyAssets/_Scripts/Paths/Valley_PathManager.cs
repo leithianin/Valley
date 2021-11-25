@@ -32,19 +32,10 @@ public class Valley_PathManager : MonoBehaviour
     {
         for(int i = 0; i < existingPaths.Count; i++)
         {
-            if(CheckPathUsability(existingPaths[i]) && existingPaths[i].ContainsPoint(spawnPoint))
+            if(existingPaths[i].IsUsable(spawnPoint))
             {
                 return true;
             }
-        }
-        return false;
-    }
-
-    private bool CheckPathUsability(Valley_PathData pathToCheck)
-    {
-        if(pathToCheck.pathPoints.Count > 1)
-        {
-            return true;
         }
         return false;
     }
@@ -56,14 +47,6 @@ public class Valley_PathManager : MonoBehaviour
     public static Valley_PathData GetRandomPath()
     {
         int result = Random.Range(0, instance.existingPaths.Count);
-        int i = 0;
-
-        while(instance.CheckPathUsability(instance.existingPaths[result]) && i < 100)
-        {
-            result = Random.Range(0, instance.existingPaths.Count);
-            i++;
-        }
-
         return instance.existingPaths[result];
     }
 
@@ -72,10 +55,15 @@ public class Valley_PathManager : MonoBehaviour
         Valley_PathData path = GetRandomPath();
         int i = 0; 
 
-        while(!path.ContainsPoint(startPoint) && i < 100)
+        while(!path.IsUsable(startPoint) && i < 100)
         {
             path = GetRandomPath();
             i++;
+        }
+
+        if(!path.IsUsable(startPoint))
+        {
+            path = null;
         }
 
         return path;

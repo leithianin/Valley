@@ -19,4 +19,8 @@ public class Valley_PathData
         return pathPoints.Contains(toCheck);
     }
 
+    public bool IsUsable(PathPoint toCheck)
+    {
+        return pathPoints.Count > 1 && pathPoints.Contains(toCheck);
+    }
 }
