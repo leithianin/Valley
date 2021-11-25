@@ -23,30 +23,39 @@ public class AnimateFace : MonoBehaviour
         var textureScale = new Vector2(1f / stripLength, 1f / stripHeight);
         face.mainTextureScale = textureScale;
 
-        StartCoroutine(PlayLoop(0.1f));
+        StartCoroutine(PlayLoop(.1f, 1f, 5f));
     }
 
     private void Update()
     {
-        /*var textureOffset = new Vector2(xStripOffset, yStripOffset);
-        face.mainTextureOffset = textureOffset;*/
+       
     }
 
-    IEnumerator PlayLoop(float delay)
+    IEnumerator PlayLoop(float frameRate, float delayMin, float delayMax)
     {
-        yield return new WaitForSeconds(delay);
+        var delay = 0.1f;
 
         if (loopPlayed && frameCounter == 0) loopPlayed = !loopPlayed;
 
         if (!loopPlayed && frameCounter == animLength - 1) loopPlayed = !loopPlayed;
 
-        if (loopPlayed) frameCounter = 0;
+        if (loopPlayed)
+        {
+            frameCounter = 0;
+            delay = Random.Range(delayMin, delayMax);
+        }
 
-        else frameCounter++;
+        else
+        { 
+            frameCounter++;
+            delay = frameRate;
+        }
 
         var textureOffset = new Vector2(1f / stripLength * frameCounter, 1f / stripHeight * (stripHeight - 1));
         face.mainTextureOffset = textureOffset;
 
-        StartCoroutine(PlayLoop(0.1f));
+        yield return new WaitForSeconds(delay);
+
+        StartCoroutine(PlayLoop(.1f, 1f, 5f));
     }
 }
