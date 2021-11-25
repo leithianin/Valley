@@ -23,12 +23,16 @@ public class PathPoint : Construction
         }
     }
 
-    public Vector3 Position => transform.position;
-
     [SerializeField]
     private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
+    [SerializeField] private VisibleLink link;
 
     public Action OnPointDestroyed;
+
+    public Vector3 Position => transform.position;
+
+    public VisibleLink GetLink => link;
+
 
     /// <summary>
     /// Permet de prendre un point aléatoire dans la liste des points existants
@@ -105,12 +109,8 @@ public class PathPoint : Construction
         OnPointDestroyed?.Invoke();
     }
 
-    protected override bool OnPlaceObject(Vector3 position)
+    protected override bool OnCanPlaceObject(Vector3 position)
     {
-        // Récupère le chemin actuel depuis le Manager
-        // Récupère le dernier point poser depuis le Manager
-        //   (On peut aussi appeler le manager pour SetPoint depuis ce dernier)
-        // Vérifie si on peut le poser ou non (Pour l'instant, on retourne toujours True
         return true;
     }
 
@@ -127,5 +127,15 @@ public class PathPoint : Construction
             Destroy(localMarker);
         }
         */
+    }
+
+    public override SelectedTools LinkedTool()
+    {
+        return SelectedTools.PathTool;
+    }
+
+    protected override void OnPlaceObject(Vector3 position)
+    {
+        Valley_PathManager.PlacePathPoint(this);
     }
 }

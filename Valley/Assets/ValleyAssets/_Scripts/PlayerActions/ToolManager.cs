@@ -52,28 +52,28 @@ public class ToolManager : MonoBehaviour
         return eventSystemKeepSelectedScript;
     }
 
-    public static void CreateLink(GameObject firstObjectToLink)
+    public static void CreateLink(PathPoint firstObjectToLink)
     {
         GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
 
         LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
         Valley_PathManager.GetCurrentPath().lineRenderer = ln;
-        firstObjectToLink.GetComponent<VisibleLink>().line = ln;
-        firstObjectToLink.GetComponent<VisibleLink>().FirstPoint();
+        firstObjectToLink.GetLink.line = ln;
+        firstObjectToLink.GetLink.FirstPoint();
     }
 
-    public static void AddLink(GameObject nextObjectToLink, GameObject firstObjectToLink)
+    public static void AddLink(PathPoint nextObjectToLink, PathPoint firstObjectToLink)
     {
-        firstObjectToLink.GetComponent<VisibleLink>().AddPoint(nextObjectToLink);
+        firstObjectToLink.GetLink.AddPoint(nextObjectToLink.gameObject);
     }
 
-    public static void EndLink(GameObject firstObjectToLink)
+    public static void EndLink(PathPoint firstObjectToLink)
     {
-        firstObjectToLink.GetComponent<VisibleLink>().EndPoint(firstObjectToLink);
+        firstObjectToLink.GetLink.EndPoint(firstObjectToLink.gameObject);
     }
 
-    public static void ResetLink(GameObject firstObjectToLink)
+    public static void ResetLink(PathPoint firstObjectToLink)
     {
-        firstObjectToLink.GetComponent<VisibleLink>().ResetPoint();
+        firstObjectToLink.GetLink.ResetPoint();
     }
 }
