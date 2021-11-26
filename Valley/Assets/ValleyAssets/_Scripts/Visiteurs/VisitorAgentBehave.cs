@@ -15,6 +15,8 @@ public class VisitorAgentBehave : MonoBehaviour
     private Action StartPath;
     private Action EndPath;
 
+    public Vector2 GetPosition => transform.position;
+
     // Update is called once per frame
     void Update()
     {
