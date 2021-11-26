@@ -14,6 +14,8 @@ public class VisitorManager : MonoBehaviour
 
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
+    public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
+
     private void Awake()
     {
         instance = this;
@@ -77,7 +79,7 @@ public class VisitorManager : MonoBehaviour
     IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
         SpawnVisitor();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.2f);
         StartCoroutine(SpawnVisitorContinue());
     }
 

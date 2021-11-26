@@ -41,14 +41,14 @@ public class UIManager : MonoBehaviour
 
     public void CreateNewPath()
     {
-        _landInteraction.CreatePathWithoutMarker(markerSelected);
+        Valley_PathManager.CreateNewPath(_landInteraction.selectedConstruction as PathPoint);
         markerSelected = null;
         instance.OnHideButtons();
     }
 
     public static void ModifyPathCount(int nb)
     {
-        for(int i=1; i<=3;i++)
+        for(int i=1; i<=6;i++)
         {
             if (i <= nb)
             {
@@ -69,9 +69,8 @@ public class UIManager : MonoBehaviour
 
     public void ModifyPath(PathLinked pathLinked)
     {
-        _landInteraction.ModifyPath(pathLinked.path);
+        Valley_PathManager.ModifyPath(pathLinked.path);
         instance.OnHideButtons();
-        pathToModify.Clear();
     }
 
 

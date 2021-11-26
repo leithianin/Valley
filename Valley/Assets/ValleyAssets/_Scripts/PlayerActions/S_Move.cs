@@ -10,7 +10,6 @@ public class S_Move : MonoBehaviour
     [SerializeField] private float axisSpeed;
     [SerializeField] private Transform cameraTransform;
 
-    [Header("Camera Zoom")]
     [SerializeField] private AnimationCurve decelerationCurve;
     [SerializeField] private float decelerationSpeed = 0.3f;
     [SerializeField] private float angleByScroll = 10f;

@@ -7,6 +7,7 @@ using UnityEngine;
 public class Valley_PathData
 {
     public List<PathPoint> pathPoints = new List<PathPoint>(); // Liste des points du chemins.
+    public LineRenderer lineRenderer;
 
     /// <summary>
     /// Vérifie si le chemin possède le point.
@@ -18,4 +19,8 @@ public class Valley_PathData
         return pathPoints.Contains(toCheck);
     }
 
+    public bool IsUsable(PathPoint toCheck)
+    {
+        return pathPoints.Count > 1 && pathPoints.Contains(toCheck);
+    }
 }

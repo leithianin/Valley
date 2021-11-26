@@ -15,6 +15,8 @@ public class VisitorAgentBehave : MonoBehaviour
     private Action StartPath;
     private Action EndPath;
 
+    public Vector2 GetPosition => transform.position;
+
     // Update is called once per frame
     void Update()
     {
@@ -32,25 +34,31 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void SetVisitor(PathPoint nSpawnPoint)
     {
-        spawnPoint = nSpawnPoint;
+        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint);
 
-        datas.lastPoint = null;
-        datas.currentPoint = nSpawnPoint;
-
-        transform.position = nSpawnPoint.Position;
-
-        gameObject.SetActive(true);
-
-        datas.path = VisitorManager.ChoosePath(spawnPoint);
-        AskToWalk();
-
-        if (datas.currentPoint == nSpawnPoint)
+        if (wantedPath != null)
         {
-            datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
-            AskToWalk();
-        }
+            spawnPoint = nSpawnPoint;
 
-        datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+            datas.path = wantedPath;
+            datas.lastPoint = null;
+            datas.currentPoint = nSpawnPoint;
+
+            transform.position = nSpawnPoint.Position;
+
+            gameObject.SetActive(true);
+
+
+            AskToWalk();
+
+            if (datas.currentPoint == nSpawnPoint)
+            {
+                datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
+                AskToWalk();
+            }
+
+            datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+        }
     }
 
     public void UnsetVisitor()

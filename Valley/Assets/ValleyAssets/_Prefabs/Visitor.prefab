@@ -113,7 +113,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -137,3 +137,6 @@ MonoBehaviour:
     agent: {fileID: 4396013656849888264}
     lastPoint: {fileID: 0}
     currentPoint: {fileID: 0}
+    path:
+      pathPoints: []
+      lineRenderer: {fileID: 0}

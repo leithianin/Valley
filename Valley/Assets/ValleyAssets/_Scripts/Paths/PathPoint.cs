@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathPoint : MonoBehaviour
+public class PathPoint : Construction
 {
     [System.Serializable]
     public class LinkedPointData
@@ -23,12 +23,16 @@ public class PathPoint : MonoBehaviour
         }
     }
 
-    public Vector3 Position => transform.position;
-
     [SerializeField]
     private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
+    [SerializeField] private VisibleLink link;
 
     public Action OnPointDestroyed;
+
+    public Vector3 Position => transform.position;
+
+    public VisibleLink GetLink => link;
+
 
     /// <summary>
     /// Permet de prendre un point aléatoire dans la liste des points existants
@@ -103,5 +107,35 @@ public class PathPoint : MonoBehaviour
     private void OnDestroy()
     {
         OnPointDestroyed?.Invoke();
+    }
+
+    protected override bool OnCanPlaceObject(Vector3 position)
+    {
+        return true;
+    }
+
+    protected override void OnRemoveObject()
+    {
+        // On peut mettre la logique de DeletePreviousMarker ici
+        /*
+        if (localMarker.GetComponent<PathPoint>().GetNbLinkedPoint() > 0)
+        {
+            //Dont deztroy
+        }
+        else
+        {
+            Destroy(localMarker);
+        }
+        */
+    }
+
+    public override SelectedTools LinkedTool()
+    {
+        return SelectedTools.PathTool;
+    }
+
+    protected override void OnPlaceObject(Vector3 position)
+    {
+        Valley_PathManager.PlacePathPoint(this);
     }
 }

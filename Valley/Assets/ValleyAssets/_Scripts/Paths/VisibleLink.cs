@@ -19,6 +19,12 @@ public class VisibleLink : MonoBehaviour
 
     public void FirstPoint()
     {
+        //Remet à 1 l'index si jamais il se retrouve à 0 lors de la suppression
+        if(index == 0)
+        {
+            index = 1;
+        }
+
         line.material = mat_LineRender;
         line.SetPosition(0, transform.position);
     }
