@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public abstract class Construction : MonoBehaviour
@@ -21,7 +22,15 @@ public abstract class Construction : MonoBehaviour
 
     public bool CanPlaceObject(Vector3 position)
     {
-        return OnCanPlaceObject(position);
+        bool toReturn = true;
+
+        NavMeshHit hit;
+        if(!NavMesh.SamplePosition(position, out hit, .5f, NavMesh.AllAreas))
+        {
+            toReturn = false;
+        }
+
+        return toReturn && OnCanPlaceObject(position);
     }
 
     public void PlaceObject(Vector3 position)

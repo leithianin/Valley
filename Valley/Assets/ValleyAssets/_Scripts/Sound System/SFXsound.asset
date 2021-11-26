@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f06144026466a047a87cab89b9759dd, type: 3}
   m_Name: SFXsound
   m_EditorClassIdentifier: 
-  clips: []
-  mixer: {fileID: 0}
+  clips:
+  - {fileID: 8300000, guid: 12d8a775abbc777449e8521de3f9d59b, type: 3}
+  mixer: {fileID: 2244245960347819052, guid: 18f58cbf767631e449ad3c9327be2b90, type: 2}
   loopTime: -1

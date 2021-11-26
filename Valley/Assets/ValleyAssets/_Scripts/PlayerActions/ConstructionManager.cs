@@ -15,6 +15,7 @@ public class ConstructionManager : MonoBehaviour
 
     public static bool PlaceConstruction(Construction toPlace, Vector3 positionToPlace)
     {
+        Debug.Log("Can place : " + toPlace.CanPlaceObject(positionToPlace));
         if(toPlace.CanPlaceObject(positionToPlace))
         {
             Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity); // CODE REVIEW : Mettre l'objet dans un transform
