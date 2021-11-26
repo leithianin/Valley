@@ -17,7 +17,7 @@ public class ConstructionManager : MonoBehaviour
     {
         if(toPlace.CanPlaceObject(positionToPlace))
         {
-            Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity);
+            Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity); // CODE REVIEW : Mettre l'objet dans un transform
             placedObject.PlaceObject(positionToPlace);
             return true;
         }
@@ -51,6 +51,7 @@ public class ConstructionManager : MonoBehaviour
         {
             case SelectedTools.PathTool:
                 Valley_PathManager.DeleteLastPoint();
+                toDelete.RemoveObject();
                 break;
         }
     }

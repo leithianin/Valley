@@ -6,7 +6,8 @@ using UnityEngine;
 [Serializable]
 public class ValleyArea
 {
-    [SerializeField] public List<Vector2> borders;
+    public List<Transform> bordersTransform;
+    public List<Vector2> borders;
 
     public List<VisitorAgentBehave> visitorInZone;
 
