@@ -8,6 +8,8 @@ public class ConstructionManager : MonoBehaviour
 
     [SerializeField] private Transform constructionHandler;
 
+    private static int Test = 0;    //A delete si j'oublis
+
     private void Awake()
     {
         instance = this;
@@ -18,6 +20,8 @@ public class ConstructionManager : MonoBehaviour
         if(toPlace.CanPlaceObject(positionToPlace))
         {
             Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity);
+            placedObject.gameObject.name = "Marker_" + Test;                                            //A delete si j'oublis
+            Test++;
             placedObject.PlaceObject(positionToPlace);
             return true;
         }
