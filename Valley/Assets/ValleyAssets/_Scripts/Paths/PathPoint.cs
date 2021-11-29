@@ -26,6 +26,7 @@ public class PathPoint : Construction
     [SerializeField]
     private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
     [SerializeField] private VisibleLink link;
+    public LineRenderer lineRendererPrevious;
 
     public Action OnPointDestroyed;
 
@@ -95,7 +96,7 @@ public class PathPoint : Construction
     public void RemovePoint(PathPoint pathPoint)
     {
         for(int i = 0; i < linkedPoints.Count; i++)
-        {
+       {
             if(pathPoint == linkedPoints[i].point)
             {
                 linkedPoints.RemoveAt(i);

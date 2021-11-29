@@ -12,7 +12,10 @@ public class ToolManager : MonoBehaviour
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
     public GameObject markerPlaceHolder;
-    public GameObject lineRendererObject;
+    public LineRenderer lineRendererObject;
+
+    public Material matReference;      
+    private Material savedMaterial;    
 
     private void Awake()
     {
@@ -54,22 +57,37 @@ public class ToolManager : MonoBehaviour
 
     public static void CreateLink(PathPoint firstObjectToLink)
     {
-        GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
+        LineRenderer ln = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
+        
+        //SharedMaterial pour le même chemin
+        if (Valley_PathManager.GetCurrentPath.pathPoints.Count == 1)
+        {
+            //Create Material for the new path
+            ln.material = Instantiate(instance.matReference);                             //Material Instance
+            instance.savedMaterial = ln.material;                                         //Save Material Instance
+            Valley_PathManager.GetCurrentPath.colorPath = Random.ColorHSV();              //Random Color
+            ln.material.color = Valley_PathManager.GetCurrentPath.colorPath;              //Applicate Random Color 
+        }
+        else
+        {
+            //Applicate the savedMaterial 
+            ln.material = instance.savedMaterial;
+        }
 
-        LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
-        Valley_PathManager.GetCurrentPath().lineRenderer = ln;
         firstObjectToLink.GetLink.line = ln;
         firstObjectToLink.GetLink.FirstPoint();
     }
 
-    public static void AddLink(PathPoint nextObjectToLink, PathPoint firstObjectToLink)
+    //Call at each new Marker
+    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker)
     {
-        firstObjectToLink.GetLink.AddPoint(nextObjectToLink.gameObject);
+        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject);
     }
 
-    public static void EndLink(PathPoint firstObjectToLink)
+    //Call when "Return" key is press
+    public static void EndLink(PathPoint currentMarker)
     {
-        firstObjectToLink.GetLink.EndPoint(firstObjectToLink.gameObject);
+        currentMarker.GetLink.EndPoint(currentMarker.gameObject);
     }
 
     public static void ResetLink(PathPoint firstObjectToLink)

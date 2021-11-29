@@ -150,6 +150,7 @@ MonoBehaviour:
       m_Calls: []
   linkedPoints: []
   link: {fileID: 5664375530657388378}
+  lineRendererPrevious: {fileID: 0}
 --- !u!114 &5664375530657388378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 0}
-  mat_LineRender: {fileID: 2100000, guid: bf2f315816d773c4db6f4fbc9c74aa8d, type: 2}
+  mat_LineRender: {fileID: 2100000, guid: e1ff710e1fccf2e4b8cce748ab89ab87, type: 2}
   index: 1
 --- !u!135 &7656214263455059822
 SphereCollider:
