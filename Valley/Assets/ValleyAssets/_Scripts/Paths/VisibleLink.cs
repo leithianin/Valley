@@ -1,33 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class VisibleLink : MonoBehaviour
 {
     public LineRenderer line;
-    public Material mat_LineRender;
     private bool isSecondPointIsPlaced = false;
     public int index = 1;
+
+    private NavMeshPath path;
+
+    private void Awake()
+    {
+        path = new NavMeshPath();
+    }
 
     void Update()
     {
         if (line != null)
         {
             line.SetPosition(index, GetPositionSecondPoint());
-        }
+            Debug.Log(index);
+            if (line.positionCount > 0)
+            {
+                    NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position, GetPositionSecondPoint(), NavMesh.AllAreas, path);
+
+                    List<Vector3> points = new List<Vector3>();
+
+                    int j = 1;
+
+                    while (j < path.corners.Length)
+                    {
+                        line.positionCount = path.corners.Length;
+                        points = new List<Vector3>(path.corners);
+                        for (int k = 0; k < points.Count; k++)
+                        {
+                            line.SetPosition(k, points[k]);
+                        }
+
+                        j++;
+                    }
+
+                index = line.positionCount-1;
+            }
+        }   
     }
 
     public void FirstPoint()
     {
-        //Remet à 1 l'index si jamais il se retrouve à 0 lors de la suppression
+        //Remet ï¿½ 1 l'index si jamais il se retrouve ï¿½ 0 lors de la suppression
         if(index == 0)
         {
             index = 1;
         }
 
-        line.material = mat_LineRender;
         line.SetPosition(0, transform.position);
-        line.SetPosition(1, transform.position);               //Sert à éviter qu'il spawn à 0,0,0 le temps d'une frame, le montrant au joueur par la même occasion
+        line.SetPosition(1, transform.position);               //Sert ï¿½ ï¿½viter qu'il spawn ï¿½ 0,0,0 le temps d'une frame, le montrant au joueur par la mï¿½me occasion
     }
 
     private Vector3 GetPositionSecondPoint()

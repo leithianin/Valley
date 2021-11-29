@@ -18,6 +18,7 @@ public class Valley_PathManager : MonoBehaviour
     private LineRenderer lineRendererToSave;
 
     public static Valley_PathData GetCurrentPath => currentPathOn;
+    public static PathPoint GetCurrentMarker => currentMarker;
     /*[Header("Tests")]
     [SerializeField] private List<PathPoint> firstPathPoints;
     [SerializeField] private List<PathPoint> secondPathPoints;*/
