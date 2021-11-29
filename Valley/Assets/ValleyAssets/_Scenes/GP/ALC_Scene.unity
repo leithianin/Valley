@@ -1159,9 +1159,11 @@ MonoBehaviour:
   OnEndPath:
     m_PersistentCalls:
       m_Calls: []
+  pathpointPrefab: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
   marker: {fileID: 1156841905360037603, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
   markersList: {fileID: 346904047}
   firstMarker: {fileID: 0}
+  selectedConstruction: {fileID: 0}
 --- !u!54 &478007363
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -10,10 +10,14 @@ public class Valley_PathManager : MonoBehaviour
 
     private static Valley_PathData currentPathOn;
     private bool isNewPath = true;
-    private PathPoint firstMarker;
-    private PathPoint currentMarker;
+    private PathPoint firstMarker;   //Maybe Obsolete
 
+    private static PathPoint currentMarker;
+    private PathPoint previousMarker = null;
 
+    private LineRenderer lineRendererToSave;
+
+    public static Valley_PathData GetCurrentPath => currentPathOn;
     /*[Header("Tests")]
     [SerializeField] private List<PathPoint> firstPathPoints;
     [SerializeField] private List<PathPoint> secondPathPoints;*/
@@ -94,11 +98,6 @@ public class Valley_PathManager : MonoBehaviour
         }
     }
 
-    public static Valley_PathData GetCurrentPath()
-    {
-        return currentPathOn;
-    }
-
     public static void RemovePathData()
     {
         instance.existingPaths.Remove(currentPathOn);
@@ -107,10 +106,13 @@ public class Valley_PathManager : MonoBehaviour
 
     public static void AddPathPoint(PathPoint marker)
     {
+        /***
         PathPoint previousPathPoint = instance.GetPreviousPathPoint(marker);
+        Debug.Log(currentMarker);
+        ***/
 
-        previousPathPoint.AddPoint(marker, currentPathOn);
-        marker.AddPoint(previousPathPoint, currentPathOn);
+        currentMarker.AddPoint(marker, currentPathOn);
+        marker.AddPoint(currentMarker, currentPathOn);
     }
 
     public static void AddPathPointWithoutMarker(PathPoint targetMarker, PathPoint previousMarker)
@@ -119,14 +121,13 @@ public class Valley_PathManager : MonoBehaviour
         previousMarker.AddPoint(targetMarker, currentPathOn);
     }
 
-    public static void RemovePathPoint(PathPoint marker)
+    //Remove PathPoint from PreviousMarker and CurrentMarker (Usefull to see if CurrentMarker have still pathPoint or not)
+    public static void RemovePathPoint(PathPoint currentMarker, PathPoint previousMarker)
     {
-        if (GetCurrentPath().pathPoints.Count > 1)
+        if (GetCurrentPath.pathPoints.Count > 1)
         {
-            PathPoint previousPathPoint = GetCurrentPath().pathPoints[GetCurrentPath().pathPoints.Count - 2];
-
-            previousPathPoint.RemovePoint(marker);
-            marker.RemovePoint(previousPathPoint);
+            previousMarker.RemovePoint(currentMarker);
+            currentMarker.RemovePoint(previousMarker);
         }
     }
 
@@ -185,19 +186,22 @@ public class Valley_PathManager : MonoBehaviour
     {
         if (isNewPath)
         {
-            firstMarker = toPlace;
             CreatePath();
-            GetCurrentPath().pathPoints.Add(toPlace);
-            ToolManager.CreateLink(toPlace);
+            GetCurrentPath.pathPoints.Add(toPlace);
+            //ToolManager.CreateLink(toPlace);                        //Chaque Marker à le droit à son LineRenderer
             isNewPath = false;
         }
         else
         {
-            ToolManager.AddLink(toPlace, firstMarker);
-            GetCurrentPath().pathPoints.Add(toPlace);
+            //Close link précedent
+            ToolManager.EndPreviousLink(toPlace, currentMarker);              
+            GetCurrentPath.pathPoints.Add(toPlace);
             AddPathPoint(toPlace);
         }
 
+        ToolManager.CreateLink(toPlace);
+
+        previousMarker = currentMarker;
         currentMarker = toPlace;
     }
 
@@ -233,6 +237,7 @@ public class Valley_PathManager : MonoBehaviour
         instance.CreatePathWithoutMarker(startPoint);
     }
 
+    //CODE REVIEW : Pareil que Path Point désormais, merge ?
     //Click on a marker
     public void CreatePathWithoutMarker(PathPoint markerAlreadyPlace)
     {
@@ -240,28 +245,42 @@ public class Valley_PathManager : MonoBehaviour
         {
             firstMarker = markerAlreadyPlace;
             CreatePath();
-            GetCurrentPath().pathPoints.Add(markerAlreadyPlace);
+            GetCurrentPath.pathPoints.Add(markerAlreadyPlace);
             ToolManager.CreateLink(markerAlreadyPlace);
             isNewPath = false;
         }
         else
         {
-            GetCurrentPath().pathPoints.Add(markerAlreadyPlace);
-            ToolManager.AddLink(markerAlreadyPlace, firstMarker);
-            AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);
+            ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker);             //Close previous link
+            GetCurrentPath.pathPoints.Add(markerAlreadyPlace);                          //Add point to the path         
+            AddPathPoint(markerAlreadyPlace);
+            //AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);
         }
 
+        ToolManager.CreateLink(markerAlreadyPlace);
+
+        previousMarker = currentMarker;
         currentMarker = markerAlreadyPlace;
     }
 
     public void OnModifyPath(Valley_PathData _pathData)
     {
         isNewPath = false;
-        firstMarker = _pathData.pathPoints[0];
-
-        firstMarker.GetComponent<VisibleLink>().SetLine(_pathData.lineRenderer);
-
+        currentMarker = _pathData.pathPoints[_pathData.pathPoints.Count-1];
         SetCurrentPath(_pathData);
+
+        //Je check ça aussi dans DeletePreviousMarker --> Peut être mettre dans une fonction à part
+        if (_pathData.pathPoints.Count > 0)
+        {
+            previousMarker = _pathData.pathPoints[_pathData.pathPoints.Count - 2];
+        }
+        else
+        {
+            previousMarker = null;
+        }
+
+        ToolManager.CreateLink(currentMarker);
+
         //ToolManager.AddLink(_pathData.pathPoints[_pathData.pathPoints.Count-1].gameObject, firstMarker);
 
         //Get Link in first Marker
@@ -271,32 +290,36 @@ public class Valley_PathManager : MonoBehaviour
     private void OnCompletePath()
     {
         EndPath();
-        ToolManager.EndLink(firstMarker);
+        ToolManager.EndLink(currentMarker);
         isNewPath = true;
     }
 
     private void DeletePreviousMarker()
     {
-        if (GetCurrentPath() != null)
+        if (GetCurrentPath != null)
         {
-            PathPoint localMarker = GetCurrentPath().pathPoints[GetCurrentPath().pathPoints.Count - 1];
-            ToolManager.ResetLink(firstMarker);
-            RemovePathPoint(GetCurrentPath().pathPoints[GetCurrentPath().pathPoints.Count - 1]);
-            GetCurrentPath().pathPoints.RemoveAt(GetCurrentPath().pathPoints.Count - 1);
-
-            if (localMarker.GetComponent<PathPoint>().GetNbLinkedPoint() > 0)
+            RemovePathPoint(currentMarker, previousMarker);
+            GetCurrentPath.pathPoints.RemoveAt(GetCurrentPath.pathPoints.Count - 1);
+    
+            if (currentMarker.GetNbLinkedPoint() <= 0)
             {
-                //Dont deztroy
+                lineRendererToSave = currentMarker.GetLink.FindLineRenderer(previousMarker);
+                Destroy(currentMarker.gameObject);
             }
             else
             {
-                Destroy(localMarker.gameObject);
+                Destroy(lineRendererToSave.gameObject);
             }
 
-            Debug.Log(GetCurrentPath().pathPoints.Count);
-            if (GetCurrentPath().pathPoints.Count > 0)
+            //Change CurrentMarker if CurrentPath have PathPoints left
+            if (GetCurrentPath.pathPoints.Count > 0)
             {
-                currentMarker = GetCurrentPath().pathPoints[GetCurrentPath().pathPoints.Count - 1];
+                currentMarker = previousMarker;
+                currentMarker.GetLink.UpdateLineWithLineKnowed(lineRendererToSave);
+
+                //Don't Set PreviousMarker if PathPoint have only 1 point
+                if (GetCurrentPath.pathPoints.Count > 1){previousMarker = GetCurrentPath.pathPoints[GetCurrentPath.pathPoints.Count - 2];}
+                else                                    {previousMarker = null;}
             }
             else
             {

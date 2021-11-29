@@ -55,21 +55,21 @@ public class ToolManager : MonoBehaviour
     public static void CreateLink(PathPoint firstObjectToLink)
     {
         GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
-
         LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
-        Valley_PathManager.GetCurrentPath().lineRenderer = ln;
         firstObjectToLink.GetLink.line = ln;
         firstObjectToLink.GetLink.FirstPoint();
     }
 
-    public static void AddLink(PathPoint nextObjectToLink, PathPoint firstObjectToLink)
+    //Call at each new Marker
+    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker)
     {
-        firstObjectToLink.GetLink.AddPoint(nextObjectToLink.gameObject);
+        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject);
     }
 
-    public static void EndLink(PathPoint firstObjectToLink)
+    //Call when "Return" key is press
+    public static void EndLink(PathPoint currentMarker)
     {
-        firstObjectToLink.GetLink.EndPoint(firstObjectToLink.gameObject);
+        currentMarker.GetLink.EndPoint(currentMarker.gameObject);
     }
 
     public static void ResetLink(PathPoint firstObjectToLink)

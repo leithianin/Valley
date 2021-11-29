@@ -27,6 +27,7 @@ public class VisibleLink : MonoBehaviour
 
         line.material = mat_LineRender;
         line.SetPosition(0, transform.position);
+        line.SetPosition(1, transform.position);               //Sert à éviter qu'il spawn à 0,0,0 le temps d'une frame, le montrant au joueur par la même occasion
     }
 
     private Vector3 GetPositionSecondPoint()
@@ -45,15 +46,12 @@ public class VisibleLink : MonoBehaviour
     public void AddPoint(GameObject nextObjectToLink)
     {
         line.SetPosition(index, nextObjectToLink.transform.position);
-        line.positionCount++;
-        index++;
+        line = null;
     }
 
-    public void EndPoint(GameObject objectToLink)
+    public void EndPoint(GameObject previousMarker)
     {
-        index = 1;
-        line.positionCount--;
-        line = null;
+        Destroy(line.gameObject);
     }
 
     public void ResetPoint()
@@ -66,5 +64,31 @@ public class VisibleLink : MonoBehaviour
     {
         line = ln;
         index = ln.positionCount++;
+    }
+
+    public void UpdateLine()
+    {
+        line = transform.GetChild(1).GetComponent<LineRenderer>();
+    }
+
+    public void UpdateLineWithLineKnowed(LineRenderer lineRenderer)
+    {
+        line = lineRenderer;
+    }
+
+    public LineRenderer FindLineRenderer(PathPoint objectToCheck)
+    {
+        if (objectToCheck != null)
+        {
+            for (int i = 1; i < objectToCheck.transform.childCount; i++)
+            {
+                if (objectToCheck.transform.GetChild(i).GetComponent<LineRenderer>().GetPosition(1) == gameObject.transform.position)
+                {
+                    return objectToCheck.transform.GetChild(i).GetComponent<LineRenderer>();
+                }
+            }
+        }
+
+        return null;
     }
 }
