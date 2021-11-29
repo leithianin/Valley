@@ -1,14 +1,20 @@
 fileFormatVersion: 2
-guid: 435f9a731818a4846abee440e2694896
+guid: 714bc64058481354ea7e57896189231d
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
-      74: -3806304212510524916
-    second: Armature_Rando|Idle_Rando
+      74: -3411172037559866432
+    second: Walk_Touriste
   - first:
-      74: 1603181495432067520
-    second: Armature_Rando|Walk_Rando
+      74: 1137982528188394356
+    second: Armature_Touriste|ArmatureAction
+  - first:
+      74: 4074619756435056492
+    second: Armature_Touriste|Idle_Touriste
+  - first:
+      74: 920272947437738845
+    second: Armature_Touriste|Walk_Touriste
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -38,11 +44,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature_Rando|Idle_Rando
-      takeName: Armature_Rando|Idle_Rando
+      name: Walk_Touriste
+      takeName: Walk_Touriste
       internalID: 0
-      firstFrame: 0
-      lastFrame: 49
+      firstFrame: 1
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -67,11 +73,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature_Rando|Walk_Rando
-      takeName: Armature_Rando|Walk_Rando
+      name: Armature_Touriste|ArmatureAction
+      takeName: Armature_Touriste|ArmatureAction
       internalID: 0
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature_Touriste|Idle_Touriste
+      takeName: Armature_Touriste|Idle_Touriste
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature_Touriste|Walk_Touriste
+      takeName: Armature_Touriste|Walk_Touriste
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -150,15 +214,15 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Armature_Rando
+    rootMotionBoneName: Armature_Touriste
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f58f5123416febd49b6bb352c708ddcd, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
