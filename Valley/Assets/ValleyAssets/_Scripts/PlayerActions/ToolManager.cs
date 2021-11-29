@@ -12,7 +12,10 @@ public class ToolManager : MonoBehaviour
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
     public GameObject markerPlaceHolder;
-    public GameObject lineRendererObject;
+    public LineRenderer lineRendererObject;
+
+    public Material matReference;      
+    private Material savedMaterial;    
 
     private void Awake()
     {
@@ -54,8 +57,23 @@ public class ToolManager : MonoBehaviour
 
     public static void CreateLink(PathPoint firstObjectToLink)
     {
-        GameObject lineRendererChild = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
-        LineRenderer ln = lineRendererChild.AddComponent<LineRenderer>();
+        LineRenderer ln = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
+        
+        //SharedMaterial pour le même chemin
+        if (Valley_PathManager.GetCurrentPath.pathPoints.Count == 1)
+        {
+            //Create Material for the new path
+            ln.material = Instantiate(instance.matReference);                             //Material Instance
+            instance.savedMaterial = ln.material;                                         //Save Material Instance
+            Valley_PathManager.GetCurrentPath.colorPath = Random.ColorHSV();              //Random Color
+            ln.material.color = Valley_PathManager.GetCurrentPath.colorPath;              //Applicate Random Color 
+        }
+        else
+        {
+            //Applicate the savedMaterial 
+            ln.material = instance.savedMaterial;
+        }
+
         firstObjectToLink.GetLink.line = ln;
         firstObjectToLink.GetLink.FirstPoint();
     }

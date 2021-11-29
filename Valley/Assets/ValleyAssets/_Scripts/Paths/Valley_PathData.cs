@@ -7,6 +7,7 @@ using UnityEngine;
 public class Valley_PathData
 {
     public List<PathPoint> pathPoints = new List<PathPoint>(); // Liste des points du chemins.
+    public Color colorPath;
 
     /// <summary>
     /// Vérifie si le chemin possède le point.
