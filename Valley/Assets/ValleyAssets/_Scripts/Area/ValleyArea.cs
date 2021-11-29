@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class ValleyArea
 {
+    public string nom;
     public List<Transform> bordersTransform;
     public List<Vector2> borders;
 

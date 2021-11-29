@@ -13,6 +13,8 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private List<Transform> transTest;
 
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
+    [SerializeField] private float spawnRate;
+    [SerializeField] private int maxSpawn;
 
     public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
 
@@ -34,6 +36,7 @@ public class VisitorManager : MonoBehaviour
 
             if (newVisitor != null)
             {
+                newVisitor.Agent.avoidancePriority = visitorPool.Count - UsedVisitorNumber();
                 newVisitor.SetVisitor(visitorSpawnPoint);
             }
         }
@@ -78,12 +81,15 @@ public class VisitorManager : MonoBehaviour
 
     IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
-        SpawnVisitor();
-        yield return new WaitForSeconds(.2f);
+        if(UsedVisitorNumber() < maxSpawn)
+        {
+            SpawnVisitor();
+        }
+        yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool ?
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool global ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {
@@ -93,5 +99,18 @@ public class VisitorManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private int UsedVisitorNumber()
+    {
+        int toReturn = 0;
+        for (int i = 0; i < visitorPool.Count; i++)
+        {
+            if (visitorPool[i].gameObject.activeSelf)
+            {
+                toReturn++;
+            }
+        }
+        return toReturn;
     }
 }

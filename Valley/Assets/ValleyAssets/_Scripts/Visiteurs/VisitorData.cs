@@ -8,9 +8,11 @@ using UnityEngine.AI;
 public class VisitorData
 {
     public NavMeshAgent agent;
+    public NavMeshObstacle obstacle;
     public PathPoint lastPoint;
     public PathPoint currentPoint;
     public Valley_PathData path;
+    public float noiseMade = 20;
 
     public void SetDestination(PathPoint newPoint)
     {

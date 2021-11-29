@@ -15,12 +15,18 @@ public class VisitorAgentBehave : MonoBehaviour
     private Action StartPath;
     private Action EndPath;
 
-    public Vector2 GetPosition => transform.position;
+    public Vector2 GetPosition => new Vector2(transform.position.x, transform.position.z);
+
+    public NavMeshAgent Agent => datas.agent;
+
+    public VisitorData Data => datas;
+
+    public ValleyArea currentArea;
 
     // Update is called once per frame
     void Update()
     {
-        if (!datas.agent.pathPending && isWalking)
+        if (datas.agent.enabled && !datas.agent.pathPending && isWalking)
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
             {
@@ -90,7 +96,7 @@ public class VisitorAgentBehave : MonoBehaviour
         }
         else
         {
-            VisitorManager.MakeVisitorWait(UnityEngine.Random.Range(0.5f,1.5f), AskToWalk);
+            VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
         }
     }
 
@@ -108,5 +114,11 @@ public class VisitorAgentBehave : MonoBehaviour
         {
             datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
         }
+    }
+
+    public void SetObstacle(bool isObstacle)
+    {
+        datas.agent.enabled = !isObstacle;
+        datas.obstacle.enabled = isObstacle;
     }
 }
