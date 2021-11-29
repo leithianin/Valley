@@ -13,4 +13,16 @@ public class ValleyArea
     public List<VisitorAgentBehave> visitorInZone;
 
     public List<Vector2> GetBorders => borders;
+
+    [SerializeField] private List<AreaDisplay> displays;
+
+    public List<AreaDisplay> Displays => displays;
+
+    public void SetSoundLevel(int soundLevel)
+    {
+        for(int i = 0; i < displays.Count; i++)
+        {
+            displays[i].SetNatureLevel(soundLevel);
+        }
+    }
 }

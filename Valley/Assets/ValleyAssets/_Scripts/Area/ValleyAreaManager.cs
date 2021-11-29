@@ -72,11 +72,12 @@ public class ValleyAreaManager : MonoBehaviour
         if (updatableArea.Count > 0)
         {
             ValleyArea area = updatableArea[0];
-            float k = 0;
+            int areaSoundLevel = 0;
             for (int j = 0; j < area.visitorInZone.Count; j++)
             {
-                k += area.visitorInZone[j].Data.noiseMade;
+                areaSoundLevel += area.visitorInZone[j].Data.noiseMade;
             }
+            area.SetSoundLevel(areaSoundLevel);
             updatableArea.RemoveAt(0);
         }
     }
@@ -87,7 +88,6 @@ public class ValleyAreaManager : MonoBehaviour
 
         for (int i = 0; i < areas.Count; i++)
         {
-
             if (IsPositionInArea(toCheck, areas[i]))
             {
                 toReturn = areas[i];

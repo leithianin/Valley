@@ -13,8 +13,8 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private List<Transform> transTest;
 
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
-    [SerializeField] private float spawnRate;
-    [SerializeField] private int maxSpawn;
+    [SerializeField] private float spawnRate = .2f;
+    [SerializeField] private int maxSpawn = 100;
 
     public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
 
@@ -36,7 +36,6 @@ public class VisitorManager : MonoBehaviour
 
             if (newVisitor != null)
             {
-                newVisitor.Agent.avoidancePriority = visitorPool.Count - UsedVisitorNumber();
                 newVisitor.SetVisitor(visitorSpawnPoint);
             }
         }

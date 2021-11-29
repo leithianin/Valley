@@ -12,9 +12,6 @@ public class VisitorAgentBehave : MonoBehaviour
     private PathPoint spawnPoint;
     private bool isWalking;
 
-    private Action StartPath;
-    private Action EndPath;
-
     public Vector2 GetPosition => new Vector2(transform.position.x, transform.position.z);
 
     public NavMeshAgent Agent => datas.agent;
