@@ -21,7 +21,6 @@ public class VisibleLink : MonoBehaviour
         if (line != null)
         {
             line.SetPosition(index, GetPositionSecondPoint());
-            Debug.Log(index);
             if (line.positionCount > 0)
             {
                     NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position, GetPositionSecondPoint(), NavMesh.AllAreas, path);
