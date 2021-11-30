@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IP_DoBackflip : InterestPoint
 {
-    private VisitorAgentBehave currentVisitor;
+    [SerializeField] private VisitorAgentBehave currentVisitor;
 
     public override bool IsUsable()
     {
@@ -35,7 +35,7 @@ public class IP_DoBackflip : InterestPoint
             {
                 visitorObject.position = new Vector3(visitorObject.position.x, visitorObject.position.y - .1f, visitorObject.position.z);
             }
-            yield return new WaitForSeconds(Time.fixedDeltaTime);
+            yield return new WaitForSeconds(.2f);
         }
         EndInteraction(currentVisitor);
     }

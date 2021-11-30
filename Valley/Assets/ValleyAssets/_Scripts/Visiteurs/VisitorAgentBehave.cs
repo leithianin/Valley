@@ -106,8 +106,10 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void AskInteraction(InterestPoint point)
     {
+        Debug.Log("Interact");
         if(point.IsUsable() && CanInteract)
         {
+            StartInteraction();
             point.MakeVisitorInteract(this);
         }
     }
@@ -125,8 +127,8 @@ public class VisitorAgentBehave : MonoBehaviour
     public void EndInteraction()
     {
         doesAlreadyInteract = false;
-        datas.agent.isStopped = false;
         datas.agent.enabled = true;
+        datas.agent.isStopped = false;
     }
     #endregion
 
