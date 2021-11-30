@@ -8,8 +8,16 @@ public abstract class InterestPoint : MonoBehaviour
 
     protected abstract void OnVisitorInteract(VisitorAgentBehave visitor);
 
+    protected abstract void OnEndInteraction(VisitorAgentBehave visitor);
+
     public void MakeVisitorInteract(VisitorAgentBehave visitor)
     {
         OnVisitorInteract(visitor);
+    }
+
+    public void EndInteraction(VisitorAgentBehave visitor)
+    {
+        OnEndInteraction(visitor);
+        visitor.EndInteraction();
     }
 }
