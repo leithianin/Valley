@@ -22,6 +22,8 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private bool doesAlreadyInteract;
 
+    private int currentPathIndex;
+
     public VisitorScriptable visitorType;
 
     // Update is called once per frame
@@ -69,6 +71,8 @@ public class VisitorAgentBehave : MonoBehaviour
                 AskToWalk();
             }
 
+            SetNextDestination(currentPathIndex);
+
             datas.currentPoint.OnPointDestroyed += UnsetVisitor;
         }
     }
@@ -88,22 +92,50 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = VisitorManager.ChooseNextDestination(datas);
             if (isWalking)
             {
+                currentPathIndex = 0;
+
                 datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
                 datas.currentPoint.OnPointDestroyed += UnsetVisitor;
             }
         }
     }
 
+    private void SetNextDestination(int pathIndex)
+    {
+        Debug.Log(pathIndex);
+        Debug.Log(datas.wantedTargets.Count);
+
+        if(pathIndex == datas.wantedTargets.Count-1)
+        {
+            datas.agent.autoBraking = true;
+        }
+        else if(datas.agent.autoBraking)
+        {
+            datas.agent.autoBraking = false;
+        }
+        datas.agent.destination = datas.wantedTargets[pathIndex];
+    }
+
     private void ReachDestination()
     {
-        isWalking = false;
-        if (datas.currentPoint == spawnPoint)
+        Debug.Log("Reach destination");
+
+        if (currentPathIndex < datas.wantedTargets.Count)
         {
-            VisitorManager.RemoveVisitor(this);
+            currentPathIndex++;
+            SetNextDestination(currentPathIndex);
         }
         else
         {
-            VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
+            isWalking = false;
+            if (datas.currentPoint == spawnPoint)
+            {
+                VisitorManager.RemoveVisitor(this);
+            }
+            else
+            {
+                VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
+            }
         }
     }
     #endregion

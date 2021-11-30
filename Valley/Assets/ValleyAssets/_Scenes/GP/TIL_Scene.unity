@@ -2845,7 +2845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478007359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.7, y: 45.17256, z: 38.1}
+  m_LocalPosition: {x: 502.6, y: 45.17256, z: -1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 297509918}
@@ -3709,7 +3709,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &610462560
 MonoBehaviour:
@@ -4640,8 +4641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   existingPaths:
-  - pathPoints:
-    - {fileID: 610410488}
+  - startPoint: {fileID: 610410488}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &745537089
 Transform:
@@ -4702,8 +4703,8 @@ MonoBehaviour:
   visitorTypes:
   - {fileID: 11400000, guid: a52f8bd1d1f959347952d54dde08244b, type: 2}
   - {fileID: 11400000, guid: ab2c8ead95975e4469c6b7fda72c58ef, type: 2}
-  spawnRate: 2
-  maxSpawn: 10
+  spawnRate: 0.2
+  maxSpawn: 1
   visitorPool:
   - {fileID: 983864537}
   - {fileID: 383781759}
@@ -5068,7 +5069,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &789287927
 Transform:
   m_ObjectHideFlags: 0
@@ -6165,7 +6166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &949682649 stripped
 Transform:
@@ -6354,7 +6356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &967653324
 MonoBehaviour:
@@ -8238,7 +8241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1325636098
 PrefabInstance:
@@ -9911,7 +9915,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1630699333
 PrefabInstance:
@@ -11478,7 +11483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1936149830
 MonoBehaviour:

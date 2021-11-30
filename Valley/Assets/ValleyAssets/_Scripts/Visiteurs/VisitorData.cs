@@ -14,10 +14,12 @@ public class VisitorData
     public Valley_PathData path;
     public float noiseMade = 2;
 
-    public void SetDestination(PathPoint newPoint)
+    public List<Vector3> wantedTargets = new List<Vector3>();
+
+    public void SetDestination(PathFragmentData newPath)
     {
         lastPoint = currentPoint;
-        currentPoint = newPoint;
-        agent.destination = newPoint.Position;
+        currentPoint = newPath.lastPoint;
+        wantedTargets = newPath.path;
     }
 }

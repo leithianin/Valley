@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public enum SelectedTools { None, PathTool }
 public class ToolManager : MonoBehaviour
@@ -60,7 +61,7 @@ public class ToolManager : MonoBehaviour
         LineRenderer ln = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
 
         //SharedMaterial pour le même chemin
-        if (Valley_PathManager.GetCurrentPath.pathPoints.Count == 1)
+        if (Valley_PathManager.GetCurrentPath.pathFragment.Count == 0)
         {
             //Create Material for the new path
             ln.material = Instantiate(instance.matReference);                             //Material Instance
@@ -79,9 +80,9 @@ public class ToolManager : MonoBehaviour
     }
 
     //Call at each new Marker
-    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker)
+    public static NavMeshPath EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker)
     {
-        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject);
+        return previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject);
     }
 
     //Call when "Return" key is press

@@ -54,8 +54,12 @@ public class VisitorManager : MonoBehaviour
     {
         if (visitor.currentPoint != null)
         {
-            PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
-            visitor.SetDestination(newPathpoint);
+            //PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
+
+            PathFragmentData pathData = visitor.path.GetRandomDestination(visitor.currentPoint, visitor.lastPoint);
+
+            Debug.Log(pathData.path.Count);
+            visitor.SetDestination(pathData);
             return true;
         }
         return false;

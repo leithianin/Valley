@@ -12,6 +12,8 @@ public class VisibleLink : MonoBehaviour
 
     private NavMeshPath path;
 
+    private NavMeshPath pathRoReturn;
+
     private void Awake()
     {
         path = new NavMeshPath();
@@ -26,6 +28,11 @@ public class VisibleLink : MonoBehaviour
             if (line.positionCount > 0)
             {
                 NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position +offsetPathCalcul, GetPositionSecondPoint(), NavMesh.AllAreas, path);
+
+                if(path.status == NavMeshPathStatus.PathComplete)
+                {
+                    pathRoReturn = path;
+                }
 
                 List<Vector3> points = new List<Vector3>();
 
@@ -74,10 +81,11 @@ public class VisibleLink : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void AddPoint(GameObject nextObjectToLink)
+    public NavMeshPath AddPoint(GameObject nextObjectToLink)
     {
         line.SetPosition(index, nextObjectToLink.transform.position);
         line = null;
+        return pathRoReturn;
     }
 
     public void EndPoint(GameObject previousMarker)
