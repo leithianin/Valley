@@ -271,7 +271,7 @@ public class Valley_PathManager : MonoBehaviour
         SetCurrentPath(_pathData);
 
         //Je check ça aussi dans DeletePreviousMarker --> Peut être mettre dans une fonction à part
-        if (_pathData.pathPoints.Count > 0)
+        if (_pathData.pathPoints.Count > 1)
         {
             previousMarker = _pathData.pathPoints[_pathData.pathPoints.Count - 2];
         }
@@ -299,36 +299,44 @@ public class Valley_PathManager : MonoBehaviour
     {
         if (GetCurrentPath != null)
         {
-            RemovePathPoint(currentMarker, previousMarker);
-            GetCurrentPath.pathPoints.RemoveAt(GetCurrentPath.pathPoints.Count - 1);
-    
-            if (currentMarker.GetNbLinkedPoint() <= 0)
+            if (currentMarker == existingPaths[0].pathPoints[0])
             {
+                OnCompletePath();  
+            }
+            else
+            {
+                RemovePathPoint(currentMarker, previousMarker);
+                GetCurrentPath.pathPoints.RemoveAt(GetCurrentPath.pathPoints.Count - 1);
+
                 lineRendererToSave = currentMarker.GetLink.FindLineRenderer(previousMarker);
-                Destroy(currentMarker.gameObject);
-            }
-            else
-            {
-                Destroy(lineRendererToSave.gameObject);
-            }
+                if (currentMarker.GetNbLinkedPoint() <= 0)
+                {
+                    Destroy(currentMarker.gameObject);
+                }
+                else
+                {
+                    Destroy(lineRendererToSave.gameObject);
+                }
 
-            //Change CurrentMarker if CurrentPath have PathPoints left
-            if (GetCurrentPath.pathPoints.Count > 0)
-            {
-                currentMarker = previousMarker;
-                currentMarker.GetLink.UpdateLineWithLineKnowed(lineRendererToSave);
+                //Change CurrentMarker if CurrentPath have PathPoints left
+                if (GetCurrentPath.pathPoints.Count > 0)
+                {
+                    currentMarker = previousMarker;
+                    currentMarker.GetLink.UpdateLineWithLineKnowed(lineRendererToSave);
 
-                //Don't Set PreviousMarker if PathPoint have only 1 point
-                if (GetCurrentPath.pathPoints.Count > 1){previousMarker = GetCurrentPath.pathPoints[GetCurrentPath.pathPoints.Count - 2];}
-                else                                    {previousMarker = null;}
-            }
-            else
-            {
-                RemovePathData();
-                isNewPath = true;
-                currentMarker = null;
-            }
+                    //Don't Set PreviousMarker if PathPoint have only 1 point
+                    if (GetCurrentPath.pathPoints.Count > 1) { previousMarker = GetCurrentPath.pathPoints[GetCurrentPath.pathPoints.Count - 2]; }
+                    else { previousMarker = null; }
+                }
+                else
+                {
+                    RemovePathData();
+                    isNewPath = true;
+                    currentMarker = null;
+                }
+            }       
         }
+        
     }
 
     private void CreateOrModifyPath(PathPoint selectedMarker)
