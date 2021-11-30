@@ -9,8 +9,6 @@ public class VisitorManager : MonoBehaviour
     private static VisitorManager instance;
 
     [SerializeField] private PathPoint visitorSpawnPoint;
-    [SerializeField] private GameObject visitorPrefab;
-    [SerializeField] private List<Transform> transTest;
 
     [SerializeField] private List<VisitorScriptable> visitorTypes;
     [SerializeField] private float spawnRate = .2f;

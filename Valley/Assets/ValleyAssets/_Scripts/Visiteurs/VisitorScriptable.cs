@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AudioSound", menuName = "Create AudioSound")]
+[CreateAssetMenu(fileName = "Visitor", menuName = "Visitor/Create Visitor")]
 public class VisitorScriptable : ScriptableObject
 {
     [SerializeField] private float speed;
