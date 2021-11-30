@@ -20,6 +20,8 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public ValleyArea currentArea;
 
+    private bool doesAlreadyInteract;
+
     // Update is called once per frame
     void Update()
     {
@@ -71,6 +73,7 @@ public class VisitorAgentBehave : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    #region Deplacement
     private void AskToWalk()
     {
         if (enabled)
@@ -96,6 +99,36 @@ public class VisitorAgentBehave : MonoBehaviour
             VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
         }
     }
+    #endregion
+
+    #region Interactions
+    public bool CanInteract => !doesAlreadyInteract;
+
+    public void AskInteraction(InterestPoint point)
+    {
+        if(point.IsUsable() && CanInteract)
+        {
+            point.MakeVisitorInteract(this);
+        }
+    }
+
+    public void StartInteraction()
+    {
+        if(!doesAlreadyInteract)
+        {
+            doesAlreadyInteract = true;
+            datas.agent.isStopped = true;
+            datas.agent.enabled = false;
+        }
+    }
+
+    public void EndInteraction()
+    {
+        doesAlreadyInteract = false;
+        datas.agent.isStopped = false;
+        datas.agent.enabled = true;
+    }
+    #endregion
 
     private void OnDisable()
     {
