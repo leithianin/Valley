@@ -12,7 +12,7 @@ public class VisitorData
     public PathPoint lastPoint;
     public PathPoint currentPoint;
     public Valley_PathData path;
-    public int noiseMade = 2;
+    public float noiseMade = 2;
 
     public void SetDestination(PathPoint newPoint)
     {

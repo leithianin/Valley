@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class InterestPoint : MonoBehaviour
 {
+    public virtual InterestPointType PointType => InterestPointType.Rest;
+
     public abstract bool IsUsable();
 
     protected abstract void OnVisitorInteract(VisitorAgentBehave visitor);

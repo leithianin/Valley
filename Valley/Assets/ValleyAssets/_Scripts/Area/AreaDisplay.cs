@@ -6,5 +6,5 @@ public abstract class AreaDisplay : MonoBehaviour
 {
     [SerializeField] protected float natureLevel;
 
-    public abstract void SetNatureLevel(int level);
+    public abstract void SetNatureLevel(float level);
 }

@@ -22,6 +22,8 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private bool doesAlreadyInteract;
 
+    private VisitorScriptable visitorType;
+
     // Update is called once per frame
     void Update()
     {
@@ -37,12 +39,17 @@ public class VisitorAgentBehave : MonoBehaviour
         }
     }
 
-    public void SetVisitor(PathPoint nSpawnPoint)
+    public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
     {
         Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint);
 
         if (wantedPath != null)
         {
+            visitorType = nType;
+
+            datas.agent.speed = visitorType.Speed;
+            datas.noiseMade = visitorType.SoundProduced;
+
             spawnPoint = nSpawnPoint;
 
             datas.path = wantedPath;
@@ -106,8 +113,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void AskInteraction(InterestPoint point)
     {
-        Debug.Log("Interact");
-        if(point.IsUsable() && CanInteract)
+        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType))
         {
             StartInteraction();
             point.MakeVisitorInteract(this);

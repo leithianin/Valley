@@ -72,7 +72,7 @@ public class ValleyAreaManager : MonoBehaviour
         if (updatableArea.Count > 0)
         {
             ValleyArea area = updatableArea[0];
-            int areaSoundLevel = 0;
+            float areaSoundLevel = 0;
             for (int j = 0; j < area.visitorInZone.Count; j++)
             {
                 areaSoundLevel += area.visitorInZone[j].Data.noiseMade;

@@ -18,7 +18,7 @@ public class ValleyArea
 
     public List<AreaDisplay> Displays => displays;
 
-    public void SetSoundLevel(int soundLevel)
+    public void SetSoundLevel(float soundLevel)
     {
         for(int i = 0; i < displays.Count; i++)
         {

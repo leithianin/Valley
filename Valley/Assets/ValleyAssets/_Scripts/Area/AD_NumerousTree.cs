@@ -13,7 +13,7 @@ public class AD_NumerousTree : AreaDisplay
     }
 
     [SerializeField] List<ADData_StageTree> stagesValues;
-    public override void SetNatureLevel(int soundLevel)
+    public override void SetNatureLevel(float soundLevel)
     {
         natureLevel = soundLevel;
         for(int i = 0; i < stagesValues.Count; i++)

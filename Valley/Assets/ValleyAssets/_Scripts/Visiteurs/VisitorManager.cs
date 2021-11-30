@@ -12,9 +12,10 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private GameObject visitorPrefab;
     [SerializeField] private List<Transform> transTest;
 
-    [SerializeField] private List<VisitorAgentBehave> visitorPool;
+    [SerializeField] private List<VisitorScriptable> visitorTypes;
     [SerializeField] private float spawnRate = .2f;
     [SerializeField] private int maxSpawn = 100;
+    [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
     public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
 
@@ -36,7 +37,7 @@ public class VisitorManager : MonoBehaviour
 
             if (newVisitor != null)
             {
-                newVisitor.SetVisitor(visitorSpawnPoint);
+                newVisitor.SetVisitor(visitorSpawnPoint, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
         }
     }
