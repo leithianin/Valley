@@ -8,7 +8,7 @@ public class IP_DoBackflip : InterestPoint
 
     public override bool IsUsable()
     {
-        return currentVisitor == null;
+        return true;// currentVisitor == null;
     }
 
     protected override void OnEndInteraction(VisitorAgentBehave visitor)

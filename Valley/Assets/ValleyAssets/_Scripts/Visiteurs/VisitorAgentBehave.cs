@@ -22,7 +22,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private bool doesAlreadyInteract;
 
-    private VisitorScriptable visitorType;
+    public VisitorScriptable visitorType;
 
     // Update is called once per frame
     void Update()

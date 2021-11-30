@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd269663867d56d42a7e40eee8a62f4d, type: 3}
-  m_Name: Visitor
+  m_Name: Visitor 1
   m_EditorClassIdentifier: 
   speed: 4
   soundProduced: 1
-  interestedActivities: 00000000
+  interestedActivities: 02000000

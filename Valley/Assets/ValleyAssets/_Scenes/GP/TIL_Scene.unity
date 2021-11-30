@@ -4699,9 +4699,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visitorSpawnPoint: {fileID: 610410488}
-  visitorPrefab: {fileID: 4396013656849888266, guid: 8cbe1d3ee8f3f974f8d2152cb40ca38f, type: 3}
-  transTest: []
-  visitorTypes: []
+  visitorTypes:
+  - {fileID: 11400000, guid: a52f8bd1d1f959347952d54dde08244b, type: 2}
+  - {fileID: 11400000, guid: ab2c8ead95975e4469c6b7fda72c58ef, type: 2}
   spawnRate: 2
   maxSpawn: 10
   visitorPool:
