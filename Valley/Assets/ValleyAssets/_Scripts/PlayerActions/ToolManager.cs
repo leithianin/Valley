@@ -58,7 +58,7 @@ public class ToolManager : MonoBehaviour
     public static void CreateLink(PathPoint firstObjectToLink)
     {
         LineRenderer ln = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
-        
+
         //SharedMaterial pour le même chemin
         if (Valley_PathManager.GetCurrentPath.pathPoints.Count == 1)
         {
