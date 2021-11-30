@@ -13,12 +13,12 @@ public class AD_NumerousTree : AreaDisplay
     }
 
     [SerializeField] List<ADData_StageTree> stagesValues;
-    public override void SetNatureLevel(int level)
+    public override void SetNatureLevel(int soundLevel)
     {
-        natureLevel = level;
+        natureLevel = soundLevel;
         for(int i = 0; i < stagesValues.Count; i++)
         {
-            if(stagesValues[i].stageValue > level)
+            if(soundLevel < stagesValues[i].stageValue)
             {
                 for(int j = 0; j < stagesValues[i].trees.Count; j++)
                 {
