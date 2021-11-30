@@ -8,6 +8,7 @@ public class VisibleLink : MonoBehaviour
     public LineRenderer line;
     private bool isSecondPointIsPlaced = false;
     public int index = 1;
+    private Vector3 offsetPathCalcul = new Vector3(0,0,-0.5f);
 
     private NavMeshPath path;
 
@@ -21,29 +22,31 @@ public class VisibleLink : MonoBehaviour
         if (line != null)
         {
             line.SetPosition(index, GetPositionSecondPoint());
+            path = new NavMeshPath();
             if (line.positionCount > 0)
             {
-                    NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position, GetPositionSecondPoint(), NavMesh.AllAreas, path);
+                NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position +offsetPathCalcul, GetPositionSecondPoint(), NavMesh.AllAreas, path);
 
-                    List<Vector3> points = new List<Vector3>();
+                List<Vector3> points = new List<Vector3>();
 
-                    int j = 1;
+                int j = 1;
 
-                    while (j < path.corners.Length)
+                //Debug.Log(path.corners.Length);
+                while (j < path.corners.Length)
+                {
+                    line.positionCount = path.corners.Length;
+                    points = new List<Vector3>(path.corners);
+                    for (int k = 0; k < points.Count; k++)
                     {
-                        line.positionCount = path.corners.Length;
-                        points = new List<Vector3>(path.corners);
-                        for (int k = 0; k < points.Count; k++)
-                        {
-                            line.SetPosition(k, points[k]);
-                        }
-
-                        j++;
+                        line.SetPosition(k, points[k]);
                     }
 
-                index = line.positionCount-1;
+                    j++;
+                }
+
+                index = line.positionCount - 1;
             }
-        }   
+        }
     }
 
     public void FirstPoint()
