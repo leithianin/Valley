@@ -8,6 +8,7 @@ public class AD_NumerousTree : AreaDisplay
     [Serializable]
     private class ADData_StageTree
     {
+        [Tooltip("ça correspond à telle valeur")]
         public float stageValue;
         public List<GameObject> trees;
     }

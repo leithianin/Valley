@@ -8,6 +8,7 @@ public class Valley_PathData
 {
     public List<PathPoint> pathPoints = new List<PathPoint>(); // Liste des points du chemins.
     public Color colorPath;
+    public List<ValleyArea> valleyAreaList = new List<ValleyArea>();
 
     /// <summary>
     /// Vérifie si le chemin possède le point.
