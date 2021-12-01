@@ -43,7 +43,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
     {
-        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint);
+        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.InterestedActivities);
 
         if (wantedPath != null)
         {

@@ -29,6 +29,18 @@ public class Valley_PathData
         return false;
     }
 
+    public bool ContainsInterestPoint(InterestPointType wantedInterest)
+    {
+        for(int i = 0; i < valleyAreaList.Count; i++)
+        {
+            if(valleyAreaList[i].ContainsInterestType(wantedInterest))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool IsUsable(PathPoint toCheck)
     {
         return startPoint != null && ContainsPoint(toCheck);

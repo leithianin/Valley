@@ -45,9 +45,11 @@ public class VisitorManager : MonoBehaviour
         toRemove.UnsetVisitor();
     }
 
-    public static Valley_PathData ChoosePath(PathPoint spawnPoint)
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<InterestPointType> visitorInterest)
     {
-        return Valley_PathManager.GetRandomPath(spawnPoint);
+        List<Valley_PathData> possiblesPath = Valley_PathManager.GetAllPossiblePath(spawnPoint);
+
+        return instance.GetMostInterestingPath(visitorInterest, possiblesPath);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
@@ -88,6 +90,31 @@ public class VisitorManager : MonoBehaviour
         }
         yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnVisitorContinue());
+    }
+
+    private Valley_PathData GetMostInterestingPath(List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath)
+    {
+        int currentScore = 0;
+        Valley_PathData toReturn = possiblesPath[UnityEngine.Random.Range(0,possiblesPath.Count)];
+
+        for (int i = 0; i < possiblesPath.Count; i++)
+        {
+            int pathScore = 0;
+            for (int j = 0; j < visitorInterest.Count; j++)
+            {
+                if(possiblesPath[i].ContainsInterestPoint(visitorInterest[j]))
+                {
+                    pathScore++;
+                }
+            }
+
+            if(pathScore > currentScore)
+            {
+                toReturn = possiblesPath[i];
+            }
+        }
+
+        return toReturn;
     }
 
     private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool global ?

@@ -75,6 +75,24 @@ public class Valley_PathManager : MonoBehaviour
         return path;
     }
 
+    public static List<Valley_PathData> GetAllPossiblePath(PathPoint startPoint)
+    {
+        return instance.OnGetAllPossiblePath(startPoint);
+    }
+
+    private List<Valley_PathData> OnGetAllPossiblePath(PathPoint startPoint)
+    {
+        List<Valley_PathData> possiblePath = new List<Valley_PathData>();
+        for (int i = 0; i < existingPaths.Count; i++)
+        {
+            if(existingPaths[i].ContainsPoint(startPoint))
+            {
+                possiblePath.Add(existingPaths[i]);
+            }
+        }
+        return possiblePath;
+    }
+
     public static void CreatePath()
     {
         Valley_PathData path = new Valley_PathData();
