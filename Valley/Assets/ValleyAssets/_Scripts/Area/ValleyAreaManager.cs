@@ -50,7 +50,7 @@ public class ValleyAreaManager : MonoBehaviour
             {
                 ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
                 
-                if(toAdd != visitors[visitorIndex].currentArea)
+                if(toAdd != visitors[visitorIndex].currentArea && toAdd != null)
                 {
                     visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
                     visitors[visitorIndex].currentArea = toAdd;

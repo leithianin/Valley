@@ -197,16 +197,10 @@ public class Valley_PathManager : MonoBehaviour
         else
         {
             //Close link précedent
-            NavMeshPath navPath = ToolManager.EndPreviousLink(toPlace, currentMarker);
+            List<Vector3> navPath = new List<Vector3>();
+            ToolManager.EndPreviousLink(toPlace, currentMarker, out navPath);
 
-            List<Vector3> toAdd = new List<Vector3>();
-
-            for (int i = 0; i < navPath.corners.Length; i++)
-            {
-                toAdd.Add(navPath.corners[i]);
-            }
-
-            GetCurrentPath.pathFragment.Add(new PathFragmentData(toPlace, currentMarker, toAdd));
+            GetCurrentPath.pathFragment.Add(new PathFragmentData(currentMarker, toPlace, navPath));
             //GetCurrentPath.pathPoints.Add(toPlace);
             AddPathPoint(toPlace);
         }
@@ -264,17 +258,18 @@ public class Valley_PathManager : MonoBehaviour
         }
         else
         {
-            NavMeshPath navPath = ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker);             //Close previous link
+            List<Vector3> navPath = new List<Vector3>();
+            ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker, out navPath);
 
             List<Vector3> toAdd = new List<Vector3>();
 
-            for (int i = 0; i < navPath.corners.Length; i++)
+            for (int i = 0; i < navPath.Count; i++)
             {
-                toAdd.Add(navPath.corners[i]);
+                toAdd.Add(navPath[i]);
             }
 
 
-            GetCurrentPath.pathFragment.Add(new PathFragmentData(markerAlreadyPlace, currentMarker, toAdd));
+            GetCurrentPath.pathFragment.Add(new PathFragmentData(currentMarker, markerAlreadyPlace, toAdd));
             //GetCurrentPath.pathPoints.Add(markerAlreadyPlace);                          //Add point to the path         
             AddPathPoint(markerAlreadyPlace);
             //AddPathPointWithoutMarker(markerAlreadyPlace, currentMarker);
@@ -289,7 +284,7 @@ public class Valley_PathManager : MonoBehaviour
     public void OnModifyPath(Valley_PathData _pathData)
     {
         isNewPath = false;
-        currentMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].lastPoint;
+        currentMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].endPoint;
         //currentMarker = _pathData.pathPoints[_pathData.pathPoints.Count-1];
         SetCurrentPath(_pathData);
 

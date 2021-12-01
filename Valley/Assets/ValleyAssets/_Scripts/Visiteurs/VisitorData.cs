@@ -18,8 +18,8 @@ public class VisitorData
 
     public void SetDestination(PathFragmentData newPath)
     {
-        lastPoint = currentPoint;
-        currentPoint = newPath.lastPoint;
+        lastPoint = newPath.startPoint;
+        currentPoint = newPath.endPoint;
         wantedTargets = newPath.path;
     }
 }

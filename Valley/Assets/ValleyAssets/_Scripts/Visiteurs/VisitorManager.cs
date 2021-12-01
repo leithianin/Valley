@@ -58,7 +58,6 @@ public class VisitorManager : MonoBehaviour
 
             PathFragmentData pathData = visitor.path.GetRandomDestination(visitor.currentPoint, visitor.lastPoint);
 
-            Debug.Log(pathData.path.Count);
             visitor.SetDestination(pathData);
             return true;
         }

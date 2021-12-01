@@ -12,7 +12,7 @@ public class VisibleLink : MonoBehaviour
 
     private NavMeshPath path;
 
-    private NavMeshPath pathRoReturn;
+    private List<Vector3> pathToReturn;
 
     private void Awake()
     {
@@ -23,17 +23,13 @@ public class VisibleLink : MonoBehaviour
     {
         if (line != null)
         {
-            line.SetPosition(index, GetPositionSecondPoint());
             path = new NavMeshPath();
-            if (line.positionCount > 0)
+            //if (line.positionCount > 0)
             {
-                NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position +offsetPathCalcul, GetPositionSecondPoint(), NavMesh.AllAreas, path);
+                NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position + offsetPathCalcul, GetPositionSecondPoint(), NavMesh.AllAreas, path);
 
-                if(path.status == NavMeshPathStatus.PathComplete)
-                {
-                    pathRoReturn = path;
-                }
-
+                line.positionCount = index + 1;
+                line.SetPosition(index, GetPositionSecondPoint());
                 List<Vector3> points = new List<Vector3>();
 
                 int j = 1;
@@ -49,6 +45,11 @@ public class VisibleLink : MonoBehaviour
                     }
 
                     j++;
+                }
+
+                if (j == path.corners.Length && path.status == NavMeshPathStatus.PathComplete)
+                {
+                    pathToReturn = new List<Vector3>(points);
                 }
 
                 index = line.positionCount - 1;
@@ -81,11 +82,12 @@ public class VisibleLink : MonoBehaviour
         return Vector3.zero;
     }
 
-    public NavMeshPath AddPoint(GameObject nextObjectToLink)
+    public void AddPoint(GameObject nextObjectToLink, out List<Vector3> vectorPath)
     {
         line.SetPosition(index, nextObjectToLink.transform.position);
         line = null;
-        return pathRoReturn;
+
+        vectorPath = new List<Vector3>(pathToReturn);
     }
 
     public void EndPoint(GameObject previousMarker)

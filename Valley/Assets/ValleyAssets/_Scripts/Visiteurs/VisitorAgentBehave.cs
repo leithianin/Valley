@@ -33,7 +33,7 @@ public class VisitorAgentBehave : MonoBehaviour
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
             {
-                if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f) //CODE REVIEW : Voir pour simplifier les "if" et les rassembler
+                //if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f) //CODE REVIEW : Voir pour simplifier les "if" et les rassembler
                 {
                     ReachDestination();
                 }
@@ -55,7 +55,7 @@ public class VisitorAgentBehave : MonoBehaviour
             spawnPoint = nSpawnPoint;
 
             datas.path = wantedPath;
-            datas.lastPoint = null;
+            datas.lastPoint = nSpawnPoint;
             datas.currentPoint = nSpawnPoint;
 
             transform.position = nSpawnPoint.Position;
@@ -64,12 +64,6 @@ public class VisitorAgentBehave : MonoBehaviour
 
 
             AskToWalk();
-
-            if (datas.currentPoint == nSpawnPoint)
-            {
-                datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
-                AskToWalk();
-            }
 
             SetNextDestination(currentPathIndex);
 
@@ -80,6 +74,8 @@ public class VisitorAgentBehave : MonoBehaviour
     public void UnsetVisitor()
     {
         datas.currentPoint = null;
+
+        currentArea.RemoveVisitor(this);
 
         gameObject.SetActive(false);
     }
@@ -102,14 +98,11 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void SetNextDestination(int pathIndex)
     {
-        Debug.Log(pathIndex);
-        Debug.Log(datas.wantedTargets.Count);
-
-        if(pathIndex == datas.wantedTargets.Count-1)
+        if(pathIndex < datas.wantedTargets.Count-1)
         {
             datas.agent.autoBraking = true;
         }
-        else if(datas.agent.autoBraking)
+        else
         {
             datas.agent.autoBraking = false;
         }
@@ -118,11 +111,9 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void ReachDestination()
     {
-        Debug.Log("Reach destination");
-
+        currentPathIndex++;
         if (currentPathIndex < datas.wantedTargets.Count)
         {
-            currentPathIndex++;
             SetNextDestination(currentPathIndex);
         }
         else

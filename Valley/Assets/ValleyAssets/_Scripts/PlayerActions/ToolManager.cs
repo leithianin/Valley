@@ -80,9 +80,9 @@ public class ToolManager : MonoBehaviour
     }
 
     //Call at each new Marker
-    public static NavMeshPath EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker)
+    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker, out List<Vector3> vectorPath)
     {
-        return previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject);
+        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject, out vectorPath);
     }
 
     //Call when "Return" key is press

@@ -20,7 +20,7 @@ public class Valley_PathData
     {
         for(int i = 0; i < pathFragment.Count; i++)
         {
-            if(pathFragment[i].lastPoint == toCheck)
+            if(pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
             {
                 return true;
             }
@@ -38,13 +38,13 @@ public class Valley_PathData
         List<PathFragmentData> availablePaths = new List<PathFragmentData>();
         for(int i = 0; i < pathFragment.Count; i++)
         {
-            if((pathFragment[i].startPoint == currentPoint && pathFragment[i].lastPoint != lastPoint))
+            if(pathFragment[i].startPoint == currentPoint && (pathFragment[i].endPoint != lastPoint || pathFragment.Count == 1))
             {
-                availablePaths.Add(new PathFragmentData(pathFragment[i].startPoint, pathFragment[i].lastPoint, pathFragment[i].path));
+                availablePaths.Add(new PathFragmentData(pathFragment[i].startPoint, pathFragment[i].endPoint, pathFragment[i].path));
             }
-            else if ((pathFragment[i].startPoint != lastPoint && pathFragment[i].lastPoint == currentPoint))
+            else if ((pathFragment[i].startPoint != lastPoint || pathFragment.Count == 1) && pathFragment[i].endPoint == currentPoint)
             {
-                availablePaths.Add(new PathFragmentData(pathFragment[i].lastPoint, pathFragment[i].startPoint, pathFragment[i].GetReversePath()));
+                availablePaths.Add(new PathFragmentData(pathFragment[i].endPoint, pathFragment[i].startPoint, pathFragment[i].GetReversePath()));
             }
         }
 
@@ -55,7 +55,7 @@ public class Valley_PathData
     {
         for(int i = pathFragment.Count-1; i >= 0 ; i--)
         {
-            if(pathFragment[i].startPoint == startPoint && pathFragment[i].lastPoint == endPoint)
+            if(pathFragment[i].startPoint == startPoint && pathFragment[i].endPoint == endPoint)
             {
                 pathFragment.RemoveAt(i);
                 break;

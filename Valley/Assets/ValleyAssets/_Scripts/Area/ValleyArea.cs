@@ -25,4 +25,9 @@ public class ValleyArea
             displays[i].SetNatureLevel(soundLevel);
         }
     }
+
+    public void RemoveVisitor(VisitorAgentBehave toRemove)
+    {
+        visitorInZone.Remove(toRemove);
+    }
 }
