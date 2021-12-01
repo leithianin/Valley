@@ -196,6 +196,9 @@ public class Valley_PathManager : MonoBehaviour
         }
         else
         {
+            //Chemin = CurrentMarker LineRenderer
+            //Check Zone Where the path pass
+            ValleyAreaManager.GetZoneFromLineRenderer(currentMarker.GetLink.line);
             //Close link précedent
             List<Vector3> navPath = new List<Vector3>();
             LineRenderer line = new LineRenderer();
@@ -366,8 +369,7 @@ public class Valley_PathManager : MonoBehaviour
                     currentMarker = null;
                 }
             }       
-        }
-        
+        }  
     }
 
     private void CreateOrModifyPath(PathPoint selectedMarker)

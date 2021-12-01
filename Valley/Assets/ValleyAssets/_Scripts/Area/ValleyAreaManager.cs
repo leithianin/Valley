@@ -5,6 +5,7 @@ using Unity;
 
 public class ValleyAreaManager : MonoBehaviour
 {
+    private static ValleyAreaManager instance;
     [SerializeField] private List<ValleyArea> areas;
 
     private List<VisitorAgentBehave> visitors = new List<VisitorAgentBehave>();
@@ -14,6 +15,13 @@ public class ValleyAreaManager : MonoBehaviour
     private int visitorChecked = 0;
 
     private List<ValleyArea> updatableArea = new List<ValleyArea>();
+
+    private static List<ValleyArea> pathAreas = new List<ValleyArea>();                      //List de ValleyArea dans lequel un chemin passe.
+
+    private static float pointsByPath = 4;
+    private static float pointByPathValue;
+
+    public GameObject debugObject;
 
     [ContextMenu("Set positions")]
     private void SetPositions()
@@ -29,8 +37,14 @@ public class ValleyAreaManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
+        pointByPathValue = 1 / pointsByPath;
         /*if(visitorByFrame > areas.Count)
         {
             visitorByFrame = areas.Count;
@@ -95,7 +109,66 @@ public class ValleyAreaManager : MonoBehaviour
             }
         }
 
+        Debug.Log(toReturn.nom);
         return toReturn;
+    }
+
+    public static void GetZoneFromLineRenderer(LineRenderer ln)
+    {
+        for(int i = 0; i < ln.positionCount-1; i++)
+        {
+            //Take two points by point ( a-b / b-c / c/d / ...)
+            //Take positions of those 2 points
+            Vector3 point1 = ln.GetPosition(i);
+            Vector3 point2 = ln.GetPosition(i+1);
+
+            //Check PointsByPath points on a path
+            for(int j = 1; j <= pointsByPath; j++)
+            {
+                ValleyArea zone = instance.GetZoneFromPosition(GetVectorPoint(point1, point2, pointByPathValue * j));
+                if(zone != null)
+                {
+                    CheckIfZoneAlreadySaved(zone);
+                }
+            }  
+        }
+
+        
+        foreach(ValleyArea va in pathAreas)
+        {
+            //Save pathAreas in PathData
+            Valley_PathManager.GetCurrentPath.valleyAreaList.Add(va);
+
+            //Debug.Log("Zone : " + va.nom);
+        }
+        
+
+        pathAreas.Clear();
+    }
+
+    public static Vector3 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
+    {
+        float pointx = point1.x * (1 - t) + point2.x * t;
+        float pointy = point1.y * (1 - t) + point2.y * t;
+        float pointz = point1.z * (1 - t) + point2.z * t;
+
+        Vector3 pointPlaced = new Vector3(pointx, pointy, pointz);
+        Instantiate(instance.debugObject, pointPlaced, Quaternion.identity);
+
+        return pointPlaced;
+    }
+
+    public static void CheckIfZoneAlreadySaved(ValleyArea zone)
+    {
+        foreach(ValleyArea va in pathAreas)
+        {
+            if(va == zone)
+            {
+                return;
+            }
+        }
+
+        pathAreas.Add(zone);
     }
 
     private bool IsPositionInArea(Vector2 toCheck, ValleyArea area)
@@ -115,7 +188,6 @@ public class ValleyAreaManager : MonoBehaviour
             }
         }
     }
-
 
     #region Check Point in Polygon
     private float DistancePointLine2D(Vector2 point, Vector2 lineStart, Vector2 lineEnd)

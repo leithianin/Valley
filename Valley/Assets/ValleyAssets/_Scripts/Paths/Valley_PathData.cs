@@ -10,6 +10,7 @@ public class Valley_PathData
     public PathPoint startPoint;
     public List<PathFragmentData> pathFragment = new List<PathFragmentData>();
     public Color colorPath;
+    public List<ValleyArea> valleyAreaList = new List<ValleyArea>();
 
     /// <summary>
     /// Vérifie si le chemin possède le point.
