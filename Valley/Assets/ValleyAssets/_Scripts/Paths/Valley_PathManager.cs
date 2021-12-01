@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class Valley_PathManager : MonoBehaviour
@@ -20,9 +21,8 @@ public class Valley_PathManager : MonoBehaviour
 
     public static Valley_PathData GetCurrentPath => currentPathOn;
     public static PathPoint GetCurrentMarker => currentMarker;
-    /*[Header("Tests")]
-    [SerializeField] private List<PathPoint> firstPathPoints;
-    [SerializeField] private List<PathPoint> secondPathPoints;*/
+
+    public UnityEvent PlayOnCompletePath;
 
     public static bool HasAvailablePath(PathPoint spawnPoint)
     {
@@ -318,6 +318,7 @@ public class Valley_PathManager : MonoBehaviour
 
     private void OnCompletePath()
     {
+        PlayOnCompletePath?.Invoke();
         EndPath();
         ToolManager.EndLink(currentMarker);
         isNewPath = true;

@@ -56,6 +56,11 @@ public class LandInteractions : MonoBehaviour
 
         selectedConstruction = GetHitConstruction();
 
+        if(selectedConstruction != null)
+        {
+            selectedConstruction.SelectObject();
+        }
+
         if (ToolManager._selectedTool != SelectedTools.None)
         {
             ToolManager.GetEventSystemKeepSelected().KeepSelected(); // Voir pour le mettre autre part, pour pouvoir supprimer le IF du dessus

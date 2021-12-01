@@ -9,6 +9,8 @@ public abstract class Construction : MonoBehaviour
     [SerializeField] private float cost;
 
     [SerializeField] private UnityEvent PlayOnPlace;
+    [SerializeField] private UnityEvent PlayOnDelete;
+    [SerializeField] private UnityEvent PlayOnSelect;
 
     public abstract SelectedTools LinkedTool();
 
@@ -19,6 +21,8 @@ public abstract class Construction : MonoBehaviour
     protected abstract void OnPlaceObject(Vector3 position);
 
     protected abstract void OnRemoveObject();
+
+    protected abstract void OnSelectObject();
 
     public bool CanPlaceObject(Vector3 position)
     {
@@ -41,7 +45,14 @@ public abstract class Construction : MonoBehaviour
 
     public void RemoveObject()
     {
+        PlayOnDelete?.Invoke();
         OnRemoveObject();
+    }
+
+    public void SelectObject()
+    {
+        PlayOnSelect?.Invoke();
+        OnSelectObject();
     }
 
     public void SpawnObject(Vector3 position)

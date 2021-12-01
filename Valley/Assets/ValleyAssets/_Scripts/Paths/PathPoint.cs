@@ -117,17 +117,7 @@ public class PathPoint : Construction
 
     protected override void OnRemoveObject()
     {
-        // On peut mettre la logique de DeletePreviousMarker ici
-        /*
-        if (localMarker.GetComponent<PathPoint>().GetNbLinkedPoint() > 0)
-        {
-            //Dont deztroy
-        }
-        else
-        {
-            Destroy(localMarker);
-        }
-        */
+        
     }
 
     public override SelectedTools LinkedTool()
@@ -138,5 +128,10 @@ public class PathPoint : Construction
     protected override void OnPlaceObject(Vector3 position)
     {
         Valley_PathManager.PlacePathPoint(this);
+    }
+
+    protected override void OnSelectObject()
+    {
+        
     }
 }
