@@ -98,14 +98,6 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void SetNextDestination(int pathIndex)
     {
-        if(pathIndex < datas.wantedTargets.Count-1)
-        {
-            datas.agent.autoBraking = true;
-        }
-        else
-        {
-            datas.agent.autoBraking = false;
-        }
         datas.agent.destination = datas.wantedTargets[pathIndex];
     }
 

@@ -26,10 +26,10 @@ public class VisibleLink : MonoBehaviour
             path = new NavMeshPath();
             //if (line.positionCount > 0)
             {
-                NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position + offsetPathCalcul, GetPositionSecondPoint(), NavMesh.AllAreas, path);
+                NavMesh.CalculatePath(Valley_PathManager.GetCurrentMarker.Position + offsetPathCalcul, GetPositionSecondPoint() + offsetPathCalcul, NavMesh.AllAreas, path);
 
                 line.positionCount = index + 1;
-                line.SetPosition(index, GetPositionSecondPoint());
+                line.SetPosition(index, GetPositionSecondPoint() + offsetPathCalcul);
                 List<Vector3> points = new List<Vector3>();
 
                 int j = 1;
@@ -82,17 +82,23 @@ public class VisibleLink : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void AddPoint(GameObject nextObjectToLink, out List<Vector3> vectorPath)
+    public void AddPoint(GameObject nextObjectToLink, out List<Vector3> vectorPath, out LineRenderer pathLine)
     {
         line.SetPosition(index, nextObjectToLink.transform.position);
-        line = null;
 
         vectorPath = new List<Vector3>(pathToReturn);
+
+        pathLine = line;
+
+        line = null;
     }
 
     public void EndPoint(GameObject previousMarker)
     {
-        Destroy(line.gameObject);
+        if (line != null)
+        {
+            Destroy(line.gameObject);
+        }
     }
 
     public void ResetPoint()
@@ -114,6 +120,10 @@ public class VisibleLink : MonoBehaviour
 
     public void UpdateLineWithLineKnowed(LineRenderer lineRenderer)
     {
+        if(line != null)
+        {
+            Destroy(line.gameObject);
+        }
         line = lineRenderer;
     }
 
