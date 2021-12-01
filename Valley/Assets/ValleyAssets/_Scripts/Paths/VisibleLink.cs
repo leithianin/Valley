@@ -54,6 +54,8 @@ public class VisibleLink : MonoBehaviour
 
                 index = line.positionCount - 1;
             }
+
+            VisibleLinkManager.SetLine(line);
         }
     }
 

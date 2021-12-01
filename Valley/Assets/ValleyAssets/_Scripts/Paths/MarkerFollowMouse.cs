@@ -4,26 +4,36 @@ using UnityEngine;
 
 public class MarkerFollowMouse : MonoBehaviour
 {
-    private void Update()
+    private Construction currentConstruction;
+
+    /// <summary>
+    /// Set la Construction et utilise les Spawn/Despawn
+    /// </summary>
+    /// <param name="construction"></param>
+    public void SetSelectedTool(Construction construction)
     {
-        if(ToolManager._selectedTool == SelectedTools.PathTool)
+        if(construction != null)
         {
-            RaycastHit();
+            enabled = true;
+
+            if (construction != currentConstruction)
+            {
+                currentConstruction.DespawnObject();
+
+                Instantiate(construction, LandInteractions.GetHitPoint(), Quaternion.identity, transform);
+
+                construction.SpawnObject(LandInteractions.GetHitPoint());
+            }
+        }
+        else
+        {
+            enabled = false;
         }
     }
 
-    public void RaycastHit()
-    {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100000.0f))
-        {
-            gameObject.transform.position = hit.point;
 
-            if(hit.transform.gameObject.GetComponent<PathPoint>())
-            {
-                gameObject.transform.position = hit.transform.gameObject.transform.position;
-            }
-        }
+    private void Update()
+    {
+        transform.position = LandInteractions.GetHitPoint();
     }
 }

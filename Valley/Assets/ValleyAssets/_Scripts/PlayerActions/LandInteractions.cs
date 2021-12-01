@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class LandInteractions : MonoBehaviour
 {
+    private static LandInteractions instance;
+
     [SerializeField]
     private UnityEvent OnEndPath;
-
-    [SerializeField] private PathPoint pathpointPrefab;
 
     public Construction marker;
     public Construction markersList;
@@ -23,6 +23,11 @@ public class LandInteractions : MonoBehaviour
     private int test = 1;
 
     public Construction selectedConstruction;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
@@ -41,7 +46,7 @@ public class LandInteractions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             ConstructionManager.CompleteConstruction(ToolManager._selectedTool);
-            ToolManager.ActivePathTool();
+            //ToolManager.ActivePathTool();                                         A REACTIVER AU BESOIN
         }
 
         if (Input.GetKeyDown(KeyCode.Delete))
@@ -107,7 +112,7 @@ public class LandInteractions : MonoBehaviour
     }
 
 
-    private Vector3 GetHitPoint()
+    public static Vector3 GetHitPoint()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

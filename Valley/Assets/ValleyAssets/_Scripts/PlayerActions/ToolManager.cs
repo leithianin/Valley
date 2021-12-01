@@ -12,11 +12,18 @@ public class ToolManager : MonoBehaviour
     public static SelectedTools _selectedTool;
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
-    public GameObject markerPlaceHolder;
+    public MarkerFollowMouse constructionPrevisualisation;
     public LineRenderer lineRendererObject;
 
     public Material matReference;      
-    private Material savedMaterial;    
+    private Material savedMaterial;
+
+    [Header("Constructions Prefabs")]
+    [SerializeField] private PathPoint pathpointPrefab;
+
+    private Construction selectedConstruction;
+
+    public static Construction SelectedConstruction => instance.selectedConstruction;
 
     private void Awake()
     {
@@ -33,7 +40,7 @@ public class ToolManager : MonoBehaviour
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
-            markerPlaceHolder.SetActive(false);
+            constructionPrevisualisation.SetSelectedTool(null);
             eventSystemKeepSelectedScript.RemoveLastSelected();
             _selectedTool = SelectedTools.None;
             EventSystem.current.SetSelectedGameObject(null);
@@ -46,7 +53,7 @@ public class ToolManager : MonoBehaviour
 
     public static void ActivePathTool()
     {
-        instance.markerPlaceHolder.SetActive(true);
+        instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();
         _selectedTool = SelectedTools.PathTool;
     }

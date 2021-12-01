@@ -6,13 +6,18 @@ public class ConstructionManager : MonoBehaviour
 {
     private static ConstructionManager instance;
 
-    [SerializeField] private Transform constructionHandler;
+    [SerializeField] private MarkerFollowMouse constructionHandler;
 
     private static int Test = 0;    //A delete si j'oublis
 
     private void Awake()
     {
         instance = this;
+    }
+
+    public static bool ChooseConstruction(Construction constructionChosen)
+    {
+
     }
 
     public static bool PlaceConstruction(Construction toPlace, Vector3 positionToPlace)

@@ -1641,6 +1641,7 @@ MonoBehaviour:
     - {x: 483.1, y: -0.4}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A2
     bordersTransform:
     - {fileID: 115123405}
@@ -1657,6 +1658,7 @@ MonoBehaviour:
     visitorInZone: []
     displays:
     - {fileID: 1278705045}
+    interestPoints: []
   - nom: A3
     bordersTransform:
     - {fileID: 1433886646}
@@ -1670,6 +1672,7 @@ MonoBehaviour:
     - {x: 575.1, y: 56.9}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A4
     bordersTransform:
     - {fileID: 1231332783}
@@ -1683,6 +1686,7 @@ MonoBehaviour:
     - {x: 506.5, y: 36.1}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A5
     bordersTransform:
     - {fileID: 861673092}
@@ -1700,6 +1704,7 @@ MonoBehaviour:
     - {x: 474.2, y: 81.9}
     visitorInZone: []
     displays: []
+    interestPoints: []
   visitorByFrame: 20
 --- !u!4 &299861261
 Transform:
@@ -3823,6 +3828,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!114 &610462560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4845,6 +4851,7 @@ GameObject:
   - component: {fileID: 745537090}
   - component: {fileID: 745537091}
   - component: {fileID: 745537092}
+  - component: {fileID: 745537093}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -4868,6 +4875,10 @@ MonoBehaviour:
   - startPoint: {fileID: 610410488}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
+  PlayOnCompletePath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &745537089
 Transform:
   m_ObjectHideFlags: 0
@@ -5018,6 +5029,18 @@ MonoBehaviour:
   - {fileID: 1153837587}
   - {fileID: 1360875644}
   - {fileID: 1280232067}
+--- !u!114 &745537093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745537087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82536d623e36be04286b3ccb01d47a8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &746660509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4396013656849888276, guid: 8cbe1d3ee8f3f974f8d2152cb40ca38f, type: 3}
@@ -6393,6 +6416,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!4 &949682649 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4396013656849888276, guid: 8cbe1d3ee8f3f974f8d2152cb40ca38f, type: 3}
@@ -6583,6 +6607,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!114 &967653324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8472,6 +8497,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!1001 &1325636098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10146,6 +10172,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!1001 &1630699333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12053,6 +12080,7 @@ MonoBehaviour:
     startPoint: {fileID: 0}
     pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
+    valleyAreaList: []
 --- !u!114 &1936149830
 MonoBehaviour:
   m_ObjectHideFlags: 0
