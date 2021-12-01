@@ -21,8 +21,6 @@ public class ValleyAreaManager : MonoBehaviour
     private static float pointsByPath = 4;
     private static float pointByPathValue;
 
-    public GameObject debugObject;
-
     [ContextMenu("Set positions")]
     private void SetPositions()
     {
@@ -109,7 +107,6 @@ public class ValleyAreaManager : MonoBehaviour
             }
         }
 
-        Debug.Log(toReturn.nom);
         return toReturn;
     }
 
@@ -153,7 +150,6 @@ public class ValleyAreaManager : MonoBehaviour
         float pointz = point1.z * (1 - t) + point2.z * t;
 
         Vector3 pointPlaced = new Vector3(pointx, pointy, pointz);
-        Instantiate(instance.debugObject, pointPlaced, Quaternion.identity);
 
         return pointPlaced;
     }
