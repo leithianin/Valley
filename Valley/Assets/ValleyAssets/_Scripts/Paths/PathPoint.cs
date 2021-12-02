@@ -28,6 +28,8 @@ public class PathPoint : Construction
     [SerializeField] private VisibleLink link;
     public LineRenderer lineRendererPrevious;
 
+    [SerializeField] private float maxDistanceFromLastPoint = 50;
+
     public Action OnPointDestroyed;
 
     public Vector3 Position => transform.position;
@@ -108,11 +110,6 @@ public class PathPoint : Construction
     private void OnDestroy()
     {
         OnPointDestroyed?.Invoke();
-    }
-
-    protected override bool OnCanPlaceObject(Vector3 position)
-    {
-        return true;
     }
 
     protected override void OnRemoveObject()

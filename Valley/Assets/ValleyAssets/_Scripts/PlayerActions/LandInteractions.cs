@@ -6,10 +6,10 @@ using UnityEngine.EventSystems;
 
 public class LandInteractions : MonoBehaviour
 {
+    private static LandInteractions instance;
+
     [SerializeField]
     private UnityEvent OnEndPath;
-
-    [SerializeField] private PathPoint pathpointPrefab;
 
     public Construction marker;
     public Construction markersList;
@@ -23,6 +23,11 @@ public class LandInteractions : MonoBehaviour
     private int test = 1;
 
     public Construction selectedConstruction;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
@@ -41,7 +46,7 @@ public class LandInteractions : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             ConstructionManager.CompleteConstruction(ToolManager._selectedTool);
-            ToolManager.ActivePathTool();
+            //ToolManager.ActivePathTool();                                         A REACTIVER AU BESOIN
         }
 
         if (Input.GetKeyDown(KeyCode.Delete))
@@ -84,12 +89,14 @@ public class LandInteractions : MonoBehaviour
     {
         bool toReturn = false;
 
-        switch (constructionType)
+        toReturn = ConstructionManager.PlaceConstruction(ConstructionManager.GetCurrentConstruction, GetHitPoint());
+
+        /*switch (constructionType)
         {
             case SelectedTools.PathTool:
-                toReturn = ConstructionManager.PlaceConstruction(pathpointPrefab, GetHitPoint());
+                toReturn = ConstructionManager.PlaceConstruction(, GetHitPoint());
                 break;
-        }
+        }*/
 
         return toReturn;
     }
@@ -106,8 +113,17 @@ public class LandInteractions : MonoBehaviour
         }
     }
 
+    public static Vector3 GetPreviewPosition()
+    {
+        if(instance.GetHitConstruction() != null)
+        {
+            return instance.GetHitConstruction().transform.position;
+        }
 
-    private Vector3 GetHitPoint()
+        return GetHitPoint();
+    }
+
+    public static Vector3 GetHitPoint()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -115,8 +131,6 @@ public class LandInteractions : MonoBehaviour
         {
             return hit.point;
         }
-
-        Debug.Log("Raycast Error no hit Vector");
         return Vector3.zero;
     }
 
@@ -129,8 +143,6 @@ public class LandInteractions : MonoBehaviour
             selectedMarker = hit.transform.gameObject.GetComponent<Construction>();
             return selectedMarker;
         }
-
-        Debug.Log("Raycast Error no hit GameObject");
         return null;
     }
 }

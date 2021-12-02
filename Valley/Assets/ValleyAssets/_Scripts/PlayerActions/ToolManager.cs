@@ -12,11 +12,18 @@ public class ToolManager : MonoBehaviour
     public static SelectedTools _selectedTool;
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
-    public GameObject markerPlaceHolder;
+    [SerializeField] private MarkerFollowMouse constructionPrevisualisation;
     public LineRenderer lineRendererObject;
 
-    public Material matReference;      
-    private Material savedMaterial;    
+    public Material matReference;
+    private Material savedMaterial;
+
+    [Header("Constructions Prefabs")]
+    [SerializeField] private PathPointPreview pathpointPrefab;
+
+    private Construction selectedConstruction;
+
+    public static Construction SelectedConstruction => instance.selectedConstruction;
 
     private void Awake()
     {
@@ -33,7 +40,7 @@ public class ToolManager : MonoBehaviour
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
-            markerPlaceHolder.SetActive(false);
+            constructionPrevisualisation.SetSelectedTool(null);
             eventSystemKeepSelectedScript.RemoveLastSelected();
             _selectedTool = SelectedTools.None;
             EventSystem.current.SetSelectedGameObject(null);
@@ -41,12 +48,12 @@ public class ToolManager : MonoBehaviour
         else
         {
             ActivePathTool();
-        }    
+        }
     }
 
-    public static void ActivePathTool()
+    private void ActivePathTool()
     {
-        instance.markerPlaceHolder.SetActive(true);
+        instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();
         _selectedTool = SelectedTools.PathTool;
     }
@@ -72,7 +79,8 @@ public class ToolManager : MonoBehaviour
         else
         {
             //Applicate the savedMaterial 
-            ln.material = instance.savedMaterial;
+            ln.material.color = Valley_PathManager.GetCurrentPath.colorPath;
+            //ln.material = instance.savedMaterial;
         }
 
         firstObjectToLink.GetLink.line = ln;

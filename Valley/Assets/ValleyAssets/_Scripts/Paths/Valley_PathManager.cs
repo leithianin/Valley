@@ -126,11 +126,6 @@ public class Valley_PathManager : MonoBehaviour
 
     public static void AddPathPoint(PathPoint marker)
     {
-        /***
-        PathPoint previousPathPoint = instance.GetPreviousPathPoint(marker);
-        Debug.Log(currentMarker);
-        ***/
-
         currentMarker.AddPoint(marker, currentPathOn);
         marker.AddPoint(currentMarker, currentPathOn);
     }
@@ -151,31 +146,6 @@ public class Valley_PathManager : MonoBehaviour
         }
     }
 
-    /*private PathPoint GetPreviousPathPoint(PathPoint currentPathPoint)
-    {
-        int pathPointIndex = FindIndex(currentPathPoint);
-
-        if(pathPointIndex > 0)
-        {
-            return currentPathOn.pathPoints[pathPointIndex-1];
-        }
-
-        return null;
-    }*/
-
-    /*private int FindIndex(PathPoint currentPathPoint)
-    {
-        for (int i = 0; i < currentPathOn.pathPoints.Count; i++)
-        {
-            if(currentPathOn.pathPoints[i] == currentPathPoint)
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }*/
-
     public static int GetNumberOfPathPoints(PathPoint pathPoint)
     {
         UIManager.pathToModify.Clear();
@@ -195,8 +165,6 @@ public class Valley_PathManager : MonoBehaviour
 
 
     // PLACEMENT DES POINTS
-
-
     public static void PlacePathPoint(PathPoint toPlace)
     {
         instance.OnPlacePoint(toPlace);
@@ -362,7 +330,7 @@ public class Valley_PathManager : MonoBehaviour
 
                 if (currentMarker.GetNbLinkedPoint() <= 0)
                 {
-                    Destroy(currentMarker.gameObject);
+                    currentMarker.DespawnObject();
                 }
                 
                 /*if(lineRendererToSave != null)
