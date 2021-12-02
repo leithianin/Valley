@@ -72,12 +72,10 @@ public class LandInteractions : MonoBehaviour
 
             if (GetHitConstruction() != null)
             {
-                Debug.Log("Place on existing");
                 ConstructionManager.PlaceOnExistingConstruction(GetHitConstruction(), ToolManager._selectedTool);
             }
             else
             {
-                Debug.Log("Place");
                 AskToPlaceConstruction(ToolManager._selectedTool);
             }
         }
