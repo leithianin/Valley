@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd269663867d56d42a7e40eee8a62f4d, type: 3}
   m_Name: Visitor 1
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2
   soundProduced: 1
   interestedActivities: 02000000
