@@ -79,7 +79,8 @@ public class ToolManager : MonoBehaviour
         else
         {
             //Applicate the savedMaterial 
-            ln.material = instance.savedMaterial;
+            ln.material.color = Valley_PathManager.GetCurrentPath.colorPath;
+            //ln.material = instance.savedMaterial;
         }
 
         firstObjectToLink.GetLink.line = ln;

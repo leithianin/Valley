@@ -141,15 +141,20 @@ MonoBehaviour:
     lastPoint: {fileID: 0}
     currentPoint: {fileID: 0}
     path:
-      pathPoints: []
+      startPoint: {fileID: 0}
+      pathFragment: []
       colorPath: {r: 0, g: 0, b: 0, a: 0}
+      valleyAreaList: []
     noiseMade: 2
+    wantedTargets: []
   currentArea:
     nom: 
     bordersTransform: []
     borders: []
     visitorInZone: []
     displays: []
+    interestPoints: []
+  visitorType: {fileID: 0}
 --- !u!208 &839531113000068824
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -177,7 +182,7 @@ GameObject:
   - component: {fileID: 2820187933335111511}
   - component: {fileID: 6803762039728448626}
   - component: {fileID: 517366800928930767}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
