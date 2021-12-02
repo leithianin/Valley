@@ -7,15 +7,21 @@ using UnityEngine;
 public class ValleyArea
 {
     public string nom;
+    [Tooltip("List of all the corners of the area.")]
     public List<Transform> bordersTransform;
+
+    [HideInInspector]
     public List<Vector2> borders;
 
+    [HideInInspector]
     public List<VisitorAgentBehave> visitorInZone;
 
     public List<Vector2> GetBorders => borders;
 
+    [Tooltip("Every elements that will be modified depending on the nature level of the area.")]
     [SerializeField] private List<AreaDisplay> displays;
 
+    [Tooltip("Every interest point in the zone that visitors can interact with.")]
     [SerializeField] private List<InterestPoint> interestPoints;
 
     public List<AreaDisplay> Displays => displays;
