@@ -125,7 +125,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - ColoredRipplesColor: {r: 1, g: 0, b: 0.37961718, a: 1}
-    - DeepWaterColor: {r: 0.38823533, g: 0.44705886, b: 0.7254902, a: 1}
+    - DeepWaterColor: {r: 0.61960787, g: 0.7803922, b: 1, a: 1}
     - DepthRipplesColor: {r: 0, g: 0, b: 0, a: 0.3529412}
     - FoamColor: {r: 1, g: 1, b: 1, a: 0.8156863}
     - ShallowWaterColor: {r: 0.6179246, g: 0.7791832, b: 1, a: 1}

@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184620848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a941afe8c1531e14a9c1b7b603959992, type: 3}
   m_Name: 
@@ -1627,6 +1627,13 @@ MonoBehaviour:
   xStripOffset: 0
   yStripOffset: 0
   isWalking: 0
+  tabAnim:
+  - {x: 0, y: 0.8}
+  - {x: 0.2, y: 0.8}
+  - {x: 0.4, y: 0.8}
+  - {x: 0.6, y: 0.8}
+  - {x: 0.8, y: 0.8}
+  - {x: 0, y: 0.6}
 --- !u!4 &1205731275 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8e30de1e43fcd648989b4efafdc2f39, type: 3}
@@ -2685,7 +2692,6 @@ GameObject:
   - component: {fileID: 1792800739}
   - component: {fileID: 1792800738}
   - component: {fileID: 1792800741}
-  - component: {fileID: 1792800742}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2872,18 +2878,6 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &1792800742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792800737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2469e65ee899a934f8914cde3665fbab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1829452793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,6 +3078,13 @@ MonoBehaviour:
   xStripOffset: 0
   yStripOffset: 0
   isWalking: 0
+  tabAnim:
+  - {x: 0, y: 0.8}
+  - {x: 0.2, y: 0.8}
+  - {x: 0.4, y: 0.8}
+  - {x: 0.6, y: 0.8}
+  - {x: 0.8, y: 0.8}
+  - {x: 0, y: 0.6}
 --- !u!1 &1934279498
 GameObject:
   m_ObjectHideFlags: 0
