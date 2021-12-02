@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6084983389277770097}
   - component: {fileID: 7499484621794369504}
+  - component: {fileID: 3703859506112219116}
   m_Layer: 0
   m_Name: 'Prefab_Rock '
   m_TagString: Untagged
@@ -61,6 +62,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8754737661654943613}
   m_Enabled: 1
+--- !u!208 &3703859506112219116
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7427905522876259015}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 2.695, y: 2.86, z: 3.81}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.17, y: 2.85, z: 0.09}
+  m_TimeToStationary: 0.5
 --- !u!1001 &6281654675042738858
 PrefabInstance:
   m_ObjectHideFlags: 0

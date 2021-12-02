@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7769764744279228921}
   - component: {fileID: 567879803589487055}
+  - component: {fileID: 4729108459595909236}
   m_Layer: 0
   m_Name: Prefab_House
   m_TagString: Untagged
@@ -61,6 +62,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 8834023887658312124}
   m_Enabled: 1
+--- !u!208 &4729108459595909236
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567879803589487054}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.9, y: 2.7350001, z: 1.87}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.010000001, y: 2.7500002, z: -0.04}
+  m_TimeToStationary: 0.5
 --- !u!1 &2743051892541428240
 GameObject:
   m_ObjectHideFlags: 0
