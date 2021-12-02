@@ -26,6 +26,9 @@ public class PathPoint : Construction
     [SerializeField]
     private List<LinkedPointData> linkedPoints = new List<LinkedPointData>();
     [SerializeField] private VisibleLink link;
+    public LineRenderer lineRendererPrevious;
+
+    [SerializeField] private float maxDistanceFromLastPoint = 50;
 
     public Action OnPointDestroyed;
 
@@ -95,7 +98,7 @@ public class PathPoint : Construction
     public void RemovePoint(PathPoint pathPoint)
     {
         for(int i = 0; i < linkedPoints.Count; i++)
-        {
+       {
             if(pathPoint == linkedPoints[i].point)
             {
                 linkedPoints.RemoveAt(i);
@@ -109,24 +112,9 @@ public class PathPoint : Construction
         OnPointDestroyed?.Invoke();
     }
 
-    protected override bool OnCanPlaceObject(Vector3 position)
-    {
-        return true;
-    }
-
     protected override void OnRemoveObject()
     {
-        // On peut mettre la logique de DeletePreviousMarker ici
-        /*
-        if (localMarker.GetComponent<PathPoint>().GetNbLinkedPoint() > 0)
-        {
-            //Dont deztroy
-        }
-        else
-        {
-            Destroy(localMarker);
-        }
-        */
+        
     }
 
     public override SelectedTools LinkedTool()
@@ -137,5 +125,10 @@ public class PathPoint : Construction
     protected override void OnPlaceObject(Vector3 position)
     {
         Valley_PathManager.PlacePathPoint(this);
+    }
+
+    protected override void OnSelectObject()
+    {
+        
     }
 }

@@ -5,63 +5,93 @@ using Unity;
 
 public class ValleyAreaManager : MonoBehaviour
 {
+    private static ValleyAreaManager instance;
     [SerializeField] private List<ValleyArea> areas;
 
-    [SerializeField] private List<VisitorAgentBehave> visitors = new List<VisitorAgentBehave>();
+    private List<VisitorAgentBehave> visitors = new List<VisitorAgentBehave>();
 
-    [SerializeField] private int areasByFrame = 20;
+    [SerializeField] private int visitorByFrame = 20;
 
-    private int aerasChecked = 0;
+    private int visitorChecked = 0;
+
+    private List<ValleyArea> updatableArea = new List<ValleyArea>();
+
+    private static List<ValleyArea> pathAreas = new List<ValleyArea>();                      //List de ValleyArea dans lequel un chemin passe.
+
+    private static float pointsByPath = 4;
+    private static float pointByPathValue;
+
+    [ContextMenu("Set positions")]
+    private void SetPositions()
+    {
+        for (int i = 0; i < areas.Count; i++)
+        {
+            ValleyArea area = areas[i];
+            area.borders = new List<Vector2>();
+            for (int j = 0; j < area.bordersTransform.Count; j++)
+            {
+                area.borders.Add(new Vector2(area.bordersTransform[j].position.x, area.bordersTransform[j].position.z));
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
-        for(int i = 0; i < visitors.Count; i++)
+        pointByPathValue = 1 / pointsByPath;
+        /*if(visitorByFrame > areas.Count)
         {
-            areas[Random.Range(0, areas.Count)].visitorInZone.Add(visitors[i]);
-        }
+            visitorByFrame = areas.Count;
+        }*/
 
-        for(int i = 0; i < areas.Count; i++)
-        {
-            areas[i].borders = areas[0].borders;
-        }
-
-        if(areasByFrame > areas.Count)
-        {
-            areasByFrame = areas.Count;
-        }
-
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        //visitors = VisitorManager.GetVisitors;
-        for(int i = 0; i < areasByFrame; i++)
+        visitors = VisitorManager.GetVisitors;
+
+        for (int i = 0; i < visitorByFrame; i++)
         {
-            int areasIndex = (aerasChecked + i) % areas.Count;
-            for (int j = 0; j < areas[areasIndex].visitorInZone.Count; j++)
+            int visitorIndex = (visitorChecked + i) % visitors.Count;
+            if (visitors[visitorIndex].gameObject.activeSelf)
             {
-                IsPositionInArea(Vector2.zero, areas[areasIndex]);
-                Debug.Log("Allo");
+                ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
+                
+                if(toAdd != visitors[visitorIndex].currentArea && toAdd != null)
+                {
+                    visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
+                    visitors[visitorIndex].currentArea = toAdd;
+                    toAdd.visitorInZone.Add(visitors[visitorIndex]);
+                }
+
+                if(toAdd != null && !updatableArea.Contains(toAdd))
+                {
+                    updatableArea.Add(toAdd);
+                }
             }
-            //ValleyArea toUpdate = GetZoneFromPosition(visitors[i].GetPosition);
         }
 
-        aerasChecked = (aerasChecked + areasByFrame) % areas.Count;
+        visitorChecked = (visitorChecked + visitorByFrame) % visitors.Count;
     }
 
-    private void GetRandomValley()
+    private void LateUpdate()
     {
-        int rng = Random.Range(0, areas.Count);
-        for (int i = 0; i < areas.Count; i++)
+        if (updatableArea.Count > 0)
         {
-            Debug.Log("Test perf");
-            if (i == rng)
+            ValleyArea area = updatableArea[0];
+            float areaSoundLevel = 0;
+            for (int j = 0; j < area.visitorInZone.Count; j++)
             {
-                break;
+                areaSoundLevel += area.visitorInZone[j].Data.noiseMade;
             }
+            area.SetSoundLevel(areaSoundLevel);
+            updatableArea.RemoveAt(0);
         }
-
     }
 
     private ValleyArea GetZoneFromPosition(Vector2 toCheck)
@@ -70,7 +100,6 @@ public class ValleyAreaManager : MonoBehaviour
 
         for (int i = 0; i < areas.Count; i++)
         {
-            Debug.Log("Test perf");
             if (IsPositionInArea(toCheck, areas[i]))
             {
                 toReturn = areas[i];
@@ -81,46 +110,147 @@ public class ValleyAreaManager : MonoBehaviour
         return toReturn;
     }
 
+    public static void GetZoneFromLineRenderer(LineRenderer ln)
+    {
+        for(int i = 0; i < ln.positionCount-1; i++)
+        {
+            //Take two points by point ( a-b / b-c / c/d / ...)
+            //Take positions of those 2 points
+            Vector3 point1 = ln.GetPosition(i);
+            Vector3 point2 = ln.GetPosition(i+1);
+
+            //Check PointsByPath points on a path
+            for(int j = 1; j <= pointsByPath; j++)
+            {
+                ValleyArea zone = instance.GetZoneFromPosition(GetVectorPoint(point1, point2, pointByPathValue * j));
+                if(zone != null)
+                {
+                    CheckIfZoneAlreadySaved(zone);
+                }
+            }  
+        }
+
+        
+        foreach(ValleyArea va in pathAreas)
+        {
+            //Save pathAreas in PathData
+            Valley_PathManager.GetCurrentPath.valleyAreaList.Add(va);
+
+            //Debug.Log("Zone : " + va.nom);
+        }
+        
+
+        pathAreas.Clear();
+    }
+
+    public static Vector3 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
+    {
+        float pointx = point1.x * (1 - t) + point2.x * t;
+        float pointy = point1.y * (1 - t) + point2.y * t;
+        float pointz = point1.z * (1 - t) + point2.z * t;
+
+        Vector3 pointPlaced = new Vector3(pointx, pointy, pointz);
+
+        return pointPlaced;
+    }
+
+    public static void CheckIfZoneAlreadySaved(ValleyArea zone)
+    {
+        foreach(ValleyArea va in pathAreas)
+        {
+            if(va == zone)
+            {
+                return;
+            }
+        }
+
+        pathAreas.Add(zone);
+    }
+
     private bool IsPositionInArea(Vector2 toCheck, ValleyArea area)
     {
-        return IsPointInPolygon(toCheck, area.GetBorders.ToArray());
+        return IsInsidePolygon(area.GetBorders.ToArray(), toCheck);
     }
 
-    // Check de la présence d'un objet dans la zone
-    // Update de toutes les zones
-    // 
-    // 
-    // Différenciation des data Runtime (Bruit, Attractivité, ...) et data Brut (Animaux présent, ...)
-    /* Exemple : Bruit dans la zone
-     * - Attractivité <= Bruit dans la zone
-     * - Placement de balise => Get la Data brut (Assignation des animaux présent sur le chemin depuis la data Brut)
-     * - 
-     * 
-     */
-
-
-    public bool IsPointInPolygon(Vector2 point, Vector2[] polygon)
+    private void OnDrawGizmos()
     {
-        int polygonLength = polygon.Length, i = 0;
-        bool inside = false;
-        // x, y for tested point.
-        float pointX = point.x, pointY = point.y;
-        // start / end point for the current polygon segment.
-        float startX, startY, endX, endY;
-        Vector2 endPoint = polygon[polygonLength - 1];
-        endX = endPoint.x;
-        endY = endPoint.y;
-        while (i < polygonLength)
+        Gizmos.color = Color.yellow;
+        for(int i = 0; i < areas.Count; i++)
         {
-            startX = endX; startY = endY;
-            endPoint = polygon[i++];
-            endX = endPoint.x; endY = endPoint.y;
-            //
-            inside ^= (endY > pointY ^ startY > pointY) /* ? pointY inside [startY;endY] segment ? */
-                      && /* if so, test if it is under the segment */
-                      ((pointX - endX) < (pointY - endY) * (startX - endX) / (startY - endY));
+            ValleyArea area = areas[i];
+            for(int j = 0; j < area.bordersTransform.Count; j++)
+            {
+                Gizmos.DrawLine(area.bordersTransform[j].position, area.bordersTransform[(j + 1) % area.bordersTransform.Count].position);
+            }
         }
-        return inside;
     }
 
+    #region Check Point in Polygon
+    private float DistancePointLine2D(Vector2 point, Vector2 lineStart, Vector2 lineEnd)
+    {
+        return (ProjectPointLine2D(point, lineStart, lineEnd) - point).magnitude;
+    }
+    private Vector2 ProjectPointLine2D(Vector2 point, Vector2 lineStart, Vector2 lineEnd)
+    {
+        Vector2 rhs = point - lineStart;
+        Vector2 vector2 = lineEnd - lineStart;
+        float magnitude = vector2.magnitude;
+        Vector2 lhs = vector2;
+        if (magnitude > 1E-06f)
+        {
+            lhs = (Vector2)(lhs / magnitude);
+        }
+        float num2 = Mathf.Clamp(Vector2.Dot(lhs, rhs), 0f, magnitude);
+        return (lineStart + ((Vector2)(lhs * num2)));
+    }
+
+
+    private float ClosestDistanceToPolygon(Vector2[] verts, Vector2 point)
+    {
+        int nvert = verts.Length;
+        int i, j = 0;
+        float minDistance = Mathf.Infinity;
+        for (i = 0, j = nvert - 1; i < nvert; j = i++)
+        {
+            float distance = DistancePointLine2D(point, verts[i], verts[j]);
+            minDistance = Mathf.Min(minDistance, distance);
+        }
+
+        return minDistance;
+    }
+
+    private bool IsInsidePolygon(Vector2[] vertices, Vector2 checkPoint, float margin = 0.01f)
+    {
+        if (ClosestDistanceToPolygon(vertices, checkPoint) < margin)
+        {
+            return true;
+        }
+
+        float[] vertX = new float[vertices.Length];
+        float[] vertY = new float[vertices.Length];
+        for (int i = 0; i < vertices.Length; i++)
+        {
+            vertX[i] = vertices[i].x;
+            vertY[i] = vertices[i].y;
+        }
+
+        return IsInsidePolygon(vertices.Length, vertX, vertY, checkPoint.x, checkPoint.y);
+    }
+
+    private bool IsInsidePolygon(int nvert, float[] vertx, float[] verty, float testx, float testy)
+    {
+        bool c = false;
+        int i, j = 0;
+        for (i = 0, j = nvert - 1; i < nvert; j = i++)
+        {
+            if ((((verty[i] <= testy) && (testy < verty[j])) ||
+
+                 ((verty[j] <= testy) && (testy < verty[i]))) &&
+
+                (testx < (vertx[j] - vertx[i]) * (testy - verty[i]) / (verty[j] - verty[i]) + vertx[i]))
+                c = !c;
+        }
+        return c;
+    }
+    #endregion
 }

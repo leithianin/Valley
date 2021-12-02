@@ -9,9 +9,10 @@ public class VisitorManager : MonoBehaviour
     private static VisitorManager instance;
 
     [SerializeField] private PathPoint visitorSpawnPoint;
-    [SerializeField] private GameObject visitorPrefab;
-    [SerializeField] private List<Transform> transTest;
 
+    [SerializeField] private List<VisitorScriptable> visitorTypes;
+    [SerializeField] private float spawnRate = .2f;
+    [SerializeField] private int maxSpawn = 100;
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
     public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
@@ -34,7 +35,7 @@ public class VisitorManager : MonoBehaviour
 
             if (newVisitor != null)
             {
-                newVisitor.SetVisitor(visitorSpawnPoint);
+                newVisitor.SetVisitor(visitorSpawnPoint, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
         }
     }
@@ -44,17 +45,22 @@ public class VisitorManager : MonoBehaviour
         toRemove.UnsetVisitor();
     }
 
-    public static Valley_PathData ChoosePath(PathPoint spawnPoint)
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<InterestPointType> visitorInterest)
     {
-        return Valley_PathManager.GetRandomPath(spawnPoint);
+        List<Valley_PathData> possiblesPath = Valley_PathManager.GetAllPossiblePath(spawnPoint);
+
+        return instance.GetMostInterestingPath(visitorInterest, possiblesPath);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
     {
         if (visitor.currentPoint != null)
         {
-            PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
-            visitor.SetDestination(newPathpoint);
+            //PathPoint newPathpoint = visitor.currentPoint.GetNextPathPoint(visitor.lastPoint, visitor.path);
+
+            PathFragmentData pathData = visitor.path.GetRandomDestination(visitor.currentPoint, visitor.lastPoint);
+
+            visitor.SetDestination(pathData);
             return true;
         }
         return false;
@@ -78,12 +84,40 @@ public class VisitorManager : MonoBehaviour
 
     IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
-        SpawnVisitor();
-        yield return new WaitForSeconds(.2f);
+        if(UsedVisitorNumber() < maxSpawn)
+        {
+            SpawnVisitor();
+        }
+        yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool ?
+    private Valley_PathData GetMostInterestingPath(List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath)
+    {
+        int currentScore = 0;
+        Valley_PathData toReturn = possiblesPath[UnityEngine.Random.Range(0,possiblesPath.Count)];
+
+        for (int i = 0; i < possiblesPath.Count; i++)
+        {
+            int pathScore = 0;
+            for (int j = 0; j < visitorInterest.Count; j++)
+            {
+                if(possiblesPath[i].ContainsInterestPoint(visitorInterest[j]))
+                {
+                    pathScore++;
+                }
+            }
+
+            if(pathScore > currentScore)
+            {
+                toReturn = possiblesPath[i];
+            }
+        }
+
+        return toReturn;
+    }
+
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool global ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {
@@ -93,5 +127,18 @@ public class VisitorManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private int UsedVisitorNumber()
+    {
+        int toReturn = 0;
+        for (int i = 0; i < visitorPool.Count; i++)
+        {
+            if (visitorPool[i].gameObject.activeSelf)
+            {
+                toReturn++;
+            }
+        }
+        return toReturn;
     }
 }

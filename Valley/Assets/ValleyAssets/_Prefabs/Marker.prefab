@@ -148,8 +148,16 @@ MonoBehaviour:
   PlayOnPlace:
     m_PersistentCalls:
       m_Calls: []
+  PlayOnDelete:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelect:
+    m_PersistentCalls:
+      m_Calls: []
   linkedPoints: []
   link: {fileID: 5664375530657388378}
+  lineRendererPrevious: {fileID: 0}
+  maxDistanceFromLastPoint: 50
 --- !u!114 &5664375530657388378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 0}
-  mat_LineRender: {fileID: 2100000, guid: bf2f315816d773c4db6f4fbc9c74aa8d, type: 2}
   index: 1
 --- !u!135 &7656214263455059822
 SphereCollider:
@@ -188,7 +195,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 0
-  m_Extents: {x: 5, y: 0.1, z: 5}
+  m_Extents: {x: 0.2, y: 0.1, z: 0.2}
   m_MoveThreshold: 1
   m_Carve: 1
   m_CarveOnlyStationary: 1

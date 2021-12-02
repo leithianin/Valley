@@ -12,19 +12,28 @@ public class VisitorAgentBehave : MonoBehaviour
     private PathPoint spawnPoint;
     private bool isWalking;
 
-    private Action StartPath;
-    private Action EndPath;
+    public Vector2 GetPosition => new Vector2(transform.position.x, transform.position.z);
 
-    public Vector2 GetPosition => transform.position;
+    public NavMeshAgent Agent => datas.agent;
+
+    public VisitorData Data => datas;
+
+    public ValleyArea currentArea;
+
+    private bool doesAlreadyInteract;
+
+    private int currentPathIndex;
+
+    public VisitorScriptable visitorType;
 
     // Update is called once per frame
     void Update()
     {
-        if (!datas.agent.pathPending && isWalking)
+        if (datas.agent.enabled && !datas.agent.pathPending && isWalking)
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
             {
-                if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f) //CODE REVIEW : Voir pour simplifier les "if" et les rassembler
+                //if (!datas.agent.hasPath || datas.agent.velocity.sqrMagnitude == 0f) //CODE REVIEW : Voir pour simplifier les "if" et les rassembler
                 {
                     ReachDestination();
                 }
@@ -32,16 +41,21 @@ public class VisitorAgentBehave : MonoBehaviour
         }
     }
 
-    public void SetVisitor(PathPoint nSpawnPoint)
+    public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
     {
-        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint);
+        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.InterestedActivities);
 
         if (wantedPath != null)
         {
+            visitorType = nType;
+
+            datas.agent.speed = visitorType.Speed;
+            datas.noiseMade = visitorType.SoundProduced;
+
             spawnPoint = nSpawnPoint;
 
             datas.path = wantedPath;
-            datas.lastPoint = null;
+            datas.lastPoint = nSpawnPoint;
             datas.currentPoint = nSpawnPoint;
 
             transform.position = nSpawnPoint.Position;
@@ -51,11 +65,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
             AskToWalk();
 
-            if (datas.currentPoint == nSpawnPoint)
-            {
-                datas.currentPoint = nSpawnPoint.GetNextPathPoint(datas.lastPoint, datas.path);
-                AskToWalk();
-            }
+            SetNextDestination(currentPathIndex);
 
             datas.currentPoint.OnPointDestroyed += UnsetVisitor;
         }
@@ -65,9 +75,12 @@ public class VisitorAgentBehave : MonoBehaviour
     {
         datas.currentPoint = null;
 
+        currentArea.RemoveVisitor(this);
+
         gameObject.SetActive(false);
     }
 
+    #region Deplacement
     private void AskToWalk()
     {
         if (enabled)
@@ -75,24 +88,70 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = VisitorManager.ChooseNextDestination(datas);
             if (isWalking)
             {
+                currentPathIndex = 0;
+
                 datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
                 datas.currentPoint.OnPointDestroyed += UnsetVisitor;
             }
         }
     }
 
+    private void SetNextDestination(int pathIndex)
+    {
+        datas.agent.destination = datas.wantedTargets[pathIndex];
+    }
+
     private void ReachDestination()
     {
-        isWalking = false;
-        if (datas.currentPoint == spawnPoint)
+        currentPathIndex++;
+        if (currentPathIndex < datas.wantedTargets.Count)
         {
-            VisitorManager.RemoveVisitor(this);
+            SetNextDestination(currentPathIndex);
         }
         else
         {
-            VisitorManager.MakeVisitorWait(UnityEngine.Random.Range(0.5f,1.5f), AskToWalk);
+            isWalking = false;
+            if (datas.currentPoint == spawnPoint)
+            {
+                VisitorManager.RemoveVisitor(this);
+            }
+            else
+            {
+                VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
+            }
         }
     }
+    #endregion
+
+    #region Interactions
+    public bool CanInteract => !doesAlreadyInteract;
+
+    public void AskInteraction(InterestPoint point)
+    {
+        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType))
+        {
+            StartInteraction();
+            point.MakeVisitorInteract(this);
+        }
+    }
+
+    public void StartInteraction()
+    {
+        if(!doesAlreadyInteract)
+        {
+            doesAlreadyInteract = true;
+            datas.agent.isStopped = true;
+            datas.agent.enabled = false;
+        }
+    }
+
+    public void EndInteraction()
+    {
+        doesAlreadyInteract = false;
+        datas.agent.enabled = true;
+        datas.agent.isStopped = false;
+    }
+    #endregion
 
     private void OnDisable()
     {
@@ -108,5 +167,11 @@ public class VisitorAgentBehave : MonoBehaviour
         {
             datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
         }
+    }
+
+    public void SetObstacle(bool isObstacle)
+    {
+        datas.agent.enabled = !isObstacle;
+        datas.obstacle.enabled = isObstacle;
     }
 }
