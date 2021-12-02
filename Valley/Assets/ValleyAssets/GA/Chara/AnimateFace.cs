@@ -7,7 +7,7 @@ public class AnimateFace : MonoBehaviour
     private Material face;
     private Animator anim;
 
-    private float frameCounter;
+    private int frameCounter;
     private bool loopPlayed;
 
     public float stripLength = 5;
@@ -15,11 +15,15 @@ public class AnimateFace : MonoBehaviour
     public float xStripOffset = 0;
     public float yStripOffset = 0;
 
+    private int idleType;
+
     private Vector2 textureOffset;
 
     private float animLength = 3;
 
     public bool isWalking;
+
+    public Vector2[] tabAnim = new Vector2[] { new Vector2(0.1f, 0.2f)};
 
     void Start()
     {
@@ -29,7 +33,7 @@ public class AnimateFace : MonoBehaviour
         var textureScale = new Vector2(1f / stripLength, 1f / stripHeight);
         face.mainTextureScale = textureScale;
 
-        StartCoroutine(PlayLoop("Idle_01", .1f, 1f, 5f));
+        StartCoroutine(PlayIdle());
     }
 
     private void Update()
@@ -39,9 +43,63 @@ public class AnimateFace : MonoBehaviour
         else anim.SetBool("IsWalking", false);
     }
 
-    IEnumerator PlayLoop(string name, float frameRate, float delayMin, float delayMax)
+
+    IEnumerator PlayIdle()
     {
-        var delay = 0.1f;
+        var delay = 0f;
+        var delayMin = 1f;
+        var delayMax = 5f;
+        var frameRate = .1f;
+
+        //var idleType = 0;
+
+        if (loopPlayed && frameCounter == 0) loopPlayed = !loopPlayed;
+
+        if (!loopPlayed && frameCounter == animLength - 1) loopPlayed = !loopPlayed;
+
+        if (loopPlayed)
+        {
+            frameCounter = 0;
+            idleType = Random.Range(1, 3);
+        }
+
+        else
+        {
+            frameCounter++;
+            delay = frameRate;
+        }
+
+        switch (idleType)
+        {
+            case 1:
+                Debug.Log("Idle_01");
+                Debug.Log(tabAnim[frameCounter]);
+                Debug.Log(frameCounter);
+                textureOffset = tabAnim[frameCounter];
+                break;
+
+            case 2:
+                Debug.Log("Idle_02");
+                Debug.Log(tabAnim[frameCounter + 3]);
+                Debug.Log(frameCounter);
+                textureOffset = tabAnim[frameCounter + 3];
+                break;
+        }
+
+        face.mainTextureOffset = textureOffset;
+
+        if (loopPlayed) delay = Random.Range(delayMin, delayMax);
+
+        Debug.Log("Wait : " + delay);
+        yield return new WaitForSeconds(delay);
+        Debug.Log("End Wait : " + delay);
+
+        StartCoroutine(PlayIdle());
+    }
+
+    IEnumerator PlayLoop(string _name, float frameRate, float delayMin, float delayMax)
+    {
+        var delay = 0f;
 
         if (loopPlayed && frameCounter == 0) loopPlayed = !loopPlayed;
 
@@ -62,7 +120,7 @@ public class AnimateFace : MonoBehaviour
         switch (name)
         {
             case "Idle_01":
-                textureOffset = new Vector2(1f / stripLength * frameCounter, 1f / stripHeight * (stripHeight - 1));
+                textureOffset = tabAnim[frameCounter];
                 break;
 
             case "Idle_02":
@@ -74,6 +132,6 @@ public class AnimateFace : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        StartCoroutine(PlayLoop(name, .1f, 1f, 5f));
+        StartCoroutine(PlayLoop(_name, .1f, 1f, 5f));
     }
 }
