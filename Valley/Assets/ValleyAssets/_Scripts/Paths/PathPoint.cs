@@ -112,15 +112,6 @@ public class PathPoint : Construction
         OnPointDestroyed?.Invoke();
     }
 
-    protected override bool OnCanPlaceObject(Vector3 position)
-    {
-        if (VisibleLinkManager.GetLineLength() <= maxDistanceFromLastPoint)
-        {
-            return true;
-        }
-        return false;
-    }
-
     protected override void OnRemoveObject()
     {
         

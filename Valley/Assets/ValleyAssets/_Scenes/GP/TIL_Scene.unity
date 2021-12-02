@@ -3026,7 +3026,6 @@ MonoBehaviour:
   OnEndPath:
     m_PersistentCalls:
       m_Calls: []
-  pathpointPrefab: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
   marker: {fileID: 1156841905360037603, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
   markersList: {fileID: 346904047}
   firstMarker: {fileID: 0}
@@ -4905,9 +4904,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07fb583e9a3df46ab96394e5eaa21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerPlaceHolder: {fileID: 1668663050}
+  constructionPrevisualisation: {fileID: 1668663051}
   lineRendererObject: {fileID: 7160680725245886707, guid: 9c51f724b13fd6146bae5414b4e2e126, type: 3}
   matReference: {fileID: 2100000, guid: e1ff710e1fccf2e4b8cce748ab89ab87, type: 2}
+  pathpointPrefab: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
 --- !u!114 &745537091
 MonoBehaviour:
   m_ObjectHideFlags: 0

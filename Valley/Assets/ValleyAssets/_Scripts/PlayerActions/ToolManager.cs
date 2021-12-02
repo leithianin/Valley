@@ -12,14 +12,14 @@ public class ToolManager : MonoBehaviour
     public static SelectedTools _selectedTool;
     public static EventSystemKeepSelected eventSystemKeepSelectedScript;
 
-    public MarkerFollowMouse constructionPrevisualisation;
+    [SerializeField] private MarkerFollowMouse constructionPrevisualisation;
     public LineRenderer lineRendererObject;
 
-    public Material matReference;      
+    public Material matReference;
     private Material savedMaterial;
 
     [Header("Constructions Prefabs")]
-    [SerializeField] private PathPoint pathpointPrefab;
+    [SerializeField] private PathPointPreview pathpointPrefab;
 
     private Construction selectedConstruction;
 
@@ -48,10 +48,10 @@ public class ToolManager : MonoBehaviour
         else
         {
             ActivePathTool();
-        }    
+        }
     }
 
-    public static void ActivePathTool()
+    private void ActivePathTool()
     {
         instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();

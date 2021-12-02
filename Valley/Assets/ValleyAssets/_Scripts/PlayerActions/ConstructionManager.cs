@@ -6,26 +6,28 @@ public class ConstructionManager : MonoBehaviour
 {
     private static ConstructionManager instance;
 
-    [SerializeField] private MarkerFollowMouse constructionHandler;
-
     private static int Test = 0;    //A delete si j'oublis
+
+    private ConstructionPreview inConstruction;
+
+    public static ConstructionPreview GetCurrentConstruction => instance.inConstruction;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public static bool ChooseConstruction(Construction constructionChosen)
+    public static void ChooseConstruction(ConstructionPreview constructionChosen)
     {
-
+        instance.inConstruction = constructionChosen;
     }
 
-    public static bool PlaceConstruction(Construction toPlace, Vector3 positionToPlace)
+    public static bool PlaceConstruction(ConstructionPreview toPlace, Vector3 positionToPlace)
     {
         Debug.Log("Can place : " + toPlace.CanPlaceObject(positionToPlace));
         if(toPlace.CanPlaceObject(positionToPlace))
         {
-            Construction placedObject = Instantiate(toPlace, positionToPlace, Quaternion.identity);
+            Construction placedObject = Instantiate(toPlace.RealConstruction, positionToPlace, Quaternion.identity);
             placedObject.gameObject.name = "Marker_" + Test;                                            //A delete si j'oublis
             Test++;
             placedObject.PlaceObject(positionToPlace);

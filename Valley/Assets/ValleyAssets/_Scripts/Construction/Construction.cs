@@ -14,28 +14,11 @@ public abstract class Construction : MonoBehaviour
 
     public abstract SelectedTools LinkedTool();
 
-    // Vérifier si on peut placer l'objet
-
-    protected abstract bool OnCanPlaceObject(Vector3 position);
-
     protected abstract void OnPlaceObject(Vector3 position);
 
     protected abstract void OnRemoveObject();
 
     protected abstract void OnSelectObject();
-
-    public bool CanPlaceObject(Vector3 position)
-    {
-        bool toReturn = true;
-
-        NavMeshHit hit;
-        if(!NavMesh.SamplePosition(position, out hit, .5f, NavMesh.AllAreas))
-        {
-            toReturn = false;
-        }
-
-        return toReturn && OnCanPlaceObject(position);
-    }
 
     public void PlaceObject(Vector3 position)
     {
@@ -62,6 +45,6 @@ public abstract class Construction : MonoBehaviour
 
     public void DespawnObject()
     {
-        
+        Destroy(gameObject);
     }
 }

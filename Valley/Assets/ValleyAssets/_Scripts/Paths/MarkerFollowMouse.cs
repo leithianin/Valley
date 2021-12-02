@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class MarkerFollowMouse : MonoBehaviour
 {
-    private Construction currentConstruction;
+    private ConstructionPreview currentConstruction;
 
     /// <summary>
     /// Set la Construction et utilise les Spawn/Despawn
     /// </summary>
     /// <param name="construction"></param>
-    public void SetSelectedTool(Construction construction)
+    public void SetSelectedTool(ConstructionPreview construction)
     {
         if(construction != null)
         {
@@ -18,22 +18,28 @@ public class MarkerFollowMouse : MonoBehaviour
 
             if (construction != currentConstruction)
             {
-                currentConstruction.DespawnObject();
+                if (currentConstruction != null)
+                {
+                    currentConstruction.DespawnObject();
+                }
 
-                Instantiate(construction, LandInteractions.GetHitPoint(), Quaternion.identity, transform);
+                currentConstruction = Instantiate(construction, LandInteractions.GetHitPoint(), Quaternion.identity, transform);
 
-                construction.SpawnObject(LandInteractions.GetHitPoint());
+                currentConstruction.SpawnObject(LandInteractions.GetHitPoint());
             }
         }
         else
         {
             enabled = false;
         }
+
+        ConstructionManager.ChooseConstruction(currentConstruction);
     }
 
 
     private void Update()
     {
-        transform.position = LandInteractions.GetHitPoint();
+        transform.position = LandInteractions.GetPreviewPosition();
+        currentConstruction.CheckAvailability();
     }
 }

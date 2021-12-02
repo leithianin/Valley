@@ -362,7 +362,7 @@ public class Valley_PathManager : MonoBehaviour
 
                 if (currentMarker.GetNbLinkedPoint() <= 0)
                 {
-                    Destroy(currentMarker.gameObject);
+                    currentMarker.DespawnObject();
                 }
                 
                 /*if(lineRendererToSave != null)

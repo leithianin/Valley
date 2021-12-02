@@ -72,10 +72,12 @@ public class LandInteractions : MonoBehaviour
 
             if (GetHitConstruction() != null)
             {
+                Debug.Log("Place on existing");
                 ConstructionManager.PlaceOnExistingConstruction(GetHitConstruction(), ToolManager._selectedTool);
             }
             else
             {
+                Debug.Log("Place");
                 AskToPlaceConstruction(ToolManager._selectedTool);
             }
         }
@@ -89,12 +91,14 @@ public class LandInteractions : MonoBehaviour
     {
         bool toReturn = false;
 
-        switch (constructionType)
+        toReturn = ConstructionManager.PlaceConstruction(ConstructionManager.GetCurrentConstruction, GetHitPoint());
+
+        /*switch (constructionType)
         {
             case SelectedTools.PathTool:
-                toReturn = ConstructionManager.PlaceConstruction(pathpointPrefab, GetHitPoint());
+                toReturn = ConstructionManager.PlaceConstruction(, GetHitPoint());
                 break;
-        }
+        }*/
 
         return toReturn;
     }
@@ -111,6 +115,15 @@ public class LandInteractions : MonoBehaviour
         }
     }
 
+    public static Vector3 GetPreviewPosition()
+    {
+        if(instance.GetHitConstruction() != null)
+        {
+            return instance.GetHitConstruction().transform.position;
+        }
+
+        return GetHitPoint();
+    }
 
     public static Vector3 GetHitPoint()
     {
@@ -120,8 +133,6 @@ public class LandInteractions : MonoBehaviour
         {
             return hit.point;
         }
-
-        Debug.Log("Raycast Error no hit Vector");
         return Vector3.zero;
     }
 
@@ -134,8 +145,6 @@ public class LandInteractions : MonoBehaviour
             selectedMarker = hit.transform.gameObject.GetComponent<Construction>();
             return selectedMarker;
         }
-
-        Debug.Log("Raycast Error no hit GameObject");
         return null;
     }
 }
