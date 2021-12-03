@@ -31,7 +31,7 @@ public class AnimateFace : MonoBehaviour
         var textureScale = new Vector2(1f / stripLength, 1f / stripHeight);
         face.mainTextureScale = textureScale;
 
-        StartCoroutine(PlayIdle());
+        StartCoroutine(PlayIdle(Random.Range(1, 3)));
     }
 
     private void Update()
@@ -42,14 +42,14 @@ public class AnimateFace : MonoBehaviour
     }
 
 
-    public IEnumerator PlayIdle()
+    public IEnumerator PlayIdle(int _idleType)
     {
         var delay = 0f;
         var delayMin = 1f;
         var delayMax = 5f;
         var frameRate = .1f;
 
-        //var idleType = 0;
+        idleType = _idleType;
 
         if (loopPlayed && frameCounter == 0) loopPlayed = !loopPlayed;
 
@@ -58,7 +58,6 @@ public class AnimateFace : MonoBehaviour
         if (loopPlayed)
         {
             frameCounter = 0;
-            idleType = Random.Range(1, 3);
         }
 
         else
@@ -70,16 +69,10 @@ public class AnimateFace : MonoBehaviour
         switch (idleType)
         {
             case 1:
-                //Debug.Log("Idle_01");
-                //Debug.Log(tabAnim[frameCounter]);
-                //Debug.Log(frameCounter);
                 textureOffset = tabAnim[frameCounter];
                 break;
 
             case 2:
-                //Debug.Log("Idle_02");
-                //Debug.Log(tabAnim[frameCounter + 3]);
-                //Debug.Log(frameCounter);
                 textureOffset = tabAnim[frameCounter + 3];
                 break;
         }
@@ -88,11 +81,9 @@ public class AnimateFace : MonoBehaviour
 
         if (loopPlayed) delay = Random.Range(delayMin, delayMax);
 
-        //Debug.Log("Wait : " + delay);
         yield return new WaitForSeconds(delay);
-        //Debug.Log("End Wait : " + delay);
 
-        StartCoroutine(PlayIdle());
+        StartCoroutine(PlayIdle(Random.Range(1, 3)));
     }
 
     IEnumerator PlayLoop(string _name, float frameRate, float delayMin, float delayMax)
