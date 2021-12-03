@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd269663867d56d42a7e40eee8a62f4d, type: 3}
-  m_Name: Visitor
+  m_Name: Tourist
   m_EditorClassIdentifier: 
-  speed: 2
-  soundProduced: 1
+  display: {fileID: 1557749638695013035, guid: a91ed857e8622b542b99417bf032a853, type: 3}
+  speed: 1
+  soundProduced: 5
   objectives: 
   interestedActivities: 00000000
   satisfactionByTenSecond: 0.1
-  satisfactionNextToOthers: -0.1
+  satisfactionNextToOthers: 0

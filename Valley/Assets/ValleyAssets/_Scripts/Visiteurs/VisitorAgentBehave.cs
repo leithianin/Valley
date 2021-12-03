@@ -13,23 +13,26 @@ public class VisitorAgentBehave : MonoBehaviour
     private PathPoint spawnPoint;
     private bool isWalking;
 
+    [HideInInspector] public ValleyArea currentArea;
+
+    private bool doesAlreadyInteract;
+
+    private int currentPathIndex;
+
+    private VisitorScriptable visitorType;
+
+    [SerializeField] private AnimationHandler currentDisplay;
+
+    [Header("Feedbacks")]
+    public UnityEvent PlayOnSatisfactionAdd;
+    public UnityEvent PlayOnSatisfactionSubstract;
+
     public Vector2 GetPosition => new Vector2(transform.position.x, transform.position.z);
 
     public NavMeshAgent Agent => datas.agent;
 
     public VisitorData Data => datas;
 
-    public ValleyArea currentArea;
-
-    private bool doesAlreadyInteract;
-
-    private int currentPathIndex;
-
-    public VisitorScriptable visitorType;
-
-    [Header("Feedbacks")]
-    public UnityEvent PlayOnSatisfactionAdd;
-    public UnityEvent PlayOnSatisfactionSubstract;
 
     // Update is called once per frame
     void Update()
@@ -70,6 +73,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
             gameObject.SetActive(true);
 
+            currentDisplay = Instantiate(visitorType.Display, transform);
 
             AskToWalk();
 
@@ -84,6 +88,8 @@ public class VisitorAgentBehave : MonoBehaviour
         datas.currentPoint = null;
 
         currentArea.RemoveVisitor(this);
+
+        Destroy(currentDisplay.gameObject);
 
         gameObject.SetActive(false);
     }

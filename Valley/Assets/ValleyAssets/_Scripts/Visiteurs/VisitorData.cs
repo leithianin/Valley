@@ -9,13 +9,13 @@ public class VisitorData
 {
     public NavMeshAgent agent;
     public NavMeshObstacle obstacle;
-    public PathPoint lastPoint;
-    public PathPoint currentPoint;
-    public Valley_PathData path;
-    public float noiseMade = 2;
-    public float satisfactionScore;
+    [HideInInspector] public PathPoint lastPoint;
+    [HideInInspector] public PathPoint currentPoint;
+    [HideInInspector] public Valley_PathData path;
+    [HideInInspector] public float noiseMade = 2;
+    [HideInInspector] public float satisfactionScore;
 
-    public List<Vector3> wantedTargets = new List<Vector3>();
+    [HideInInspector] public List<Vector3> wantedTargets = new List<Vector3>();
 
     public void SetDestination(PathFragmentData newPath)
     {

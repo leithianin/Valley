@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationsManager : MonoBehaviour
+public class AnimationHandler : MonoBehaviour
 {
     private AnimateFace face;
     private Animator body;
+
+    private BodyAnimationType lastAnim;
 
     private void Awake()
     {
@@ -21,16 +23,23 @@ public class AnimationsManager : MonoBehaviour
     #region Body
     public void PlayBodyAnim(BodyAnimationType animName)
     {
-        switch(animName)
+        if (lastAnim != animName)
         {
-            case BodyAnimationType.Idle:
-                body.SetBool("IsIdle", true);
-                break;
+            StopBodyAnim(lastAnim);
+            lastAnim = animName;
 
-            case BodyAnimationType.Walk:
-                body.SetBool("IsWalking", true);
-                break;
+            switch (animName)
+            {
+                case BodyAnimationType.Idle:
+                    body.SetBool("IsIdle", true);
+                    break;
+
+                case BodyAnimationType.Walk:
+                    body.SetBool("IsWalking", true);
+                    break;
+            }
         }
+
     }
 
     public void StopBodyAnim(BodyAnimationType animName)
