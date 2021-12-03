@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6280442182523923096}
   - component: {fileID: 2097900185439787995}
+  - component: {fileID: 4815662234924355444}
   m_Layer: 0
   m_Name: Prefab_LobbyR
   m_TagString: Untagged
@@ -61,6 +62,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6535264592640780727}
   m_Enabled: 1
+--- !u!208 &4815662234924355444
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619132869209194421}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.44, y: 1.945, z: 1.425}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.96, z: 0.19}
+  m_TimeToStationary: 0.5
 --- !u!1001 &5580093135434298675
 PrefabInstance:
   m_ObjectHideFlags: 0

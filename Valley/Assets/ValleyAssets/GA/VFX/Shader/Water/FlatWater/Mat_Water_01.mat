@@ -256,12 +256,12 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - BaseColor: {r: 0, g: 0.7992902, b: 1, a: 1}
-    - DeepWaterColor: {r: 0, g: 0.56927234, b: 0.9056604, a: 0.21176471}
+    - DeepWaterColor: {r: 0.20745814, g: 0.3206862, b: 0.6981132, a: 1}
     - EdgeFoamColor: {r: 1, g: 1, b: 1, a: 0.7058824}
     - FoamColor: {r: 0.6509434, g: 0.22414559, b: 0.5878936, a: 0.45490196}
     - RippleColor: {r: 0.256408, g: 0.8113208, b: 0.8113208, a: 1}
     - RipplesColor: {r: 1, g: 0.627451, b: 0.71247643, a: 1}
-    - ShallowWaterColor: {r: 0.6273585, g: 0.8911755, b: 1, a: 1}
+    - ShallowWaterColor: {r: 0.63529414, g: 0.8431373, b: 0.8941177, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
