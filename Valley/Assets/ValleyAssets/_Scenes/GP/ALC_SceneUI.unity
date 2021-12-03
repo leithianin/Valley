@@ -2280,6 +2280,7 @@ MonoBehaviour:
     - {x: 483.1, y: -0.4}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A2
     bordersTransform:
     - {fileID: 115123405}
@@ -2296,6 +2297,7 @@ MonoBehaviour:
     visitorInZone: []
     displays:
     - {fileID: 1278705045}
+    interestPoints: []
   - nom: A3
     bordersTransform:
     - {fileID: 1433886646}
@@ -2309,6 +2311,7 @@ MonoBehaviour:
     - {x: 575.1, y: 56.9}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A4
     bordersTransform:
     - {fileID: 1231332783}
@@ -2322,6 +2325,7 @@ MonoBehaviour:
     - {x: 506.5, y: 36.1}
     visitorInZone: []
     displays: []
+    interestPoints: []
   - nom: A5
     bordersTransform:
     - {fileID: 861673092}
@@ -2339,8 +2343,8 @@ MonoBehaviour:
     - {x: 474.2, y: 81.9}
     visitorInZone: []
     displays: []
+    interestPoints: []
   visitorByFrame: 20
-  debugObject: {fileID: 969471055362529612, guid: 0f72d1b151b47ba419cef2666ce68b3d, type: 3}
 --- !u!4 &299861261
 Transform:
   m_ObjectHideFlags: 0
@@ -3747,7 +3751,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478007359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.7, y: 45.17256, z: 38.1}
+  m_LocalPosition: {x: 531, y: 45.17256, z: 38.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 297509918}
@@ -3812,10 +3816,9 @@ MonoBehaviour:
   OnEndPath:
     m_PersistentCalls:
       m_Calls: []
-  pathpointPrefab: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
-  marker: {fileID: 1156841905360037603, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
-  markersList: {fileID: 346904047}
-  firstMarker: {fileID: 0}
+  marker: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
+  markersList: {fileID: 0}
+  firstMarker: {fileID: 610410488}
   selectedConstruction: {fileID: 0}
 --- !u!54 &478007363
 Rigidbody:
@@ -4858,7 +4861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!114 &610462560
@@ -5940,10 +5944,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   existingPaths:
-  - pathPoints:
-    - {fileID: 610410488}
+  - startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
+  PlayOnCompletePath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &745537089
 Transform:
   m_ObjectHideFlags: 0
@@ -5970,9 +5977,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd07fb583e9a3df46ab96394e5eaa21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerPlaceHolder: {fileID: 1668663050}
+  constructionPrevisualisation: {fileID: 1668663051}
   lineRendererObject: {fileID: 7160680725245886707, guid: 9c51f724b13fd6146bae5414b4e2e126, type: 3}
   matReference: {fileID: 2100000, guid: e1ff710e1fccf2e4b8cce748ab89ab87, type: 2}
+  pathpointPrefab: {fileID: 0}
 --- !u!114 &745537091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8096,7 +8104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!4 &949682649 stripped
@@ -8361,7 +8370,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!114 &967653324
@@ -10203,7 +10213,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -10976,7 +10986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!1001 &1325636098
@@ -12220,7 +12231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8642997, y: 0}
   m_AnchorMax: {x: 1, y: 0.522}
-  m_AnchoredPosition: {x: -0.5, y: -0.5001221}
+  m_AnchoredPosition: {x: -0.5, y: -0.5001831}
   m_SizeDelta: {x: 1, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1466598828 stripped
@@ -13043,7 +13054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!1001 &1630699333
@@ -15144,7 +15156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path:
-    pathPoints: []
+    startPoint: {fileID: 0}
+    pathFragment: []
     colorPath: {r: 0, g: 0, b: 0, a: 0}
     valleyAreaList: []
 --- !u!114 &1936149830
