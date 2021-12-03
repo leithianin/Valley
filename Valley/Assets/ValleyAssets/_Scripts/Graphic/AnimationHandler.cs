@@ -17,7 +17,7 @@ public class AnimationHandler : MonoBehaviour
 
     void Start()
     {
-        face.PlayIdle();
+        face.PlayIdle(Random.Range(1,3));
     }
 
     #region Body
@@ -58,9 +58,18 @@ public class AnimationHandler : MonoBehaviour
     #endregion
 
     #region Face
-    public void PlayFaceIdle()
+    public void PlayFaceAnim(ExpressionType animName)
     {
-        face.PlayIdle();
+        switch (animName)
+        {
+            case ExpressionType.Idle_01:
+                face.PlayIdle(1);
+                break;
+
+            case ExpressionType.Idle_02:
+                face.PlayIdle(2);
+                break;
+        }
     }
     #endregion
 }
