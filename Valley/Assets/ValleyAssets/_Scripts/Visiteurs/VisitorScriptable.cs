@@ -10,8 +10,13 @@ public class VisitorScriptable : ScriptableObject
     [SerializeField] private List<LandMarkType> objectives;
     [SerializeField] private List<InterestPointType> interestedActivities;
 
+    [SerializeField] private float satisfactionByTenSecond;
+    [SerializeField] private float satisfactionNextToOthers;
+
     public float Speed => speed;
     public float SoundProduced => soundProduced;
     public List<LandMarkType> Objectives => objectives;
     public List<InterestPointType> InterestedActivities => interestedActivities;
+    public float SatisfactionUpdate => satisfactionByTenSecond;
+    public float SatisfactionNextToOther => satisfactionNextToOthers;
 }

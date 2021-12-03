@@ -34,6 +34,8 @@ public class VisitorAgentBehave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AddSatisfaction((visitorType.SatisfactionUpdate / 10) * Time.deltaTime, false);
+
         if (datas.agent.enabled && !datas.agent.pathPending && isWalking)
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
@@ -56,6 +58,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
             datas.agent.speed = visitorType.Speed;
             datas.noiseMade = visitorType.SoundProduced;
+            datas.satisfactionScore = 0;
 
             spawnPoint = nSpawnPoint;
 
@@ -158,16 +161,24 @@ public class VisitorAgentBehave : MonoBehaviour
     }
     #endregion
 
-    public void AddSatisfaction(float toAdd)
+    public void CrossVisitor()
+    {
+        AddSatisfaction(visitorType.SatisfactionNextToOther, true);
+    }
+
+    public void AddSatisfaction(float toAdd, bool playFeedback)
     {
         datas.AddSatisfaction(toAdd);
-        if(toAdd > 0)
+        if (playFeedback)
         {
-            PlayOnSatisfactionAdd?.Invoke();
-        }
-        else if(toAdd < 0)
-        {
-            PlayOnSatisfactionSubstract?.Invoke();
+            if (toAdd > 0)
+            {
+                PlayOnSatisfactionAdd?.Invoke();
+            }
+            else if (toAdd < 0)
+            {
+                PlayOnSatisfactionSubstract?.Invoke();
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public abstract class InterestPoint : MonoBehaviour
 
     public void MakeVisitorInteract(VisitorAgentBehave visitor)
     {
-        visitor.AddSatisfaction(satisfactionGiven);
+        visitor.AddSatisfaction(satisfactionGiven, true);
         OnVisitorInteract(visitor);
     }
 

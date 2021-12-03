@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   soundProduced: 1
+  objectives: 
   interestedActivities: 02000000
+  satisfactionByTenSecond: 0.1
+  satisfactionNextToOthers: 0.1
