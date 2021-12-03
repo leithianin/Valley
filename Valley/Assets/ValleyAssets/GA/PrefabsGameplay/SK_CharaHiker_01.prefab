@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 589821020866904050}
   - component: {fileID: 6831780054577030536}
+  - component: {fileID: 1019628835320944465}
   m_Layer: 0
-  m_Name: SK_CharaRando_01
+  m_Name: SK_CharaHiker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,9 +29,9 @@ Transform:
   m_LocalPosition: {x: 1.53, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 21615429159960766}
   - {fileID: 6781263544221937505}
   - {fileID: 5073879381492949999}
-  - {fileID: 21615429159960766}
   - {fileID: 1296186074337559998}
   - {fileID: 3415025161709439785}
   - {fileID: 117585645134824226}
@@ -56,6 +57,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1019628835320944465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244504703388624200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ef540b82e202942a6ca4c723920716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460918795431502205
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +293,7 @@ GameObject:
   - component: {fileID: 3415025161709439785}
   - component: {fileID: 5079878081808075832}
   m_Layer: 0
-  m_Name: SM_Casquette_01
+  m_Name: SM_Cap_CharaHiker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -474,7 +487,7 @@ GameObject:
   - component: {fileID: 5073879381492949999}
   - component: {fileID: 4183767915903625638}
   m_Layer: 0
-  m_Name: SK_Chara_TicTac_01
+  m_Name: SK_Body_CharaHiker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +505,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 589821020866904050}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &4183767915903625638
 SkinnedMeshRenderer:
@@ -699,7 +712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6781263544221937505}
   m_Layer: 0
-  m_Name: Armature_Rando
+  m_Name: Armature_Hiker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -724,7 +737,7 @@ Transform:
   - {fileID: 2321227245840758786}
   - {fileID: 6099602430257905434}
   m_Father: {fileID: 589821020866904050}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6778619165423746429
 GameObject:
@@ -737,7 +750,7 @@ GameObject:
   - component: {fileID: 117585645134824226}
   - component: {fileID: 9200607189724074057}
   m_Layer: 0
-  m_Name: SM_Gourde_01
+  m_Name: SM_Bottle_CharaHiker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -901,7 +914,7 @@ GameObject:
   - component: {fileID: 1296186074337559998}
   - component: {fileID: 5714469701752804630}
   m_Layer: 0
-  m_Name: SM_Baton_01
+  m_Name: SM_Stick_CharaHiker_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1117,7 @@ GameObject:
   - component: {fileID: 1259885659067828833}
   - component: {fileID: 1127534239172211591}
   m_Layer: 0
-  m_Name: SK_Visage_TicTac_01
+  m_Name: SK_Face_CharaRando_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,11 +1131,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8510865976457654210}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 589821020866904050}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &1259885659067828833
 SkinnedMeshRenderer:

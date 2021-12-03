@@ -10,10 +10,8 @@ public class AnimateFace : MonoBehaviour
     private int frameCounter;
     private bool loopPlayed;
 
-    public float stripLength = 5;
-    public float stripHeight = 5;
-    public float xStripOffset = 0;
-    public float yStripOffset = 0;
+    public float stripLength, stripHeight = 5;
+    public float xStripOffset, yStripOffset = 0;
 
     private int idleType;
 
@@ -44,7 +42,7 @@ public class AnimateFace : MonoBehaviour
     }
 
 
-    IEnumerator PlayIdle()
+    public IEnumerator PlayIdle()
     {
         var delay = 0f;
         var delayMin = 1f;
