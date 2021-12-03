@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class VisitorAgentBehave : MonoBehaviour
@@ -26,6 +27,10 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public VisitorScriptable visitorType;
 
+    [Header("Feedbacks")]
+    public UnityEvent PlayOnSatisfactionAdd;
+    public UnityEvent PlayOnSatisfactionSubstract;
+
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +48,6 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
     {
-        Debug.Log(nType);
         Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.Objectives, nType.InterestedActivities);
 
         if (wantedPath != null)
@@ -129,7 +133,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void AskInteraction(InterestPoint point)
     {
-        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType()))
+        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType))
         {
             StartInteraction();
             point.MakeVisitorInteract(this);
@@ -153,6 +157,19 @@ public class VisitorAgentBehave : MonoBehaviour
         datas.agent.isStopped = false;
     }
     #endregion
+
+    public void AddSatisfaction(float toAdd)
+    {
+        datas.AddSatisfaction(toAdd);
+        if(toAdd > 0)
+        {
+            PlayOnSatisfactionAdd?.Invoke();
+        }
+        else if(toAdd < 0)
+        {
+            PlayOnSatisfactionSubstract?.Invoke();
+        }
+    }
 
     private void OnDisable()
     {

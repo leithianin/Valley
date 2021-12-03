@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class InterestPoint : MonoBehaviour
 {
-    public virtual InterestPointType PointType()
-    {
-        return InterestPointType.Rest;
-    }
+    [SerializeField] private float satisfactionGiven;
+
+    public virtual InterestPointType PointType => InterestPointType.Rest;
+
     public virtual LandMarkType LandmarkType => LandMarkType.None;
 
     public abstract bool IsUsable();
@@ -18,6 +18,7 @@ public abstract class InterestPoint : MonoBehaviour
 
     public void MakeVisitorInteract(VisitorAgentBehave visitor)
     {
+        visitor.AddSatisfaction(satisfactionGiven);
         OnVisitorInteract(visitor);
     }
 

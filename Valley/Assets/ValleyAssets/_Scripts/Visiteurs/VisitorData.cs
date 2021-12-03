@@ -13,6 +13,7 @@ public class VisitorData
     public PathPoint currentPoint;
     public Valley_PathData path;
     public float noiseMade = 2;
+    public float satisfactionScore;
 
     public List<Vector3> wantedTargets = new List<Vector3>();
 
@@ -21,5 +22,11 @@ public class VisitorData
         lastPoint = newPath.startPoint;
         currentPoint = newPath.endPoint;
         wantedTargets = newPath.path;
+    }
+
+    public void AddSatisfaction(float toAdd)
+    {
+        satisfactionScore += toAdd;
+        satisfactionScore = Mathf.Clamp(satisfactionScore, 0, 1);
     }
 }

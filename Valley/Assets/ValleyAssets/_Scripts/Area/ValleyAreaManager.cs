@@ -21,6 +21,9 @@ public class ValleyAreaManager : MonoBehaviour
     private static float pointsByPath = 4;
     private static float pointByPathValue;
 
+
+    public static List<ValleyArea> GetAreas => instance.areas;
+
     [ContextMenu("Set positions")]
     private void SetPositions()
     {
@@ -55,28 +58,31 @@ public class ValleyAreaManager : MonoBehaviour
     {
         visitors = VisitorManager.GetVisitors;
 
-        for (int i = 0; i < visitorByFrame; i++)
+        if (visitors.Count > 0)
         {
-            int visitorIndex = (visitorChecked + i) % visitors.Count;
-            if (visitors[visitorIndex].gameObject.activeSelf)
+            for (int i = 0; i < visitorByFrame; i++)
             {
-                ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
-                
-                if(toAdd != visitors[visitorIndex].currentArea && toAdd != null)
+                int visitorIndex = (visitorChecked + i) % visitors.Count;
+                if (visitors[visitorIndex].gameObject.activeSelf)
                 {
-                    visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
-                    visitors[visitorIndex].currentArea = toAdd;
-                    toAdd.visitorInZone.Add(visitors[visitorIndex]);
-                }
+                    ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
 
-                if(toAdd != null && !updatableArea.Contains(toAdd))
-                {
-                    updatableArea.Add(toAdd);
+                    if (toAdd != visitors[visitorIndex].currentArea && toAdd != null)
+                    {
+                        visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
+                        visitors[visitorIndex].currentArea = toAdd;
+                        toAdd.visitorInZone.Add(visitors[visitorIndex]);
+                    }
+
+                    if (toAdd != null && !updatableArea.Contains(toAdd))
+                    {
+                        updatableArea.Add(toAdd);
+                    }
                 }
             }
-        }
 
-        visitorChecked = (visitorChecked + visitorByFrame) % visitors.Count;
+            visitorChecked = (visitorChecked + visitorByFrame) % visitors.Count;
+        }
     }
 
     private void LateUpdate()

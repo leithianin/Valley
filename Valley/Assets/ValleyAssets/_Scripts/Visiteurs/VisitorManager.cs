@@ -15,7 +15,7 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private int maxSpawn = 100;
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
-    public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
+    public static List<VisitorAgentBehave> GetVisitors => instance.GetAllUsedVisitor();
 
     private void Awake()
     {
@@ -134,9 +134,6 @@ public class VisitorManager : MonoBehaviour
 
         int chosenScore = UnityEngine.Random.Range(0, maxScore+1);
 
-        Debug.Log("Max : " + maxScore);
-        Debug.Log("Chosen : " + chosenScore);
-
         for(int i = 0; i < scores.Count; i++)
         {
             chosenScore -= scores[i];
@@ -147,6 +144,19 @@ public class VisitorManager : MonoBehaviour
             }
         }
 
+        return toReturn;
+    }
+
+    private List<VisitorAgentBehave> GetAllUsedVisitor()
+    {
+        List<VisitorAgentBehave> toReturn = new List<VisitorAgentBehave>();
+        for (int i = 0; i < visitorPool.Count; i++)
+        {
+            if (visitorPool[i].gameObject.activeSelf)
+            {
+                toReturn.Add(visitorPool[i]);
+            }
+        }
         return toReturn;
     }
 
