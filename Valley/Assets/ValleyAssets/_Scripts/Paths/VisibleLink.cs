@@ -122,11 +122,12 @@ public class VisibleLink : MonoBehaviour
 
     public void UpdateLineWithLineKnowed(LineRenderer lineRenderer)
     {
-        if(line != null)
+        if(VisibleLinkManager.CurrentLine != null)
         {
-            Destroy(line.gameObject);
+            VisibleLinkManager.DestroyLine();
         }
         line = lineRenderer;
+        VisibleLinkManager.SetLine(line);
     }
 
     public LineRenderer FindLineRenderer(PathPoint objectToCheck)

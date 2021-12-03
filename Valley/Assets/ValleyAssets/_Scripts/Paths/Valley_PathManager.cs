@@ -316,6 +316,7 @@ public class Valley_PathManager : MonoBehaviour
         {
             if (currentMarker == existingPaths[0].startPoint && GetCurrentPath == existingPaths[0])
             {
+                Debug.Log("Allo ?");
                 OnCompletePath();  
             }
             else

@@ -21,6 +21,11 @@ public class VisibleLinkManager : MonoBehaviour
         instance.currentLine = nLine;
     }
 
+    public static void DestroyLine()
+    {
+        Destroy(instance.currentLine.gameObject);
+    }
+
     public static float GetLineLength()
     {
         return instance.OnGetLineLength();
