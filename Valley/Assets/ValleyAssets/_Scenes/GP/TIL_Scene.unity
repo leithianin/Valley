@@ -1491,6 +1491,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006360675518191645, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: spawnRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1006360675570382242, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: satisfactionGiven
       value: 0.1

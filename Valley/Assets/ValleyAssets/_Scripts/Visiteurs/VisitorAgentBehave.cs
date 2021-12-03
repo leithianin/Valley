@@ -66,7 +66,7 @@ public class VisitorAgentBehave : MonoBehaviour
             datas.lastPoint = nSpawnPoint;
             datas.currentPoint = nSpawnPoint;
 
-            transform.position = nSpawnPoint.Position;
+            transform.position = nSpawnPoint.Position + UnityEngine.Random.insideUnitSphere * 8f;
 
             gameObject.SetActive(true);
 
@@ -106,7 +106,8 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void SetNextDestination(int pathIndex)
     {
-        datas.agent.destination = datas.wantedTargets[pathIndex];
+        Vector3 randomPosition = datas.wantedTargets[pathIndex] + UnityEngine.Random.insideUnitSphere * 2f;
+        datas.agent.destination = randomPosition;
     }
 
     private void ReachDestination()
