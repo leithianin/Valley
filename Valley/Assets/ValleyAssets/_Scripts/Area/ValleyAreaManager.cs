@@ -123,6 +123,7 @@ public class ValleyAreaManager : MonoBehaviour
             for(int j = 1; j <= pointsByPath; j++)
             {
                 ValleyArea zone = instance.GetZoneFromPosition(GetVectorPoint(point1, point2, pointByPathValue * j));
+                Debug.Log(zone);
                 if(zone != null)
                 {
                     CheckIfZoneAlreadySaved(zone);
@@ -130,7 +131,6 @@ public class ValleyAreaManager : MonoBehaviour
             }  
         }
 
-        
         foreach(ValleyArea va in pathAreas)
         {
             //Save pathAreas in PathData
@@ -139,17 +139,15 @@ public class ValleyAreaManager : MonoBehaviour
             //Debug.Log("Zone : " + va.nom);
         }
         
-
         pathAreas.Clear();
     }
 
-    public static Vector3 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
+    public static Vector2 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
     {
         float pointx = point1.x * (1 - t) + point2.x * t;
-        float pointy = point1.y * (1 - t) + point2.y * t;
         float pointz = point1.z * (1 - t) + point2.z * t;
 
-        Vector3 pointPlaced = new Vector3(pointx, pointy, pointz);
+        Vector2 pointPlaced = new Vector2(pointx, pointz);
 
         return pointPlaced;
     }
@@ -165,6 +163,17 @@ public class ValleyAreaManager : MonoBehaviour
         }
 
         pathAreas.Add(zone);
+    }
+
+    //Remake a new list when delete a marker
+    //Code Review : Just update the list don't create a new one
+    public static void UpdatePathArea(Valley_PathData path)
+    {
+        Valley_PathManager.GetCurrentPath.valleyAreaList.Clear();
+        foreach (PathFragmentData pfd in path.pathFragment)
+        {
+            GetZoneFromLineRenderer(pfd.line);
+        }
     }
 
     private bool IsPositionInArea(Vector2 toCheck, ValleyArea area)

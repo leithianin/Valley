@@ -72,10 +72,16 @@ public class AnimateFace : MonoBehaviour
         switch (idleType)
         {
             case 1:
+                //Debug.Log("Idle_01");
+                //Debug.Log(tabAnim[frameCounter]);
+                //Debug.Log(frameCounter);
                 textureOffset = tabAnim[frameCounter];
                 break;
 
             case 2:
+                //Debug.Log("Idle_02");
+                //Debug.Log(tabAnim[frameCounter + 3]);
+                //Debug.Log(frameCounter);
                 textureOffset = tabAnim[frameCounter + 3];
                 break;
         }
@@ -84,7 +90,9 @@ public class AnimateFace : MonoBehaviour
 
         if (loopPlayed) delay = Random.Range(delayMin, delayMax);
 
+        //Debug.Log("Wait : " + delay);
         yield return new WaitForSeconds(delay);
+        //Debug.Log("End Wait : " + delay);
 
         StartCoroutine(PlayIdle());
     }
