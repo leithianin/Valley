@@ -51,7 +51,7 @@ public class ToolManager : MonoBehaviour
         }
     }
 
-    private void ActivePathTool()
+    public void ActivePathTool()
     {
         instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();
