@@ -10,6 +10,8 @@ public class dfb_MoveSign : MonoBehaviour
     public float timeFeedback;
     private Vector3 initialPos;
 
+    private bool isActive = true;
+
     public void Start()
     {
         initialPos = transform.position;
@@ -17,13 +19,16 @@ public class dfb_MoveSign : MonoBehaviour
 
     public void OnMove()
     {
-        if (transform.position == initialPos)               //Si c'est à sa place initiale = Je dois le cacher
+        if (isActive)                                         //Si c'est à sa place initiale = Je dois le cacher
         {
-            rt.DOMove(move.position, timeFeedback);
+            Vector3 moveVector = move.position;
+            rt.DOMove(moveVector, timeFeedback);
+            isActive = false;
         }
         else                                                //Sinon, il n'est pas à sa place initiale, il veut y retourner ! 
         {
             rt.DOMove(initialPos, timeFeedback);
+            isActive = true;
         }
     }
 }
