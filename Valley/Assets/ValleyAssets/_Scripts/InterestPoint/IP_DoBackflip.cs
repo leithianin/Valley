@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class IP_DoBackflip : InterestPoint
 {
+    public override InterestPointType PointType()
+    {
+        Debug.Log("Backflip");
+        return InterestPointType.Photo;
+    }
+
     [SerializeField] private VisitorAgentBehave currentVisitor;
 
     public override bool IsUsable()
@@ -19,7 +25,9 @@ public class IP_DoBackflip : InterestPoint
     protected override void OnVisitorInteract(VisitorAgentBehave visitor)
     {
         currentVisitor = visitor;
-        StartCoroutine(Backflip());
+        Debug.Log("VisitorInteract");
+        EndInteraction(currentVisitor);
+        //StartCoroutine(Backflip());
     }
 
     IEnumerator Backflip()

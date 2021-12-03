@@ -43,7 +43,8 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
     {
-        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.InterestedActivities);
+        Debug.Log(nType);
+        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.Objectives, nType.InterestedActivities);
 
         if (wantedPath != null)
         {
@@ -128,7 +129,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
     public void AskInteraction(InterestPoint point)
     {
-        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType))
+        if(point.IsUsable() && CanInteract && visitorType.InterestedActivities.Contains(point.PointType()))
         {
             StartInteraction();
             point.MakeVisitorInteract(this);

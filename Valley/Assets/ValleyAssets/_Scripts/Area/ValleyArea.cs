@@ -28,11 +28,23 @@ public class ValleyArea
 
     public List<InterestPoint> InterestPoints => interestPoints;
 
+    public bool ContainsLandmarkType(LandMarkType landmarkType)
+    {
+        for (int i = 0; i < interestPoints.Count; i++)
+        {
+            if (interestPoints[i].LandmarkType == landmarkType)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool ContainsInterestType(InterestPointType interestType)
     {
         for(int i = 0; i < interestPoints.Count; i++)
         {
-            if(interestPoints[i].PointType == interestType)
+            if(interestPoints[i].PointType() == interestType)
             {
                 return true;
             }

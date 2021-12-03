@@ -4,7 +4,12 @@ using UnityEngine;
 
 public abstract class InterestPoint : MonoBehaviour
 {
-    public virtual InterestPointType PointType => InterestPointType.Rest;
+    public virtual InterestPointType PointType()
+    {
+        Debug.Log("Base");
+        return InterestPointType.Rest;
+    }
+    public virtual LandMarkType LandmarkType => LandMarkType.None;
 
     public abstract bool IsUsable();
 

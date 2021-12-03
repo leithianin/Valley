@@ -29,10 +29,23 @@ public class Valley_PathData
         return false;
     }
 
+    public bool ContainsLandmark(LandMarkType wantedLandmark)
+    {
+        for (int i = 0; i < valleyAreaList.Count; i++)
+        {
+            if (valleyAreaList[i].ContainsLandmarkType(wantedLandmark))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public bool ContainsInterestPoint(InterestPointType wantedInterest)
     {
         for(int i = 0; i < valleyAreaList.Count; i++)
         {
+            Debug.Log(valleyAreaList[i].nom);
             if(valleyAreaList[i].ContainsInterestType(wantedInterest))
             {
                 return true;
