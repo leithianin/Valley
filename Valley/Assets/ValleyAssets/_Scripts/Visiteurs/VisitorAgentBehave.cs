@@ -155,16 +155,16 @@ public class VisitorAgentBehave : MonoBehaviour
         if(!doesAlreadyInteract)
         {
             doesAlreadyInteract = true;
-            datas.agent.isStopped = true;
-            datas.agent.enabled = false;
+            //datas.agent.isStopped = true;
+            //datas.agent.enabled = false;
         }
     }
 
     public void EndInteraction()
     {
         doesAlreadyInteract = false;
-        datas.agent.enabled = true;
-        datas.agent.isStopped = false;
+        //datas.agent.enabled = true;
+        //datas.agent.isStopped = false;
     }
     #endregion
 

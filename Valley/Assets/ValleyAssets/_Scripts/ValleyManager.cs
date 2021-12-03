@@ -8,6 +8,10 @@ public class ValleyManager : MonoBehaviour
 
     [SerializeField] private float currentAttractivity;
 
+    public static float RealAttractivity => instance.currentAttractivity;
+    public static int AttractivityLevel => Mathf.FloorToInt(instance.currentAttractivity);
+
+
     private void Awake()
     {
         instance = this;

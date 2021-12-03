@@ -13,7 +13,7 @@ public class VisitorData
     [HideInInspector] public PathPoint currentPoint;
     [HideInInspector] public Valley_PathData path;
     [HideInInspector] public float noiseMade = 2;
-    [HideInInspector] public float satisfactionScore;
+   public float satisfactionScore;
 
     [HideInInspector] public List<Vector3> wantedTargets = new List<Vector3>();
 

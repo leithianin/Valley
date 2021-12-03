@@ -84,9 +84,15 @@ public class VisitorManager : MonoBehaviour
 
     IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
     {
-        if(UsedVisitorNumber() < maxSpawn)
+        int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 3, ValleyManager.AttractivityLevel + 5);
+
+        for (int i = 0; i < toSpawn; i++)
         {
-            SpawnVisitor();
+            if (UsedVisitorNumber() < maxSpawn)
+            {
+                yield return new WaitForSeconds(.5f);
+                SpawnVisitor();
+            }
         }
         yield return new WaitForSeconds(spawnRate);
         StartCoroutine(SpawnVisitorContinue());
