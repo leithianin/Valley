@@ -13,11 +13,14 @@ public class UIManager : MonoBehaviour
     public LandInteractions _landInteraction;
     public static List<Valley_PathData> pathToModify = new List<Valley_PathData>();
 
+    public List<GameObject> toolsList = new List<GameObject>();
+
     private void Awake()
     {
         instance = this;
     }
 
+    #region Create/Modify Path
     //UI Create or Modify Path
     public static void ShowButtonsUI(GameObject marker)
     {
@@ -83,5 +86,22 @@ public class UIManager : MonoBehaviour
     private void OnHideButtons()
     {
         buttonsList.SetActive(false);
+    }
+    #endregion
+
+    public void OnShowTools()
+    {
+        foreach(GameObject go in toolsList)
+        {
+            go.GetComponent<dfb_MoveSign>().OnMove();
+        }
+    }
+
+    public void OnHideTools()
+    {
+        foreach (GameObject go in toolsList)
+        {
+            go.GetComponent<dfb_MoveSign>().OnMove();
+        }
     }
 }
