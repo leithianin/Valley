@@ -41,17 +41,20 @@ public class Valley_PathData
         return false;
     }
 
-    public bool ContainsInterestPoint(InterestPointType wantedInterest)
+    public int GetNumberInterestPoint(InterestPointType wantedInterest)
     {
+        int toReturn = 0;
+        List<ValleyArea> checkedArea = new List<ValleyArea>();
+
         for(int i = 0; i < valleyAreaList.Count; i++)
         {
-            Debug.Log(valleyAreaList[i].nom);
-            if(valleyAreaList[i].ContainsInterestType(wantedInterest))
+            if (!checkedArea.Contains(valleyAreaList[i]))
             {
-                return true;
+                checkedArea.Add(valleyAreaList[i]);
+                toReturn += valleyAreaList[i].GetNumberInterestType(wantedInterest);
             }
         }
-        return false;
+        return toReturn;
     }
 
     public bool IsUsable(PathPoint toCheck)

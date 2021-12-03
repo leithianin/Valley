@@ -6,7 +6,6 @@ public class IP_DoBackflip : InterestPoint
 {
     public override InterestPointType PointType()
     {
-        Debug.Log("Backflip");
         return InterestPointType.Photo;
     }
 

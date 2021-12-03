@@ -126,18 +126,13 @@ public class VisitorManager : MonoBehaviour
             int pathScore = 1;
             for (int j = 0; j < visitorInterest.Count; j++)
             {
-                Debug.Log(visitorInterest[j]);
-                Debug.Log(firstPickPhase[i].ContainsInterestPoint(visitorInterest[j])); // Il est False
-                if(firstPickPhase[i].ContainsInterestPoint(visitorInterest[j]))
-                {
-                    pathScore++;
-                }
+                pathScore += firstPickPhase[i].GetNumberInterestPoint(visitorInterest[j]);
             }
             scores.Add(pathScore);
             maxScore += pathScore;
         }
 
-        int chosenScore = UnityEngine.Random.Range(1, maxScore);
+        int chosenScore = UnityEngine.Random.Range(0, maxScore+1);
 
         Debug.Log("Max : " + maxScore);
         Debug.Log("Chosen : " + chosenScore);
@@ -148,6 +143,7 @@ public class VisitorManager : MonoBehaviour
             if(chosenScore <= 0)
             {
                 toReturn = firstPickPhase[i];
+                break;
             }
         }
 

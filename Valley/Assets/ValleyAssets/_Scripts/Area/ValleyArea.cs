@@ -40,16 +40,17 @@ public class ValleyArea
         return false;
     }
 
-    public bool ContainsInterestType(InterestPointType interestType)
+    public int GetNumberInterestType(InterestPointType interestType)
     {
+        int toReturn = 0;
         for(int i = 0; i < interestPoints.Count; i++)
         {
             if(interestPoints[i].PointType() == interestType)
             {
-                return true;
+                toReturn++;
             }
         }
-        return false;
+        return toReturn;
     }
 
     public void SetSoundLevel(float soundLevel)
