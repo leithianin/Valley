@@ -102,6 +102,7 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = VisitorManager.ChooseNextDestination(datas);
             if (isWalking)
             {
+                currentDisplay.PlayBodyAnim(BodyAnimationType.Walk);
                 currentPathIndex = 0;
 
                 datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
@@ -132,6 +133,7 @@ public class VisitorAgentBehave : MonoBehaviour
             }
             else
             {
+                currentDisplay.PlayBodyAnim(BodyAnimationType.Idle);
                 VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
             }
         }
