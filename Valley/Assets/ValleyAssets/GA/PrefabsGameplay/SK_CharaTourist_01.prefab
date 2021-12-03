@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2103032496192707557}
   m_Layer: 0
-  m_Name: Armature_Touriste
+  m_Name: Armature_Tourist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 2318689792222525769}
   - {fileID: 882269785260835752}
   m_Father: {fileID: 4411772924844218342}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &587438110082980133
 GameObject:
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 6464997024560679835}
   - component: {fileID: 4229862347153681197}
   m_Layer: 0
-  m_Name: Chara_Face_01
+  m_Name: SK_Face_CharaTourist_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -370,11 +370,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3211952008668514361}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 4411772924844218342}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!137 &6464997024560679835
 SkinnedMeshRenderer:
@@ -520,13 +520,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4411772924844218342}
   - component: {fileID: 7771498600151600540}
+  - component: {fileID: 1557749638695013035}
   m_Layer: 0
-  m_Name: SK_CharaTouriste_01
+  m_Name: SK_CharaTourist_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4411772924844218342
 Transform:
   m_ObjectHideFlags: 0
@@ -538,8 +539,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2103032496192707557}
   - {fileID: 2395518150473760486}
+  - {fileID: 2103032496192707557}
   - {fileID: 6293821389357607097}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -563,6 +564,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1557749638695013035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923220993647496540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82ef540b82e202942a6ca4c723920716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4025363979528488731
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +798,7 @@ GameObject:
   - component: {fileID: 6293821389357607097}
   - component: {fileID: 6332622961798670875}
   m_Layer: 0
-  m_Name: Chara_Body_01
+  m_Name: SK_Body_CharaTourist_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
