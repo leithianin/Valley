@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 using static ValleyInputActions;
+using Cinemachine;
 
 public class S_Move : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class S_Move : MonoBehaviour
     [SerializeField] private float angleByScroll = 10f;
     [SerializeField] private float angleLimitUp = -70f;
     [SerializeField] private float angleLimitDown = -10f;
+    [SerializeField] private float positionLimitDown = 10f;
     [SerializeField] private float positionLimitUp = 40f;
 
 
@@ -30,6 +32,8 @@ public class S_Move : MonoBehaviour
     private float lerpTarget = 0;
     private float startLerp = 0;
 
+    private Vector3 lastPosition;
+
     private void Awake()
     {
         _playerActions = new ValleyInputActions();
@@ -38,6 +42,15 @@ public class S_Move : MonoBehaviour
             Debug.LogError("Rigidbody2D is NULL");
 
         currentAngle = angleLimitUp;
+    }
+
+    private void Start()
+    {
+        transform.position = new Vector3(transform.position.x, positionLimitUp, transform.position.z);
+
+        lastPosition = transform.position;
+
+        cameraTransform.localEulerAngles = new Vector3(angleLimitUp, cameraTransform.localEulerAngles.y, cameraTransform.localEulerAngles.z);
     }
 
     private void OnEnable()
@@ -107,6 +120,6 @@ public class S_Move : MonoBehaviour
 
     private float CalculatePosition()
     {
-        return ((currentAngle - angleLimitDown) / (angleLimitUp - angleLimitDown)) * positionLimitUp;
+        return ((currentAngle - angleLimitDown) / (angleLimitUp - angleLimitDown)) * positionLimitUp + positionLimitDown;
     }
 }
