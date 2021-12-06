@@ -46,7 +46,7 @@ public class S_Move : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(transform.position.x, positionLimitUp, transform.position.z);
+        transform.position = new Vector3(transform.position.x, positionLimitUp + positionLimitDown, transform.position.z);
 
         lastPosition = transform.position;
 
