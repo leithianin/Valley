@@ -75,6 +75,26 @@ public class AnimationHandler : MonoBehaviour
             case ExpressionType.Idle_02:
                 face.PlayIdle(2);
                 break;
+
+            case ExpressionType.Shock_01:
+                face.PlayOnce(3);
+                break;
+
+            case ExpressionType.Death_01:
+                face.PlayOnce(4);
+                break;
+
+            case ExpressionType.Bored_01:
+                face.PlayOnce(5);
+                break;
+
+            case ExpressionType.Happy_01:
+                face.PlayOnce(6);
+                break;
+
+            case ExpressionType.Sad_01:
+                face.PlayOnce(7);
+                break;
         }
     }
     #endregion
