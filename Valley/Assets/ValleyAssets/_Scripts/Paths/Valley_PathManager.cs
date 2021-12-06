@@ -254,13 +254,9 @@ public class Valley_PathManager : MonoBehaviour
                 LineRenderer line = new LineRenderer();
                 ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker, out navPath, out line);
 
-                List<Vector3> toAdd = new List<Vector3>();
-
-                for (int i = 0; i < navPath.Count; i++)
-                {
-                    toAdd.Add(navPath[i]);
-                }
-
+                Vector3[] linePositions = new Vector3[line.positionCount];
+                line.GetPositions(linePositions);
+                List<Vector3> toAdd = new List<Vector3>(linePositions);
 
                 GetCurrentPath.pathFragment.Add(new PathFragmentData(currentMarker, markerAlreadyPlace, toAdd, line));
                 //GetCurrentPath.pathPoints.Add(markerAlreadyPlace);                          //Add point to the path         
@@ -356,7 +352,7 @@ public class Valley_PathManager : MonoBehaviour
                     isNewPath = true;
                     currentMarker = null;
                 }
-            }       
+            }
         }
 
         ValleyAreaManager.UpdatePathArea(GetCurrentPath);
