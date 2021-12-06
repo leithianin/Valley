@@ -134,8 +134,8 @@ ModelImporter:
       name: Armature_Touriste|Walk_Touriste
       takeName: Armature_Touriste|Walk_Touriste
       internalID: 0
-      firstFrame: 0
-      lastFrame: 33
+      firstFrame: 2
+      lastFrame: 32
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

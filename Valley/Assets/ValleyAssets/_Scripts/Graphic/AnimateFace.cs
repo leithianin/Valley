@@ -19,7 +19,7 @@ public class AnimateFace : MonoBehaviour
 
     private float animLength = 3;
 
-    public bool isWalking;
+    //public bool isWalking;
 
     public Vector2[] tabAnim = new Vector2[] { new Vector2(0.1f, 0.2f)};
 
@@ -33,14 +33,6 @@ public class AnimateFace : MonoBehaviour
 
         StartCoroutine(PlayIdle(Random.Range(1, 3)));
     }
-
-    private void Update()
-    {
-        if (isWalking) anim.SetBool("IsWalking", true);
-
-        else anim.SetBool("IsWalking", false);
-    }
-
 
     public IEnumerator PlayIdle(int _idleType)
     {

@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    private AnimateFace face;
+    public AnimateFace face;
     private Animator body;
 
     private BodyAnimationType lastAnim;
 
+    public bool isWalking;
+
     private void Awake()
     {
-        face = transform.GetChild(0).GetComponent<AnimateFace>();
         body = GetComponent<Animator>();
     }
 
     void Start()
     {
         face.PlayIdle(Random.Range(1,3));
+    }
+
+    private void Update()
+    {
+        if (isWalking) body.SetBool("IsWalking", true);
     }
 
     #region Body
