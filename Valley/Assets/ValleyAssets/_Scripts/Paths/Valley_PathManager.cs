@@ -354,10 +354,10 @@ public class Valley_PathManager : MonoBehaviour
                     isNewPath = true;
                     currentMarker = null;
                 }
-            }       
-        }
+            }
 
-        ValleyAreaManager.UpdatePathArea(GetCurrentPath);
+            ValleyAreaManager.UpdatePathArea(GetCurrentPath);
+        }
     }
 
     private void CreateOrModifyPath(PathPoint selectedMarker)
