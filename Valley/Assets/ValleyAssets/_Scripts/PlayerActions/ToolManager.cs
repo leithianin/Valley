@@ -36,7 +36,7 @@ public class ToolManager : MonoBehaviour
         eventSystemKeepSelectedScript = EventSystem.current.gameObject.GetComponent<EventSystemKeepSelected>();
     }
 
-    public void OnSelectPathTool(Button button)
+    public void OnSelectPathTool(RectTransform rt)
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
@@ -47,11 +47,11 @@ public class ToolManager : MonoBehaviour
         }
         else
         {
-            ActivePathTool();
+            ActivePathTool(rt);
         }
     }
 
-    public void ActivePathTool()
+    public void ActivePathTool(RectTransform rt)
     {
         instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();

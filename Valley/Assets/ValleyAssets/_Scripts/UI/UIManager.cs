@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,14 @@ public class UIManager : MonoBehaviour
     public static List<Valley_PathData> pathToModify = new List<Valley_PathData>();
 
     public List<GameObject> toolsList = new List<GameObject>();
+    private bool isToolSelected = false;
+
+    public UnityEvent OnMovingTool;
+    public UnityEvent OnMovingToolCompleted;
+
+    public static UnityEvent GetOnMovingTool => instance.OnMovingTool;
+    public static UnityEvent GetOnMovingToolCompleted => instance.OnMovingToolCompleted;
+
 
     private void Awake()
     {
@@ -89,9 +98,24 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    public void OnSelected()
+    {
+        if(!isToolSelected)
+        {
+            OnHideTools();
+        }
+        else
+        {
+            OnShowTools();
+        }
+    }
+
     public void OnShowTools()
     {
-        foreach(GameObject go in toolsList)
+        Debug.Log("Show Tool");
+        isToolSelected = false;
+
+        foreach (GameObject go in toolsList)
         {
             go.GetComponent<dfb_MoveSign>().OnMove();
         }
@@ -99,6 +123,9 @@ public class UIManager : MonoBehaviour
 
     public void OnHideTools()
     {
+        Debug.Log("Hide Tool");
+        isToolSelected = true;
+
         foreach (GameObject go in toolsList)
         {
             go.GetComponent<dfb_MoveSign>().OnMove();
