@@ -131,11 +131,11 @@ LODGroup:
   m_LastLODIsBillboard: 0
   m_LODs:
   - screenRelativeHeight: 0.32951733
-    fadeTransitionWidth: 0.054
+    fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1441143945463535115}
   - screenRelativeHeight: 0.16873164
-    fadeTransitionWidth: 0.081
+    fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1990507175995738870}
   - screenRelativeHeight: 0.016183576
