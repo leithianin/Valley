@@ -157,7 +157,7 @@ MonoBehaviour:
   linkedPoints: []
   link: {fileID: 5664375530657388378}
   lineRendererPrevious: {fileID: 0}
-  maxDistanceFromLastPoint: 50
+  maxDistanceFromLastPoint: 20
 --- !u!114 &5664375530657388378
 MonoBehaviour:
   m_ObjectHideFlags: 0

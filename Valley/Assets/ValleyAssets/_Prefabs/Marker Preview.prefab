@@ -145,4 +145,4 @@ MonoBehaviour:
   mesh: {fileID: 1156841904701531559}
   availableMaterial: {fileID: 2100000, guid: 4af8fa837f0a91640ae7b3620626c0d4, type: 2}
   unavailableMaterial: {fileID: 2100000, guid: a1de2f85cfe86a14b88e96d518927d5f, type: 2}
-  maxDistanceFromLastPoint: 50
+  maxDistanceFromLastPoint: 20
