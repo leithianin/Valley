@@ -51,7 +51,7 @@ public class VisitorAgentBehave : MonoBehaviour
         }
     }
 
-    public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
+    public void SetVisitor(PathPoint nSpawnPoint, Vector3 spawnPosition, VisitorScriptable nType)
     {
         Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.Objectives, nType.InterestedActivities);
 
@@ -69,7 +69,7 @@ public class VisitorAgentBehave : MonoBehaviour
             datas.lastPoint = nSpawnPoint;
             datas.currentPoint = nSpawnPoint;
 
-            transform.position = nSpawnPoint.Position + UnityEngine.Random.insideUnitSphere * 8f;
+            transform.position = spawnPosition;
 
             gameObject.SetActive(true);
 
@@ -114,6 +114,7 @@ public class VisitorAgentBehave : MonoBehaviour
     private void SetNextDestination(int pathIndex)
     {
         Vector3 randomPosition = datas.wantedTargets[pathIndex] + UnityEngine.Random.insideUnitSphere * 2f;
+
         datas.agent.destination = randomPosition;
     }
 
