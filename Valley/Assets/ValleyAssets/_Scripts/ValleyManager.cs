@@ -56,6 +56,7 @@ public class ValleyManager : MonoBehaviour
 
             areasScore = areasScore / areas.Count;
         }
+        Debug.Log("((" + visitorScore + " + (1-" + areasScore + ")) / 2) * 5");
         instance.currentAttractivity = ((visitorScore + (1-areasScore)) / 2) * 5;
     }
 }

@@ -33,9 +33,13 @@ public class VisitorManager : MonoBehaviour
         {
             VisitorAgentBehave newVisitor = GetAvailableVisitor();
 
-            if (newVisitor != null)
+            Vector2 rng = UnityEngine.Random.insideUnitCircle * 8f;
+            Vector3 spawnPosition = visitorSpawnPoint.Position + new Vector3(rng.x, 0, rng.y);
+
+            NavMeshHit hit;
+            if (newVisitor != null && NavMesh.SamplePosition(spawnPosition, out hit, .5f, NavMesh.AllAreas))
             {
-                newVisitor.SetVisitor(visitorSpawnPoint, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
+                newVisitor.SetVisitor(visitorSpawnPoint, spawnPosition, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
         }
     }
