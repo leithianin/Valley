@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base For Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 5750408154146744412, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750408154146744413, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5809396078205414195, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_RootOrder
       value: 1
