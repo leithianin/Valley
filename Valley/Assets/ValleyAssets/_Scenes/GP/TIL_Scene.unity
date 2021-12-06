@@ -130,6 +130,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -163746180193781399, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 279
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057905114506729636, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 275
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057905114777093692, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 276
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057905115174511075, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 277
+      objectReference: {fileID: 0}
+    - target: {fileID: 3057905116033530039, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 278
+      objectReference: {fileID: 0}
     - target: {fileID: 5590192353556878270, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_Name
       value: Base For Scene
@@ -177,6 +197,14 @@ PrefabInstance:
     - target: {fileID: 5809396078205414195, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987003873145512671, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 274
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987003874405978608, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
