@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   realConstruction: {fileID: 1080775992313210198, guid: 60f68a43986f4914ab3e0d252a8ef100, type: 3}
+  navMeshSensitivity: 2
   mesh: {fileID: 1156841904701531559}
   availableMaterial: {fileID: 2100000, guid: 4af8fa837f0a91640ae7b3620626c0d4, type: 2}
   unavailableMaterial: {fileID: 2100000, guid: a1de2f85cfe86a14b88e96d518927d5f, type: 2}

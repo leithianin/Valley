@@ -9,6 +9,8 @@ public abstract class ConstructionPreview : MonoBehaviour
 
     protected List<GameObject> objectBlockingPose = new List<GameObject>();
 
+    [SerializeField] protected float navMeshSensitivity = .5f;
+
     [SerializeField] private MeshRenderer mesh;
 
     [SerializeField] protected Material availableMaterial;
@@ -25,7 +27,7 @@ public abstract class ConstructionPreview : MonoBehaviour
         bool toReturn = true;
 
         NavMeshHit hit;
-        if (!NavMesh.SamplePosition(position, out hit, .5f, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
+        if (!NavMesh.SamplePosition(position, out hit, 1/navMeshSensitivity, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
         {
             toReturn = false;
         }
