@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd269663867d56d42a7e40eee8a62f4d, type: 3}
   m_Name: Hiker
   m_EditorClassIdentifier: 
-  display: {fileID: 6139987112678351261, guid: d42bd4545fb86184fb2aa4700b3d1252, type: 3}
+  display:
+  - {fileID: 6139987112678351261, guid: d42bd4545fb86184fb2aa4700b3d1252, type: 3}
   speed: 1.5
   soundProduced: 2
   objectives: 
