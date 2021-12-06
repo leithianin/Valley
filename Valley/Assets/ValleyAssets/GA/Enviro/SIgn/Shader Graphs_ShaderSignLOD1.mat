@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9104822844784095594
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 11
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_ShaderSign
-  m_Shader: {fileID: -6465566751694194690, guid: e61c096bbe34cab47ab5d7913ad97af6, type: 3}
+  m_Name: Shader Graphs_ShaderSignLOD1
+  m_Shader: {fileID: -6465566751694194690, guid: 68ef95caa98072749ba9815fa3b731a3, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -38,10 +25,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainText:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_2c3abf03fa8640698440a74fe67ad946_Texture_1:
         m_Texture: {fileID: 2800000, guid: 55107c82eab5e0f46a80ef197fa0f77c, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -50,8 +33,8 @@ Material:
         m_Texture: {fileID: 2800000, guid: 65c5b2575fe6a9543ae902da779e28ba, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_fa932d415a054b4b88751884a65e4644_Out_0:
-        m_Texture: {fileID: 2800000, guid: 65c5b2575fe6a9543ae902da779e28ba, type: 3}
+    - _SampleTexture2D_d860d35a291843558c148046872e7611_Texture_1:
+        m_Texture: {fileID: 2800000, guid: c9bf6ba8a0843ec448bc4ddd42b58b37, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -81,7 +64,7 @@ Material:
     - _DoubleSidedEnable: 0
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
-    - _EnableBlendModePreserveSpecularLighting: 0
+    - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _OpaqueCullMode: 2
     - _RayTracing: 0
@@ -116,8 +99,21 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Fl_che_color1: {r: 1, g: 0.42834556, b: 0, a: 1}
-    - Fl_che_color2: {r: 1, g: 0, b: 0.92679024, a: 1}
+    - Fl_che_color1: {r: 1, g: 0.42745095, b: 0, a: 1}
+    - Fl_che_color2: {r: 1, g: 0, b: 0.9254902, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &4430652396244330734
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 11
