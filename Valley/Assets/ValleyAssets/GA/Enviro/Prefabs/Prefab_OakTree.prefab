@@ -49,11 +49,11 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.45601654
+  - screenRelativeHeight: 0.118622355
     fadeTransitionWidth: 0.162
     renderers:
     - renderer: {fileID: 5570962561553909136}
-  - screenRelativeHeight: 0.11262202
+  - screenRelativeHeight: 0.052454833
     fadeTransitionWidth: 0.062
     renderers:
     - renderer: {fileID: 1187365334882555057}
@@ -91,15 +91,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9a86f1195d75055418e11392fd836db0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9a86f1195d75055418e11392fd836db0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9a86f1195d75055418e11392fd836db0, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9a86f1195d75055418e11392fd836db0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,15 +174,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d747fec7995b345b56bf5f327d69cd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d747fec7995b345b56bf5f327d69cd, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d747fec7995b345b56bf5f327d69cd, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66d747fec7995b345b56bf5f327d69cd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,15 +257,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 642d42effda6f3d479b2e77b31028f06, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 642d42effda6f3d479b2e77b31028f06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 642d42effda6f3d479b2e77b31028f06, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6389932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 642d42effda6f3d479b2e77b31028f06, type: 3}
       propertyPath: m_LocalPosition.x
