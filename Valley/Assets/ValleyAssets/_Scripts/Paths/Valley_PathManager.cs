@@ -186,11 +186,14 @@ public class Valley_PathManager : MonoBehaviour
             //Check Zone Where the path pass
             ValleyAreaManager.GetZoneFromLineRenderer(currentMarker.GetLink.line);
             //Close link précedent
-            List<Vector3> navPath = new List<Vector3>();
             LineRenderer line = new LineRenderer();
-            ToolManager.EndPreviousLink(toPlace, currentMarker, out navPath, out line);
+            ToolManager.EndPreviousLink(toPlace, currentMarker, out line);
 
-            GetCurrentPath.pathFragment.Add(new PathFragmentData(currentMarker, toPlace, navPath, line));
+            Vector3[] linePositions = new Vector3[line.positionCount];
+            line.GetPositions(linePositions);
+            List<Vector3> toAdd = new List<Vector3>(linePositions);
+
+            GetCurrentPath.pathFragment.Add(new PathFragmentData(currentMarker, toPlace, toAdd, line));
             //GetCurrentPath.pathPoints.Add(toPlace);
             AddPathPoint(toPlace);
         }
@@ -250,9 +253,8 @@ public class Valley_PathManager : MonoBehaviour
             }
             else
             {
-                List<Vector3> navPath = new List<Vector3>(); //CODE REVIEW : Voir pour modifier les 3 lignes du dessous, essayer de récupérer plus facilement le NavPath et le Line
                 LineRenderer line = new LineRenderer();
-                ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker, out navPath, out line);
+                ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker, out line);
 
                 Vector3[] linePositions = new Vector3[line.positionCount];
                 line.GetPositions(linePositions);
