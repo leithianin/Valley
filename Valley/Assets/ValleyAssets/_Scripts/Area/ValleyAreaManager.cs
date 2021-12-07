@@ -190,10 +190,13 @@ public class ValleyAreaManager : MonoBehaviour
     //Code Review : Just update the list don't create a new one
     public static void UpdatePathArea(Valley_PathData path)
     {
-        Valley_PathManager.GetCurrentPath.valleyAreaList.Clear();
-        foreach (PathFragmentData pfd in path.pathFragment)
+        if (Valley_PathManager.GetCurrentPath != null)
         {
-            GetZoneFromLineRenderer(pfd.line);
+            Valley_PathManager.GetCurrentPath.valleyAreaList.Clear();
+            foreach (PathFragmentData pfd in path.pathFragment)
+            {
+                GetZoneFromLineRenderer(pfd.line);
+            }
         }
     }
 

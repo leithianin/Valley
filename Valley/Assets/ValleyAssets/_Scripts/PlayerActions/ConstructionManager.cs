@@ -24,10 +24,9 @@ public class ConstructionManager : MonoBehaviour
 
     public static bool PlaceConstruction(ConstructionPreview toPlace, Vector3 positionToPlace)
     {
-        Debug.Log("Can place : " + toPlace.CanPlaceObject(positionToPlace));
         if (RessourcesManager.GetCurrentWoods >= toPlace.RealConstruction.GetCost)
         {
-            if (toPlace.CanPlaceObject(positionToPlace))
+            if (toPlace.AskToPlace(positionToPlace))
             {
                 Construction placedObject = Instantiate(toPlace.RealConstruction, positionToPlace, Quaternion.identity);
 

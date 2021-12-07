@@ -111,7 +111,14 @@ public class VisitorManager : MonoBehaviour
                 }
             }
         }
-        yield return new WaitForSeconds(spawnRate);
+        if (UsedVisitorNumber() > 0)
+        {
+            yield return new WaitForSeconds(spawnRate);
+        }
+        else
+        {
+            yield return new WaitForSeconds(.5f);
+        }
         StartCoroutine(SpawnVisitorContinue());
     }
 

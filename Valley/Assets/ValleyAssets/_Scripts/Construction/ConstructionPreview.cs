@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public abstract class ConstructionPreview : MonoBehaviour
@@ -16,11 +17,28 @@ public abstract class ConstructionPreview : MonoBehaviour
     [SerializeField] protected Material availableMaterial;
     [SerializeField] protected Material unavailableMaterial;
 
+    [SerializeField] protected UnityEvent PlayOnAskToPlaceTrue;
+    [SerializeField] protected UnityEvent PlayOnAskToPlaceFalse;
+
     protected bool availabilityState = true;
 
     public Construction RealConstruction => realConstruction;
 
     protected abstract bool OnCanPlaceObject(Vector3 position);
+
+    public bool AskToPlace(Vector3 position)
+    {
+        bool canPlace = CanPlaceObject(position);
+        if(canPlace)
+        {
+            PlayOnAskToPlaceTrue?.Invoke();
+        }
+        else
+        {
+            PlayOnAskToPlaceFalse?.Invoke();
+        }
+        return canPlace;
+    }
 
     public bool CanPlaceObject(Vector3 position)
     {

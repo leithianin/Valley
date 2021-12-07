@@ -277,28 +277,25 @@ public class Valley_PathManager : MonoBehaviour
     public void OnModifyPath(Valley_PathData _pathData)
     {
         isNewPath = false;
-        currentMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].endPoint;
-        //currentMarker = _pathData.pathPoints[_pathData.pathPoints.Count-1];
-        SetCurrentPath(_pathData);
 
-        //Je check ça aussi dans DeletePreviousMarker --> Peut être mettre dans une fonction à part
-        /*if (_pathData.pathPoints.Count > 1)
+        if (_pathData.pathFragment.Count > 0)
         {
-            previousMarker = _pathData.pathPoints[_pathData.pathPoints.Count - 2];
+            currentMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].endPoint;
+
+            previousMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].startPoint;
         }
         else
         {
-            previousMarker = null;
-        }*/
+            currentMarker = _pathData.startPoint;
 
-        previousMarker = _pathData.pathFragment[_pathData.pathFragment.Count - 1].startPoint;
+            previousMarker = null;
+        }
+
+        SetCurrentPath(_pathData);
+
 
         ToolManager.CreateLink(currentMarker);
 
-        //ToolManager.AddLink(_pathData.pathPoints[_pathData.pathPoints.Count-1].gameObject, firstMarker);
-
-        //Get Link in first Marker
-        //Add Link Last to Mouse Position
     }
 
     private void OnCompletePath()
