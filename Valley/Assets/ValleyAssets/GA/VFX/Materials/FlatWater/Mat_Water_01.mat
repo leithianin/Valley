@@ -266,6 +266,7 @@ Material:
     - DeepWaterColor: {r: 0.24586153, g: 0.54501253, b: 0.6132076, a: 1}
     - EdgeFoamColor: {r: 1, g: 1, b: 1, a: 0.2901961}
     - FoamColor: {r: 0.6509434, g: 0.22414559, b: 0.5878936, a: 0.45490196}
+    - HighlightColor: {r: 1, g: 1, b: 1, a: 1}
     - RippleColor: {r: 0.256408, g: 0.8113208, b: 0.8113208, a: 1}
     - RipplesColor: {r: 1, g: 0.627451, b: 0.71247643, a: 1}
     - ShallowWaterColor: {r: 0.63529414, g: 0.8431373, b: 0.8941177, a: 1}
