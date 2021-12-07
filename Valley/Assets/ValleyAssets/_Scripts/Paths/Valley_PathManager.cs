@@ -154,7 +154,7 @@ public class Valley_PathManager : MonoBehaviour
 
         for (int i = 0; i < instance.existingPaths.Count; i++)
         {
-            if(instance.existingPaths[i].ContainsPoint(pathPoint))
+            if(instance.existingPaths[i].ContainsPointWithStart(pathPoint))
             {
                 UIManager.pathToModify.Add(instance.existingPaths[i]);
                 n++;

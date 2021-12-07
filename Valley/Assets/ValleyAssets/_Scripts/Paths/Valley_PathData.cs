@@ -30,6 +30,24 @@ public class Valley_PathData
         return false;
     }
 
+    public bool ContainsPointWithStart(PathPoint toCheck)
+    {
+        if(startPoint == toCheck)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < pathFragment.Count; i++)
+        {
+            if (pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public bool ContainsLandmark(LandMarkType wantedLandmark)
     {
         for (int i = 0; i < valleyAreaList.Count; i++)
