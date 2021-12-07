@@ -21,12 +21,20 @@ public class ValleyAreaManager : MonoBehaviour
     private static float pointsByPath = 4;
     private static float pointByPathValue;
 
-
     public static List<ValleyArea> GetAreas => instance.areas;
+
+    private List<LineRenderer> usedLineRenderer;
+    [SerializeField] private Transform zoneDelimitationParent;
+    [SerializeField] private LineRenderer zoneDelimitationPrefab;
 
     [ContextMenu("Set positions")]
     private void SetPositions()
     {
+        for(int i = 0; i < usedLineRenderer.Count; i++)
+        {
+            Destroy(usedLineRenderer[i].gameObject);
+        }
+
         for (int i = 0; i < areas.Count; i++)
         {
             ValleyArea area = areas[i];
@@ -34,6 +42,12 @@ public class ValleyAreaManager : MonoBehaviour
             for (int j = 0; j < area.bordersTransform.Count; j++)
             {
                 area.borders.Add(new Vector2(area.bordersTransform[j].position.x, area.bordersTransform[j].position.z));
+
+                LineRenderer line = Instantiate(zoneDelimitationPrefab, zoneDelimitationParent);
+                line.positionCount = 2;
+                line.SetPosition(0, area.bordersTransform[j].position);
+                line.SetPosition(1, area.bordersTransform[(j+1)%area.bordersTransform.Count].position);
+                usedLineRenderer.Add(line);
             }
         }
     }
