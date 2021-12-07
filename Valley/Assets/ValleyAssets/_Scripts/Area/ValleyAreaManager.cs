@@ -144,7 +144,6 @@ public class ValleyAreaManager : MonoBehaviour
             for(int j = 1; j <= pointsByPath; j++)
             {
                 ValleyArea zone = instance.GetZoneFromPosition(GetVectorPoint(point1, point2, pointByPathValue * j));
-                Debug.Log(zone);
                 if(zone != null)
                 {
                     CheckIfZoneAlreadySaved(zone);
