@@ -20,6 +20,8 @@ public class VisitorManager : MonoBehaviour
 
     public static List<VisitorAgentBehave> GetVisitors => instance.GetAllUsedVisitor();
 
+    public static Action<int> OnVisitorsUpdate;
+
     private void Awake()
     {
         instance = this;
@@ -45,14 +47,17 @@ public class VisitorManager : MonoBehaviour
                 newVisitor.SetVisitor(visitorSpawnPoint, spawnPosition, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
 
+            OnVisitorsUpdate?.Invoke(UsedVisitorNumber());
+
             return true;
         }
         return false;
     }
 
-    public static void RemoveVisitor(VisitorAgentBehave toRemove)
+    public static void DeleteVisitor(VisitorAgentBehave vab)
     {
-        toRemove.UnsetVisitor();
+        vab.UnsetVisitor();
+        OnVisitorsUpdate?.Invoke(instance.UsedVisitorNumber());
     }
 
     public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest)
@@ -92,7 +97,7 @@ public class VisitorManager : MonoBehaviour
         callback?.Invoke();
     }
 
-    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
+    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gï¿½rer le spawn des visiteurs. Commencer ï¿½ mettre des datas (Spawn rate, delay between spawn, ...)
     {
         int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 3, ValleyManager.AttractivityLevel + 5);
 
@@ -190,7 +195,7 @@ public class VisitorManager : MonoBehaviour
         return toReturn;
     }
 
-    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool global ?
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nï¿½cï¿½ssitï¿½ d'un systï¿½me de Pool global ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {
@@ -212,6 +217,7 @@ public class VisitorManager : MonoBehaviour
                 toReturn++;
             }
         }
+
         return toReturn;
     }
 }

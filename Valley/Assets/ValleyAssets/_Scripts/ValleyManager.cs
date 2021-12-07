@@ -61,7 +61,7 @@ public class ValleyManager : MonoBehaviour
         }
         instance.currentAttractivity = ((visitorScore + (1-areasScore)) / 2) * 5;
 
-        Debug.Log(instance.currentAttractivity);
+        //Debug.Log(instance.currentAttractivity);
         OnActravityUpdate?.Invoke(instance.currentAttractivity);
     }
 }

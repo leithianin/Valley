@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     public Text woodCounter;
 
+    public Text visitorsCounter;
+
 
     public static List<Valley_PathData> pathToModify = new List<Valley_PathData>();
 
@@ -143,5 +145,9 @@ public class UIManager : MonoBehaviour
         instance.woodCounter.text = woodNb.ToString();
     }
 
+    public static void UpdateVisitors(int visitorNb)
+    {
+        instance.visitorsCounter.text = visitorNb.ToString();
+    }
     #endregion
 }

@@ -84,8 +84,13 @@ public class VisitorAgentBehave : MonoBehaviour
 
             SetNextDestination(currentPathIndex);
 
-            datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed += AskDeleteVisitor;
         }
+    }
+
+    public void AskDeleteVisitor()
+    {
+        VisitorManager.DeleteVisitor(this);
     }
 
     public void UnsetVisitor()
@@ -108,8 +113,8 @@ public class VisitorAgentBehave : MonoBehaviour
                 currentDisplay.PlayBodyAnim(BodyAnimationType.Walk);
                 currentPathIndex = 0;
 
-                datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
-                datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+                datas.lastPoint.OnPointDestroyed -= AskDeleteVisitor;
+                datas.currentPoint.OnPointDestroyed += AskDeleteVisitor;
             }
         }
     }
@@ -133,7 +138,7 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = false;
             if (datas.currentPoint == spawnPoint)
             {
-                VisitorManager.RemoveVisitor(this);
+                VisitorManager.DeleteVisitor(this);
             }
             else
             {
@@ -199,7 +204,7 @@ public class VisitorAgentBehave : MonoBehaviour
     {
         if (datas.currentPoint != null)
         {
-            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed -= AskDeleteVisitor;
         }
     }
 
@@ -207,7 +212,7 @@ public class VisitorAgentBehave : MonoBehaviour
     {
         if(datas.currentPoint != null)
         {
-            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed -= AskDeleteVisitor;
         }
     }
 

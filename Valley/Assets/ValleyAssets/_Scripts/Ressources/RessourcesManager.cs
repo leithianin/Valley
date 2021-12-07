@@ -17,6 +17,7 @@ public class RessourcesManager : MonoBehaviour
 
     public static int GetCurrentWoods => instance.woods;
 
+
     private void Awake()
     {
         instance = this;

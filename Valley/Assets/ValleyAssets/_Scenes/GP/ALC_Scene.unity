@@ -243,6 +243,17 @@ Transform:
   m_Father: {fileID: 1790903771}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &362171740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6095371865655148703, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+  m_PrefabInstance: {fileID: 1965283079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &366123274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,6 +1646,22 @@ PrefabInstance:
     - target: {fileID: 6095371864528603406, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095371865655148701, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Name
+      value: Text - Visitors Number
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590488071852739603, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: visitorsCounter
+      value: 
+      objectReference: {fileID: 362171740}
+    - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: spawnRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134374236615872001, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 1.7777778
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
