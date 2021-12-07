@@ -116,6 +116,7 @@ public class Valley_PathManager : MonoBehaviour
         {
             existingPaths.Add(currentPathOn);
         }
+        currentPathOn = null;
     }
 
     public static void RemovePathData()
@@ -302,10 +303,13 @@ public class Valley_PathManager : MonoBehaviour
 
     private void OnCompletePath()
     {
-        PlayOnCompletePath?.Invoke();
-        EndPath();
-        ToolManager.EndLink(currentMarker);
-        isNewPath = true;
+        if (GetCurrentPath != null)
+        {
+            PlayOnCompletePath?.Invoke();
+            EndPath();
+            ToolManager.EndLink(currentMarker);
+            isNewPath = true;
+        }
     }
 
     private void DeletePreviousMarker()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
@@ -17,6 +18,10 @@ public class ToolManager : MonoBehaviour
 
     public Material matReference;
     private Material savedMaterial;
+
+    [Header("Feedbacks")]
+    [SerializeField] private UnityEvent PlayOnPathToolSelected;
+    [SerializeField] private UnityEvent PlayOnPathToolUnselected;
 
     [Header("Constructions Prefabs")]
     [SerializeField] private PathPointPreview pathpointPrefab;
@@ -40,6 +45,9 @@ public class ToolManager : MonoBehaviour
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
+            PlayOnPathToolUnselected?.Invoke();
+
+            Valley_PathManager.CompletePath();
             constructionPrevisualisation.SetSelectedTool(null);
             eventSystemKeepSelectedScript.RemoveLastSelected();
             _selectedTool = SelectedTools.None;
@@ -53,6 +61,7 @@ public class ToolManager : MonoBehaviour
 
     public void ActivePathTool(RectTransform rt)
     {
+        PlayOnPathToolSelected?.Invoke();
         instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();
         _selectedTool = SelectedTools.PathTool;
