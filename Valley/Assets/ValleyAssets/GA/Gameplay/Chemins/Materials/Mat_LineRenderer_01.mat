@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_LineRenderer_01
-  m_Shader: {fileID: 4800000, guid: 63c5b022bdfa8b84995a3ea86efa3ce6, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1b84a4e72a65b604f98d7f066b8f1caa, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
