@@ -1568,6 +1568,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1855575395, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: seconds
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5590192353556878270, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_Name
       value: Base For Scene
@@ -1615,6 +1619,22 @@ PrefabInstance:
     - target: {fileID: 5809396078205414195, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095371864463323569, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095371864463323574, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Name
+      value: Empty Stars
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095371864528603406, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6095371864528603406, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}

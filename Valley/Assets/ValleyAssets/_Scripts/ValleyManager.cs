@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class ValleyManager : MonoBehaviour
 
     public static float RealAttractivity => instance.currentAttractivity;
     public static int AttractivityLevel => Mathf.FloorToInt(instance.currentAttractivity);
+
+    public static Action<float> OnActravityUpdate;
 
 
     private void Awake()
@@ -57,5 +60,8 @@ public class ValleyManager : MonoBehaviour
             areasScore = areasScore / areas.Count;
         }
         instance.currentAttractivity = ((visitorScore + (1-areasScore)) / 2) * 5;
+
+        Debug.Log(instance.currentAttractivity);
+        OnActravityUpdate?.Invoke(instance.currentAttractivity);
     }
 }
