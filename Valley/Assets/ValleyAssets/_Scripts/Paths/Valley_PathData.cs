@@ -19,20 +19,14 @@ public class Valley_PathData
     /// <returns>Renvoi TRUE si le chemin possède le point. Sinon, renvoi FALSE.</returns>
     public bool ContainsPoint(PathPoint toCheck)
     {
-        if (pathFragment.Count > 0)
+        for (int i = 0; i < pathFragment.Count; i++)
         {
-            for (int i = 0; i < pathFragment.Count; i++)
+            if (pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
             {
-                if (pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
-                {
-                    return true;
-                }
+                return true;
             }
         }
-        else if (startPoint == toCheck)
-        {
-            return true;
-        }
+
         return false;
     }
 
@@ -66,7 +60,7 @@ public class Valley_PathData
 
     public bool IsUsable(PathPoint toCheck)
     {
-        return startPoint != null && ContainsPoint(toCheck) && pathFragment.Count > 0;
+        return startPoint != null && ContainsPoint(toCheck);
     }
 
     public PathFragmentData GetRandomDestination(PathPoint currentPoint, PathPoint lastPoint)
