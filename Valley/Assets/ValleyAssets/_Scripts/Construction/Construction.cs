@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public abstract class Construction : MonoBehaviour
 {
-    [SerializeField] private float cost;
+    [SerializeField] private int cost;
 
     [SerializeField] private UnityEvent PlayOnPlace;
     [SerializeField] private UnityEvent PlayOnDelete;
@@ -19,6 +19,8 @@ public abstract class Construction : MonoBehaviour
     protected abstract void OnRemoveObject();
 
     protected abstract void OnSelectObject();
+
+    public int GetCost => cost;
 
     public void PlaceObject(Vector3 position)
     {
