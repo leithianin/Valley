@@ -39,16 +39,17 @@ public class ValleyAreaManager : MonoBehaviour
         {
             ValleyArea area = areas[i];
             area.borders = new List<Vector2>();
+            LineRenderer line = Instantiate(zoneDelimitationPrefab, zoneDelimitationParent);
+            line.positionCount = area.bordersTransform.Count;
             for (int j = 0; j < area.bordersTransform.Count; j++)
             {
                 area.borders.Add(new Vector2(area.bordersTransform[j].position.x, area.bordersTransform[j].position.z));
 
-                LineRenderer line = Instantiate(zoneDelimitationPrefab, zoneDelimitationParent);
-                line.positionCount = 2;
-                line.SetPosition(0, area.bordersTransform[j].position);
-                line.SetPosition(1, area.bordersTransform[(j+1)%area.bordersTransform.Count].position);
-                usedLineRenderer.Add(line);
+                
+                
+                line.SetPosition(j, area.bordersTransform[j].position);
             }
+            usedLineRenderer.Add(line);
         }
     }
 
