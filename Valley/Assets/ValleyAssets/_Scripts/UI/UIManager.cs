@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class UIManager : MonoBehaviour
     private GameObject markerSelected;
 
     public LandInteractions _landInteraction;
+
+    public Text woodCounter;
+
+
     public static List<Valley_PathData> pathToModify = new List<Valley_PathData>();
 
     public List<GameObject> toolsList = new List<GameObject>();
@@ -131,4 +136,12 @@ public class UIManager : MonoBehaviour
             go.GetComponent<dfb_MoveSign>().OnMove();
         }
     }
+
+    #region Ressources
+    public static void UpdateWood(int woodNb)
+    {
+        instance.woodCounter.text = woodNb.ToString();
+    }
+
+    #endregion
 }

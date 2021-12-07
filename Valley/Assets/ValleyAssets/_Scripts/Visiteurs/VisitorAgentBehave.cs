@@ -73,6 +73,11 @@ public class VisitorAgentBehave : MonoBehaviour
 
             gameObject.SetActive(true);
 
+            if (currentDisplay != null)
+            {
+                Destroy(currentDisplay.gameObject);
+            }
+
             currentDisplay = Instantiate(visitorType.Display, transform);
 
             AskToWalk();
@@ -88,8 +93,6 @@ public class VisitorAgentBehave : MonoBehaviour
         datas.currentPoint = null;
 
         currentArea.RemoveVisitor(this);
-
-        Destroy(currentDisplay.gameObject);
 
         gameObject.SetActive(false);
     }

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11199c6f89c913c4eb300521d1255ae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 0
+  cost: 5
   PlayOnPlace:
     m_PersistentCalls:
       m_Calls: []

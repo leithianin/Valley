@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class VisitorManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private float spawnRate = .2f;
     [SerializeField] private int maxSpawn = 100;
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
+
+    [SerializeField] private UnityEvent PlayOnVisitorSpawn;
 
     public static List<VisitorAgentBehave> GetVisitors => instance.GetAllUsedVisitor();
 
@@ -27,7 +30,7 @@ public class VisitorManager : MonoBehaviour
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private void SpawnVisitor()
+    private bool SpawnVisitor()
     {
         if (Valley_PathManager.HasAvailablePath(visitorSpawnPoint))
         {
@@ -41,7 +44,10 @@ public class VisitorManager : MonoBehaviour
             {
                 newVisitor.SetVisitor(visitorSpawnPoint, spawnPosition, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
+
+            return true;
         }
+        return false;
     }
 
     public static void RemoveVisitor(VisitorAgentBehave toRemove)
@@ -90,12 +96,19 @@ public class VisitorManager : MonoBehaviour
     {
         int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 3, ValleyManager.AttractivityLevel + 5);
 
+        bool hasPlayFeedback = false;
+
         for (int i = 0; i < toSpawn; i++)
         {
             if (UsedVisitorNumber() < maxSpawn)
             {
                 yield return new WaitForSeconds(.5f);
-                SpawnVisitor();
+                bool hasSpawned = SpawnVisitor();
+                if(!hasPlayFeedback && hasSpawned)
+                {
+                    PlayOnVisitorSpawn?.Invoke();
+                    hasPlayFeedback = true;
+                }
             }
         }
         yield return new WaitForSeconds(spawnRate);

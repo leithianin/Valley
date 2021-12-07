@@ -32,7 +32,7 @@ public class MarkerFollowMouse : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive(false);
         }
 
         ConstructionManager.ChooseConstruction(currentConstruction);
