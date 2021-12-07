@@ -17,6 +17,8 @@ public class VisitorManager : MonoBehaviour
 
     public static List<VisitorAgentBehave> GetVisitors => instance.GetAllUsedVisitor();
 
+    public static Action<int> OnVisitorsUpdate;
+
     private void Awake()
     {
         instance = this;
@@ -41,12 +43,15 @@ public class VisitorManager : MonoBehaviour
             {
                 newVisitor.SetVisitor(visitorSpawnPoint, spawnPosition, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
+
+            OnVisitorsUpdate?.Invoke(UsedVisitorNumber());
         }
     }
 
-    public static void RemoveVisitor(VisitorAgentBehave toRemove)
+    public static void DeleteVisitor(VisitorAgentBehave vab)
     {
-        toRemove.UnsetVisitor();
+        vab.UnsetVisitor();
+        OnVisitorsUpdate?.Invoke(instance.UsedVisitorNumber());
     }
 
     public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest)
@@ -192,6 +197,7 @@ public class VisitorManager : MonoBehaviour
                 toReturn++;
             }
         }
+
         return toReturn;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class RessourcesManager : MonoBehaviour
     public int woodToGain = 5;
 
     public static int GetCurrentWoods => instance.woods;
+
 
     private void Awake()
     {
