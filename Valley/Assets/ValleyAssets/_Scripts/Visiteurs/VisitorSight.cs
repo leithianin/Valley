@@ -8,7 +8,9 @@ public class VisitorSight : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         InterestPoint point = other.GetComponent<InterestPoint>(); // Voir pour ne pas utiliser de GetComponent
+        Debug.Log(point);
         if (point != null)
         {
             visitor.AskInteraction(point);

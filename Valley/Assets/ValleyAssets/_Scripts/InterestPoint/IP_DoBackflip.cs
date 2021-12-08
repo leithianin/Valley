@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IP_DoBackflip : InterestPoint
 {
-    public override InterestPointType PointType => InterestPointType.Photo;
+    public override InterestPointType PointType => InterestPointType.ForHiker;
 
     [SerializeField] private VisitorAgentBehave currentVisitor;
 

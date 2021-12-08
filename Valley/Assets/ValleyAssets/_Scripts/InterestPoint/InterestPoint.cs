@@ -6,7 +6,7 @@ public abstract class InterestPoint : MonoBehaviour
 {
     [SerializeField] private float satisfactionGiven;
 
-    public virtual InterestPointType PointType => InterestPointType.Rest;
+    public virtual InterestPointType PointType => InterestPointType.None;
 
     public virtual LandMarkType LandmarkType => LandMarkType.None;
 

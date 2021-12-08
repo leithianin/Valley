@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 3748557771633236746, guid: c2aa9eeeb6d7a8f4497d74546d7a7a8e, type: 3}
   speed: 1
   soundProduced: 5
-  objectives: 
-  interestedActivities: 00000000
+  objectives: 0200000001000000
+  interestedActivities: 01000000
   satisfactionByTenSecond: 0.1
   satisfactionNextToOthers: 0
