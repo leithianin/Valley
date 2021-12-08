@@ -73,6 +73,7 @@ public class UIManager : MonoBehaviour
             {
                 GameObject button = instance.buttonsList.transform.GetChild(i).gameObject;
                 button.GetComponent<PathLinked>().path = pathToModify[i - 1];
+                ChangeBubbleColorModifyPath(button);
                 button.SetActive(true);
             }
             else
@@ -92,6 +93,10 @@ public class UIManager : MonoBehaviour
         instance.OnHideButtons();
     }
 
+    public static void ChangeBubbleColorModifyPath(GameObject button)
+    {
+        button.transform.GetChild(1).GetComponent<Image>().color = button.GetComponent<PathLinked>().path.colorPath;
+    }
 
     public static void Hidebuttons()
     {
