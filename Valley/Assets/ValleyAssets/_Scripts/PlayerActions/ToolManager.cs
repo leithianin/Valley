@@ -134,4 +134,10 @@ public class ToolManager : MonoBehaviour
     {
         firstObjectToLink.GetLink.ResetPoint();
     }
+
+    public static bool IsToolSelected()
+    {
+        if(_selectedTool == SelectedTools.None) {return false;}
+        else                                    {return true ;}
+    }
 }
