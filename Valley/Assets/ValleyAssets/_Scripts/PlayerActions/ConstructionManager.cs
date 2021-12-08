@@ -24,25 +24,19 @@ public class ConstructionManager : MonoBehaviour
 
     public static bool PlaceConstruction(ConstructionPreview toPlace, Vector3 positionToPlace)
     {
-        if (RessourcesManager.GetCurrentWoods >= toPlace.RealConstruction.GetCost)
+        if (toPlace.AskToPlace(positionToPlace))
         {
-            if (toPlace.AskToPlace(positionToPlace))
-            {
-                Construction placedObject = Instantiate(toPlace.RealConstruction, positionToPlace, Quaternion.identity);
+            Construction placedObject = Instantiate(toPlace.RealConstruction, positionToPlace, Quaternion.identity);
 
-                placedObject.gameObject.name = "Marker_" + Test;                                            //A delete si j'oublis
-                Test++;
+            placedObject.gameObject.name = "Marker_" + Test;                                            //A delete si j'oublis
+            Test++;
 
-                RessourcesManager.RemoveWood(toPlace.RealConstruction.GetCost);                             //Remove Cost Ressources
+            RessourcesManager.RemoveWood(toPlace.RealConstruction.GetCost);                             //Remove Cost Ressources
 
-                placedObject.PlaceObject(positionToPlace);
-                return true;
-            }
+            placedObject.PlaceObject(positionToPlace);
+            return true;
         }
-        else
-        {
-            //Need more Woods
-        }
+
 
         return false;
     }

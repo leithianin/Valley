@@ -19,6 +19,7 @@ public abstract class ConstructionPreview : MonoBehaviour
 
     [SerializeField] protected UnityEvent PlayOnAskToPlaceTrue;
     [SerializeField] protected UnityEvent PlayOnAskToPlaceFalse;
+    [SerializeField] protected UnityEvent PlayOnAskToPlaceNoMoney;
 
     protected bool availabilityState = true;
 
@@ -32,6 +33,12 @@ public abstract class ConstructionPreview : MonoBehaviour
     {
         bool canPlace = CanPlaceObject(position);
         OnAskToPlace(position);
+
+        if (RessourcesManager.GetCurrentWoods < realConstruction.GetCost)
+        {
+            PlayOnAskToPlaceNoMoney?.Invoke();
+        }
+
         if (canPlace)
         {
             PlayOnAskToPlaceTrue?.Invoke();
