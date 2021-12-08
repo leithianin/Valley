@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public abstract class ConstructionPreview : MonoBehaviour
@@ -9,10 +10,15 @@ public abstract class ConstructionPreview : MonoBehaviour
 
     protected List<GameObject> objectBlockingPose = new List<GameObject>();
 
+    [SerializeField] protected float navMeshSensitivity = .5f;
+
     [SerializeField] private MeshRenderer mesh;
 
     [SerializeField] protected Material availableMaterial;
     [SerializeField] protected Material unavailableMaterial;
+
+    [SerializeField] protected UnityEvent PlayOnAskToPlaceTrue;
+    [SerializeField] protected UnityEvent PlayOnAskToPlaceFalse;
 
     protected bool availabilityState = true;
 
@@ -20,12 +26,26 @@ public abstract class ConstructionPreview : MonoBehaviour
 
     protected abstract bool OnCanPlaceObject(Vector3 position);
 
+    public bool AskToPlace(Vector3 position)
+    {
+        bool canPlace = CanPlaceObject(position);
+        if(canPlace)
+        {
+            PlayOnAskToPlaceTrue?.Invoke();
+        }
+        else
+        {
+            PlayOnAskToPlaceFalse?.Invoke();
+        }
+        return canPlace;
+    }
+
     public bool CanPlaceObject(Vector3 position)
     {
         bool toReturn = true;
 
         NavMeshHit hit;
-        if (!NavMesh.SamplePosition(position, out hit, .5f, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
+        if (!NavMesh.SamplePosition(position, out hit, 1/navMeshSensitivity, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
         {
             toReturn = false;
         }

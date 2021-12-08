@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
@@ -17,6 +18,10 @@ public class ToolManager : MonoBehaviour
 
     public Material matReference;
     private Material savedMaterial;
+
+    [Header("Feedbacks")]
+    [SerializeField] private UnityEvent PlayOnPathToolSelected;
+    [SerializeField] private UnityEvent PlayOnPathToolUnselected;
 
     [Header("Constructions Prefabs")]
     [SerializeField] private PathPointPreview pathpointPrefab;
@@ -36,10 +41,13 @@ public class ToolManager : MonoBehaviour
         eventSystemKeepSelectedScript = EventSystem.current.gameObject.GetComponent<EventSystemKeepSelected>();
     }
 
-    public void OnSelectPathTool(Button button)
+    public void OnSelectPathTool(RectTransform rt)
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
+            PlayOnPathToolUnselected?.Invoke();
+
+            Valley_PathManager.CompletePath();
             constructionPrevisualisation.SetSelectedTool(null);
             eventSystemKeepSelectedScript.RemoveLastSelected();
             _selectedTool = SelectedTools.None;
@@ -47,12 +55,13 @@ public class ToolManager : MonoBehaviour
         }
         else
         {
-            ActivePathTool();
+            ActivePathTool(rt);
         }
     }
 
-    private void ActivePathTool()
+    public void ActivePathTool(RectTransform rt)
     {
+        PlayOnPathToolSelected?.Invoke();
         instance.constructionPrevisualisation.SetSelectedTool(pathpointPrefab);
         eventSystemKeepSelectedScript.KeepSelected();
         _selectedTool = SelectedTools.PathTool;
@@ -88,9 +97,9 @@ public class ToolManager : MonoBehaviour
     }
 
     //Call at each new Marker
-    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker, out List<Vector3> vectorPath, out LineRenderer lineToReturn)
+    public static void EndPreviousLink(PathPoint nextObjectToLink, PathPoint previousMarker, out LineRenderer lineToReturn)
     {
-        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject, out vectorPath, out lineToReturn);
+        previousMarker.GetLink.AddPoint(nextObjectToLink.gameObject, out lineToReturn);
     }
 
     //Call when "Return" key is press

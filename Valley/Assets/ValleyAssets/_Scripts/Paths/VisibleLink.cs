@@ -84,11 +84,9 @@ public class VisibleLink : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void AddPoint(GameObject nextObjectToLink, out List<Vector3> vectorPath, out LineRenderer pathLine)
+    public void AddPoint(GameObject nextObjectToLink, out LineRenderer pathLine)
     {
         line.SetPosition(index, nextObjectToLink.transform.position);
-
-        vectorPath = new List<Vector3>(pathToReturn);
 
         pathLine = line;
 
@@ -122,11 +120,12 @@ public class VisibleLink : MonoBehaviour
 
     public void UpdateLineWithLineKnowed(LineRenderer lineRenderer)
     {
-        if(line != null)
+        if(VisibleLinkManager.CurrentLine != null)
         {
-            Destroy(line.gameObject);
+            VisibleLinkManager.DestroyLine();
         }
         line = lineRenderer;
+        VisibleLinkManager.SetLine(line);
     }
 
     public LineRenderer FindLineRenderer(PathPoint objectToCheck)

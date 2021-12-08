@@ -21,17 +21,35 @@ public class ValleyAreaManager : MonoBehaviour
     private static float pointsByPath = 4;
     private static float pointByPathValue;
 
+    public static List<ValleyArea> GetAreas => instance.areas;
+
+    private List<LineRenderer> usedLineRenderer;
+    [SerializeField] private Transform zoneDelimitationParent;
+    [SerializeField] private LineRenderer zoneDelimitationPrefab;
+
     [ContextMenu("Set positions")]
     private void SetPositions()
     {
+        for(int i = 0; i < usedLineRenderer.Count; i++)
+        {
+            Destroy(usedLineRenderer[i].gameObject);
+        }
+
         for (int i = 0; i < areas.Count; i++)
         {
             ValleyArea area = areas[i];
             area.borders = new List<Vector2>();
+            LineRenderer line = Instantiate(zoneDelimitationPrefab, zoneDelimitationParent);
+            line.positionCount = area.bordersTransform.Count;
             for (int j = 0; j < area.bordersTransform.Count; j++)
             {
                 area.borders.Add(new Vector2(area.bordersTransform[j].position.x, area.bordersTransform[j].position.z));
+
+                
+                
+                line.SetPosition(j, area.bordersTransform[j].position);
             }
+            usedLineRenderer.Add(line);
         }
     }
 
@@ -55,28 +73,31 @@ public class ValleyAreaManager : MonoBehaviour
     {
         visitors = VisitorManager.GetVisitors;
 
-        for (int i = 0; i < visitorByFrame; i++)
+        if (visitors.Count > 0)
         {
-            int visitorIndex = (visitorChecked + i) % visitors.Count;
-            if (visitors[visitorIndex].gameObject.activeSelf)
+            for (int i = 0; i < visitorByFrame; i++)
             {
-                ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
-                
-                if(toAdd != visitors[visitorIndex].currentArea && toAdd != null)
+                int visitorIndex = (visitorChecked + i) % visitors.Count;
+                if (visitors[visitorIndex].gameObject.activeSelf)
                 {
-                    visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
-                    visitors[visitorIndex].currentArea = toAdd;
-                    toAdd.visitorInZone.Add(visitors[visitorIndex]);
-                }
+                    ValleyArea toAdd = GetZoneFromPosition(visitors[visitorIndex].GetPosition);
 
-                if(toAdd != null && !updatableArea.Contains(toAdd))
-                {
-                    updatableArea.Add(toAdd);
+                    if (toAdd != visitors[visitorIndex].currentArea && toAdd != null)
+                    {
+                        visitors[visitorIndex].currentArea.visitorInZone.Remove(visitors[visitorIndex]);
+                        visitors[visitorIndex].currentArea = toAdd;
+                        toAdd.visitorInZone.Add(visitors[visitorIndex]);
+                    }
+
+                    if (toAdd != null && !updatableArea.Contains(toAdd))
+                    {
+                        updatableArea.Add(toAdd);
+                    }
                 }
             }
-        }
 
-        visitorChecked = (visitorChecked + visitorByFrame) % visitors.Count;
+            visitorChecked = (visitorChecked + visitorByFrame) % visitors.Count;
+        }
     }
 
     private void LateUpdate()
@@ -130,7 +151,6 @@ public class ValleyAreaManager : MonoBehaviour
             }  
         }
 
-        
         foreach(ValleyArea va in pathAreas)
         {
             //Save pathAreas in PathData
@@ -139,17 +159,15 @@ public class ValleyAreaManager : MonoBehaviour
             //Debug.Log("Zone : " + va.nom);
         }
         
-
         pathAreas.Clear();
     }
 
-    public static Vector3 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
+    public static Vector2 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
     {
         float pointx = point1.x * (1 - t) + point2.x * t;
-        float pointy = point1.y * (1 - t) + point2.y * t;
         float pointz = point1.z * (1 - t) + point2.z * t;
 
-        Vector3 pointPlaced = new Vector3(pointx, pointy, pointz);
+        Vector2 pointPlaced = new Vector2(pointx, pointz);
 
         return pointPlaced;
     }
@@ -165,6 +183,20 @@ public class ValleyAreaManager : MonoBehaviour
         }
 
         pathAreas.Add(zone);
+    }
+
+    //Remake a new list when delete a marker
+    //Code Review : Just update the list don't create a new one
+    public static void UpdatePathArea(Valley_PathData path)
+    {
+        if (Valley_PathManager.GetCurrentPath != null)
+        {
+            Valley_PathManager.GetCurrentPath.valleyAreaList.Clear();
+            foreach (PathFragmentData pfd in path.pathFragment)
+            {
+                GetZoneFromLineRenderer(pfd.line);
+            }
+        }
     }
 
     private bool IsPositionInArea(Vector2 toCheck, ValleyArea area)

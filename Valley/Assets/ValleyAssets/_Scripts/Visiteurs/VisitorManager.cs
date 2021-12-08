@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class VisitorManager : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private int maxSpawn = 100;
     [SerializeField] private List<VisitorAgentBehave> visitorPool;
 
-    public static List<VisitorAgentBehave> GetVisitors => instance.visitorPool;
+    [SerializeField] private UnityEvent PlayOnVisitorSpawn;
+
+    public static List<VisitorAgentBehave> GetVisitors => instance.GetAllUsedVisitor();
+
+    public static Action<int> OnVisitorsUpdate;
 
     private void Awake()
     {
@@ -27,29 +32,39 @@ public class VisitorManager : MonoBehaviour
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private void SpawnVisitor()
+    private bool SpawnVisitor()
     {
         if (Valley_PathManager.HasAvailablePath(visitorSpawnPoint))
         {
             VisitorAgentBehave newVisitor = GetAvailableVisitor();
 
-            if (newVisitor != null)
+            Vector2 rng = UnityEngine.Random.insideUnitCircle * 8f;
+            Vector3 spawnPosition = visitorSpawnPoint.Position + new Vector3(rng.x, 0, rng.y);
+
+            NavMeshHit hit;
+            if (newVisitor != null && NavMesh.SamplePosition(spawnPosition, out hit, .5f, NavMesh.AllAreas))
             {
-                newVisitor.SetVisitor(visitorSpawnPoint, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
+                newVisitor.SetVisitor(visitorSpawnPoint, spawnPosition, visitorTypes[UnityEngine.Random.Range(0,visitorTypes.Count)]);
             }
+
+            OnVisitorsUpdate?.Invoke(UsedVisitorNumber());
+
+            return true;
         }
+        return false;
     }
 
-    public static void RemoveVisitor(VisitorAgentBehave toRemove)
+    public static void DeleteVisitor(VisitorAgentBehave vab)
     {
-        toRemove.UnsetVisitor();
+        vab.UnsetVisitor();
+        OnVisitorsUpdate?.Invoke(instance.UsedVisitorNumber());
     }
 
-    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<InterestPointType> visitorInterest)
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest)
     {
         List<Valley_PathData> possiblesPath = Valley_PathManager.GetAllPossiblePath(spawnPoint);
 
-        return instance.GetMostInterestingPath(visitorInterest, possiblesPath);
+        return instance.GetMostInterestingPath(visitorObjectives, visitorInterest, possiblesPath);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
@@ -82,42 +97,105 @@ public class VisitorManager : MonoBehaviour
         callback?.Invoke();
     }
 
-    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gérer le spawn des visiteurs. Commencer à mettre des datas (Spawn rate, delay between spawn, ...)
+    IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut gï¿½rer le spawn des visiteurs. Commencer ï¿½ mettre des datas (Spawn rate, delay between spawn, ...)
     {
-        if(UsedVisitorNumber() < maxSpawn)
+        int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 3, ValleyManager.AttractivityLevel + 5);
+
+        bool hasPlayFeedback = false;
+
+        for (int i = 0; i < toSpawn; i++)
         {
-            SpawnVisitor();
+            if (UsedVisitorNumber() < maxSpawn)
+            {
+                yield return new WaitForSeconds(.5f);
+                bool hasSpawned = SpawnVisitor();
+                if(!hasPlayFeedback && hasSpawned)
+                {
+                    PlayOnVisitorSpawn?.Invoke();
+                    hasPlayFeedback = true;
+                }
+            }
         }
-        yield return new WaitForSeconds(spawnRate);
+        if (UsedVisitorNumber() > 0)
+        {
+            yield return new WaitForSeconds(spawnRate);
+        }
+        else
+        {
+            yield return new WaitForSeconds(.5f);
+        }
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private Valley_PathData GetMostInterestingPath(List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath)
+    private Valley_PathData GetMostInterestingPath(List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath)
     {
-        int currentScore = 0;
-        Valley_PathData toReturn = possiblesPath[UnityEngine.Random.Range(0,possiblesPath.Count)];
-
-        for (int i = 0; i < possiblesPath.Count; i++)
+        // REVOIR LES CALCULS DE CHEMINS //
+        List<Valley_PathData> firstPickPhase = new List<Valley_PathData>();
+        for (int k = 0; k < visitorObjectives.Count; k++)
         {
-            int pathScore = 0;
-            for (int j = 0; j < visitorInterest.Count; j++)
+            for (int i = 0; i < possiblesPath.Count; i++)
             {
-                if(possiblesPath[i].ContainsInterestPoint(visitorInterest[j]))
+                if (possiblesPath[i].ContainsLandmark(visitorObjectives[k]))
                 {
-                    pathScore++;
+                    firstPickPhase.Add(possiblesPath[i]);
                 }
             }
 
-            if(pathScore > currentScore)
+            if(firstPickPhase.Count > 0)
             {
-                toReturn = possiblesPath[i];
+                break;
+            }
+        }
+
+        if (firstPickPhase.Count <= 0)
+        {
+            firstPickPhase = new List<Valley_PathData>(possiblesPath);
+        }
+
+        Valley_PathData toReturn = firstPickPhase[UnityEngine.Random.Range(0,possiblesPath.Count)];
+        List<int> scores = new List<int>();
+        int maxScore = 0;
+
+        for (int i = 0; i < firstPickPhase.Count; i++)
+        {
+            int pathScore = 1;
+            for (int j = 0; j < visitorInterest.Count; j++)
+            {
+                pathScore += firstPickPhase[i].GetNumberInterestPoint(visitorInterest[j]);
+            }
+            scores.Add(pathScore);
+            maxScore += pathScore;
+        }
+
+        int chosenScore = UnityEngine.Random.Range(0, maxScore+1);
+
+        for(int i = 0; i < scores.Count; i++)
+        {
+            chosenScore -= scores[i];
+            if(chosenScore <= 0)
+            {
+                toReturn = firstPickPhase[i];
+                break;
             }
         }
 
         return toReturn;
     }
 
-    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nécéssité d'un système de Pool global ?
+    private List<VisitorAgentBehave> GetAllUsedVisitor()
+    {
+        List<VisitorAgentBehave> toReturn = new List<VisitorAgentBehave>();
+        for (int i = 0; i < visitorPool.Count; i++)
+        {
+            if (visitorPool[i].gameObject.activeSelf)
+            {
+                toReturn.Add(visitorPool[i]);
+            }
+        }
+        return toReturn;
+    }
+
+    private VisitorAgentBehave GetAvailableVisitor() //CODE REVIEW : Nï¿½cï¿½ssitï¿½ d'un systï¿½me de Pool global ?
     {
         for(int i = 0; i < visitorPool.Count; i++)
         {
@@ -139,6 +217,7 @@ public class VisitorManager : MonoBehaviour
                 toReturn++;
             }
         }
+
         return toReturn;
     }
 }

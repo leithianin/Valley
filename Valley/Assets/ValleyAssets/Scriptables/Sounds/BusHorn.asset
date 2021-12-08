@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f06144026466a047a87cab89b9759dd, type: 3}
+  m_Name: BusHorn
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: e367988633b06cd42a611b87ce40d960, type: 3}
+  - {fileID: 8300000, guid: f3f3ad37858187e4b89b5279ea2d5a23, type: 3}
+  - {fileID: 8300000, guid: 89d5098779ca8d8408a84baab3280c8f, type: 3}
+  - {fileID: 8300000, guid: 9b23fc1fdf249a24f823245117e0f652, type: 3}
+  - {fileID: 8300000, guid: 474f0bf7d125c7b4bb2881c23469deea, type: 3}
+  - {fileID: 8300000, guid: 34dc28cdf79b402419f84b59a82fc8c4, type: 3}
+  - {fileID: 8300000, guid: aa1c394057c2d6547b405b8349a23c2d, type: 3}
+  - {fileID: 8300000, guid: 6e773bdf885a75a45a5a29bb58dcd09f, type: 3}
+  - {fileID: 8300000, guid: e5596db88cd9ef846adc01a3096155b9, type: 3}
+  mixer: {fileID: 2244245960347819052, guid: 18f58cbf767631e449ad3c9327be2b90, type: 2}
+  loopTime: -1

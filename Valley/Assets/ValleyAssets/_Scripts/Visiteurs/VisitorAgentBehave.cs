@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 
 public class VisitorAgentBehave : MonoBehaviour
@@ -12,23 +13,32 @@ public class VisitorAgentBehave : MonoBehaviour
     private PathPoint spawnPoint;
     private bool isWalking;
 
+    [HideInInspector] public ValleyArea currentArea;
+
+    private bool doesAlreadyInteract;
+
+    private int currentPathIndex;
+
+    private VisitorScriptable visitorType;
+
+    [SerializeField] private AnimationHandler currentDisplay;
+
+    [Header("Feedbacks")]
+    public UnityEvent PlayOnSatisfactionAdd;
+    public UnityEvent PlayOnSatisfactionSubstract;
+
     public Vector2 GetPosition => new Vector2(transform.position.x, transform.position.z);
 
     public NavMeshAgent Agent => datas.agent;
 
     public VisitorData Data => datas;
 
-    public ValleyArea currentArea;
-
-    private bool doesAlreadyInteract;
-
-    private int currentPathIndex;
-
-    public VisitorScriptable visitorType;
 
     // Update is called once per frame
     void Update()
     {
+        AddSatisfaction((visitorType.SatisfactionUpdate / 10) * Time.deltaTime, false);
+
         if (datas.agent.enabled && !datas.agent.pathPending && isWalking)
         {
             if (datas.agent.remainingDistance <= datas.agent.stoppingDistance)
@@ -41,9 +51,9 @@ public class VisitorAgentBehave : MonoBehaviour
         }
     }
 
-    public void SetVisitor(PathPoint nSpawnPoint, VisitorScriptable nType)
+    public void SetVisitor(PathPoint nSpawnPoint, Vector3 spawnPosition, VisitorScriptable nType)
     {
-        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.InterestedActivities);
+        Valley_PathData wantedPath = VisitorManager.ChoosePath(nSpawnPoint, nType.Objectives, nType.InterestedActivities);
 
         if (wantedPath != null)
         {
@@ -51,6 +61,7 @@ public class VisitorAgentBehave : MonoBehaviour
 
             datas.agent.speed = visitorType.Speed;
             datas.noiseMade = visitorType.SoundProduced;
+            datas.satisfactionScore = 0;
 
             spawnPoint = nSpawnPoint;
 
@@ -58,17 +69,28 @@ public class VisitorAgentBehave : MonoBehaviour
             datas.lastPoint = nSpawnPoint;
             datas.currentPoint = nSpawnPoint;
 
-            transform.position = nSpawnPoint.Position;
+            transform.position = spawnPosition;
 
             gameObject.SetActive(true);
 
+            if (currentDisplay != null)
+            {
+                Destroy(currentDisplay.gameObject);
+            }
+
+            currentDisplay = Instantiate(visitorType.Display, transform);
 
             AskToWalk();
 
             SetNextDestination(currentPathIndex);
 
-            datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed += AskDeleteVisitor;
         }
+    }
+
+    public void AskDeleteVisitor()
+    {
+        VisitorManager.DeleteVisitor(this);
     }
 
     public void UnsetVisitor()
@@ -88,17 +110,20 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = VisitorManager.ChooseNextDestination(datas);
             if (isWalking)
             {
+                currentDisplay.PlayBodyAnim(BodyAnimationType.Walk);
                 currentPathIndex = 0;
 
-                datas.lastPoint.OnPointDestroyed -= UnsetVisitor;
-                datas.currentPoint.OnPointDestroyed += UnsetVisitor;
+                datas.lastPoint.OnPointDestroyed -= AskDeleteVisitor;
+                datas.currentPoint.OnPointDestroyed += AskDeleteVisitor;
             }
         }
     }
 
     private void SetNextDestination(int pathIndex)
     {
-        datas.agent.destination = datas.wantedTargets[pathIndex];
+        Vector3 randomPosition = datas.wantedTargets[pathIndex] + UnityEngine.Random.insideUnitSphere * 2f;
+
+        datas.agent.destination = randomPosition;
     }
 
     private void ReachDestination()
@@ -113,10 +138,11 @@ public class VisitorAgentBehave : MonoBehaviour
             isWalking = false;
             if (datas.currentPoint == spawnPoint)
             {
-                VisitorManager.RemoveVisitor(this);
+                VisitorManager.DeleteVisitor(this);
             }
             else
             {
+                currentDisplay.PlayBodyAnim(BodyAnimationType.Idle);
                 VisitorManager.MakeVisitorWait(Time.deltaTime, AskToWalk);
             }
         }
@@ -140,24 +166,45 @@ public class VisitorAgentBehave : MonoBehaviour
         if(!doesAlreadyInteract)
         {
             doesAlreadyInteract = true;
-            datas.agent.isStopped = true;
-            datas.agent.enabled = false;
+            //datas.agent.isStopped = true;
+            //datas.agent.enabled = false;
         }
     }
 
     public void EndInteraction()
     {
         doesAlreadyInteract = false;
-        datas.agent.enabled = true;
-        datas.agent.isStopped = false;
+        //datas.agent.enabled = true;
+        //datas.agent.isStopped = false;
     }
     #endregion
+
+    public void CrossVisitor()
+    {
+        AddSatisfaction(visitorType.SatisfactionNextToOther, true);
+    }
+
+    public void AddSatisfaction(float toAdd, bool playFeedback)
+    {
+        datas.AddSatisfaction(toAdd);
+        if (playFeedback)
+        {
+            if (toAdd > 0)
+            {
+                PlayOnSatisfactionAdd?.Invoke();
+            }
+            else if (toAdd < 0)
+            {
+                PlayOnSatisfactionSubstract?.Invoke();
+            }
+        }
+    }
 
     private void OnDisable()
     {
         if (datas.currentPoint != null)
         {
-            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed -= AskDeleteVisitor;
         }
     }
 
@@ -165,7 +212,7 @@ public class VisitorAgentBehave : MonoBehaviour
     {
         if(datas.currentPoint != null)
         {
-            datas.currentPoint.OnPointDestroyed -= UnsetVisitor;
+            datas.currentPoint.OnPointDestroyed -= AskDeleteVisitor;
         }
     }
 

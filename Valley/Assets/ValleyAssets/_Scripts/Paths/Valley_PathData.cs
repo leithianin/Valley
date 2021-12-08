@@ -19,9 +19,40 @@ public class Valley_PathData
     /// <returns>Renvoi TRUE si le chemin possède le point. Sinon, renvoi FALSE.</returns>
     public bool ContainsPoint(PathPoint toCheck)
     {
-        for(int i = 0; i < pathFragment.Count; i++)
+        for (int i = 0; i < pathFragment.Count; i++)
         {
-            if(pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
+            if (pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool ContainsPointWithStart(PathPoint toCheck)
+    {
+        if(startPoint == toCheck)
+        {
+            return true;
+        }
+
+        for (int i = 0; i < pathFragment.Count; i++)
+        {
+            if (pathFragment[i].endPoint == toCheck || pathFragment[i].startPoint == toCheck)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool ContainsLandmark(LandMarkType wantedLandmark)
+    {
+        for (int i = 0; i < valleyAreaList.Count; i++)
+        {
+            if (valleyAreaList[i].ContainsLandmarkType(wantedLandmark))
             {
                 return true;
             }
@@ -29,16 +60,20 @@ public class Valley_PathData
         return false;
     }
 
-    public bool ContainsInterestPoint(InterestPointType wantedInterest)
+    public int GetNumberInterestPoint(InterestPointType wantedInterest)
     {
+        int toReturn = 0;
+        List<ValleyArea> checkedArea = new List<ValleyArea>();
+
         for(int i = 0; i < valleyAreaList.Count; i++)
         {
-            if(valleyAreaList[i].ContainsInterestType(wantedInterest))
+            if (!checkedArea.Contains(valleyAreaList[i]))
             {
-                return true;
+                checkedArea.Add(valleyAreaList[i]);
+                toReturn += valleyAreaList[i].GetNumberInterestType(wantedInterest);
             }
         }
-        return false;
+        return toReturn;
     }
 
     public bool IsUsable(PathPoint toCheck)

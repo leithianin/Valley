@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd269663867d56d42a7e40eee8a62f4d, type: 3}
+  m_Name: Tourist
+  m_EditorClassIdentifier: 
+  display:
+  - {fileID: 5437589292272554444, guid: d560f88498639b241b2e80c09bf87b5b, type: 3}
+  - {fileID: 847945932741367116, guid: 75232a8cd1353824e93132accfcc572e, type: 3}
+  - {fileID: 3748557771633236746, guid: c2aa9eeeb6d7a8f4497d74546d7a7a8e, type: 3}
+  speed: 1
+  soundProduced: 5
+  objectives: 
+  interestedActivities: 00000000
+  satisfactionByTenSecond: 0.1
+  satisfactionNextToOthers: 0

@@ -14,7 +14,7 @@ public class MarkerFollowMouse : MonoBehaviour
     {
         if(construction != null)
         {
-            enabled = true;
+            gameObject.SetActive(true);
 
             if (construction != currentConstruction)
             {
@@ -25,12 +25,14 @@ public class MarkerFollowMouse : MonoBehaviour
 
                 currentConstruction = Instantiate(construction, LandInteractions.GetHitPoint(), Quaternion.identity, transform);
 
+                currentConstruction.transform.localPosition = Vector3.zero;
+
                 currentConstruction.SpawnObject(LandInteractions.GetHitPoint());
             }
         }
         else
         {
-            enabled = false;
+            gameObject.SetActive(false);
         }
 
         ConstructionManager.ChooseConstruction(currentConstruction);

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,13 +13,30 @@ public class UIManager : MonoBehaviour
     private GameObject markerSelected;
 
     public LandInteractions _landInteraction;
+
+    public Text woodCounter;
+
+    public Text visitorsCounter;
+
+
     public static List<Valley_PathData> pathToModify = new List<Valley_PathData>();
+
+    public List<GameObject> toolsList = new List<GameObject>();
+    private bool isToolSelected = false;
+
+    public UnityEvent OnMovingTool;
+    public UnityEvent OnMovingToolCompleted;
+
+    public static UnityEvent GetOnMovingTool => instance.OnMovingTool;
+    public static UnityEvent GetOnMovingToolCompleted => instance.OnMovingToolCompleted;
+
 
     private void Awake()
     {
         instance = this;
     }
 
+    #region Create/Modify Path
     //UI Create or Modify Path
     public static void ShowButtonsUI(GameObject marker)
     {
@@ -84,4 +103,51 @@ public class UIManager : MonoBehaviour
     {
         buttonsList.SetActive(false);
     }
+    #endregion
+
+    public void OnSelected()
+    {
+        if(!isToolSelected)
+        {
+            OnHideTools();
+        }
+        else
+        {
+            OnShowTools();
+        }
+    }
+
+    public void OnShowTools()
+    {
+        Debug.Log("Show Tool");
+        isToolSelected = false;
+
+        foreach (GameObject go in toolsList)
+        {
+            go.GetComponent<dfb_MoveSign>().OnMove();
+        }
+    }
+
+    public void OnHideTools()
+    {
+        Debug.Log("Hide Tool");
+        isToolSelected = true;
+
+        foreach (GameObject go in toolsList)
+        {
+            go.GetComponent<dfb_MoveSign>().OnMove();
+        }
+    }
+
+    #region Ressources
+    public static void UpdateWood(int woodNb)
+    {
+        instance.woodCounter.text = woodNb.ToString();
+    }
+
+    public static void UpdateVisitors(int visitorNb)
+    {
+        instance.visitorsCounter.text = visitorNb.ToString();
+    }
+    #endregion
 }
