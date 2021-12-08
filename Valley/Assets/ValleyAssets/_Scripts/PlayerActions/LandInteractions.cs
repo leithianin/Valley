@@ -53,6 +53,11 @@ public class LandInteractions : MonoBehaviour
         {
             AskToDeleteConstruction(selectedConstruction);
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToolManager.UnselectTool();
+        }
     }
 
     private void OnMouseInput()

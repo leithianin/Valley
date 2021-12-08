@@ -26,10 +26,13 @@ public abstract class ConstructionPreview : MonoBehaviour
 
     protected abstract bool OnCanPlaceObject(Vector3 position);
 
+    protected abstract void OnAskToPlace(Vector3 position);
+
     public bool AskToPlace(Vector3 position)
     {
         bool canPlace = CanPlaceObject(position);
-        if(canPlace)
+        OnAskToPlace(position);
+        if (canPlace)
         {
             PlayOnAskToPlaceTrue?.Invoke();
         }

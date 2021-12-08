@@ -41,22 +41,44 @@ public class ToolManager : MonoBehaviour
         eventSystemKeepSelectedScript = EventSystem.current.gameObject.GetComponent<EventSystemKeepSelected>();
     }
 
+    public static void UnselectTool()
+    {
+        instance.OnUnselectTool();
+    }
+
+    private void OnUnselectTool()
+    {
+        switch(_selectedTool)
+        {
+            case SelectedTools.PathTool:
+                UnselectPathTool();
+                break;
+        }
+
+        _selectedTool = SelectedTools.None;
+    }
+
     public void OnSelectPathTool(RectTransform rt)
     {
         if(_selectedTool == SelectedTools.PathTool)
         {
-            PlayOnPathToolUnselected?.Invoke();
-
-            Valley_PathManager.CompletePath();
-            constructionPrevisualisation.SetSelectedTool(null);
-            eventSystemKeepSelectedScript.RemoveLastSelected();
             _selectedTool = SelectedTools.None;
-            EventSystem.current.SetSelectedGameObject(null);
+            UnselectPathTool();
         }
         else
         {
             ActivePathTool(rt);
         }
+    }
+
+    private void UnselectPathTool()
+    {
+        PlayOnPathToolUnselected?.Invoke();
+
+        Valley_PathManager.CompletePath();
+        constructionPrevisualisation.SetSelectedTool(null);
+        eventSystemKeepSelectedScript.RemoveLastSelected();
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void ActivePathTool(RectTransform rt)
@@ -72,7 +94,7 @@ public class ToolManager : MonoBehaviour
         return eventSystemKeepSelectedScript;
     }
 
-    public static void CreateLink(PathPoint firstObjectToLink)
+    public static void CreateLink(PathPoint firstObjectToLink) // CODE REVIEW : Voir pour le mettre dans le LinkManager
     {
         LineRenderer ln = Instantiate(instance.lineRendererObject, firstObjectToLink.transform.position, Quaternion.identity, firstObjectToLink.transform);
 
