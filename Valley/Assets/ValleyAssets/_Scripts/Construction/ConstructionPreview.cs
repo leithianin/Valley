@@ -47,6 +47,11 @@ public abstract class ConstructionPreview : MonoBehaviour
     {
         bool toReturn = true;
 
+        if(RessourcesManager.GetCurrentWoods < realConstruction.GetCost)
+        {
+            toReturn = false;
+        }
+
         NavMeshHit hit;
         if (!NavMesh.SamplePosition(position, out hit, 1/navMeshSensitivity, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
         {
