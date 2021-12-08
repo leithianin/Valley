@@ -109,7 +109,10 @@ public class UIManager : MonoBehaviour
     {
         if(!isToolSelected)
         {
-            OnHideTools();
+            if (!ToolManager.IsToolSelected())
+            {
+                OnHideTools();
+            }
         }
         else
         {
