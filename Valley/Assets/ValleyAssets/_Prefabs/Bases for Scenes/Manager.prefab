@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 3650550073889176079}
   - component: {fileID: 3650550073889176078}
   - component: {fileID: 3650550073889176076}
-  - component: {fileID: 3650550073889176077}
   - component: {fileID: 3650550073889176074}
   - component: {fileID: 3650550073889176075}
   - component: {fileID: 3650550073889176072}
   - component: {fileID: 3116655948868006549}
+  - component: {fileID: 7588236688431548974}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -72,26 +72,13 @@ MonoBehaviour:
   constructionPrevisualisation: {fileID: 0}
   lineRendererObject: {fileID: 7160680725245886707, guid: 9c51f724b13fd6146bae5414b4e2e126, type: 3}
   matReference: {fileID: 2100000, guid: e1ff710e1fccf2e4b8cce748ab89ab87, type: 2}
+  PlayOnPathToolSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPathToolUnselected:
+    m_PersistentCalls:
+      m_Calls: []
   pathpointPrefab: {fileID: 1488652798977640689, guid: 1a166755e071d3549803c1dd21e92c96, type: 3}
---- !u!114 &3650550073889176077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3650550073889176177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1311251dcdfa1d4dab9c0c33f3eed6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonsList: {fileID: 0}
-  _landInteraction: {fileID: 5750408153693241108, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
-  toolsList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &3650550073889176074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +186,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  PlayOnVisitorSpawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3650550073889176075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +226,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentAttractivity: 0
+--- !u!114 &7588236688431548974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3650550073889176177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9f8fdf0a0dc844884a032ce7930345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seconds: 2.5
+  woodToGain: 5

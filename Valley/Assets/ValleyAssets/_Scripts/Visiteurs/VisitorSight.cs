@@ -10,7 +10,6 @@ public class VisitorSight : MonoBehaviour
     {
 
         InterestPoint point = other.GetComponent<InterestPoint>(); // Voir pour ne pas utiliser de GetComponent
-        Debug.Log(point);
         if (point != null)
         {
             visitor.AskInteraction(point);
