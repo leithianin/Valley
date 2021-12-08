@@ -1840,6 +1840,12 @@ MonoBehaviour:
   rt: {fileID: 3468025606302787729}
   move: {fileID: 3468025606285326334}
   timeFeedback: 1
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &3468025606302787759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,6 +2809,12 @@ MonoBehaviour:
   rt: {fileID: 3468025606538549726}
   move: {fileID: 3468025606285326334}
   timeFeedback: 1
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3468025606548992663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,6 +3941,12 @@ MonoBehaviour:
   rt: {fileID: 3468025606849904701}
   move: {fileID: 3468025606285326334}
   timeFeedback: 1
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3468025606909476891
 GameObject:
   m_ObjectHideFlags: 0
@@ -5285,7 +5303,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3111724228432933773}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: OnSelected
         m_Mode: 1
@@ -6381,6 +6399,12 @@ MonoBehaviour:
   rt: {fileID: 3468025607701303282}
   move: {fileID: 3468025606285326334}
   timeFeedback: 1
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3468025607711070948
 GameObject:
   m_ObjectHideFlags: 0
