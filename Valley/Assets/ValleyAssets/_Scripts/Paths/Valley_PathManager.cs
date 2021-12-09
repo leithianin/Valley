@@ -245,6 +245,7 @@ public class Valley_PathManager : MonoBehaviour
         {
             if (isNewPath)
             {
+                Debug.Log("New Path");
                 firstMarker = markerAlreadyPlace;
                 CreatePath();
                 //GetCurrentPath.pathPoints.Add(markerAlreadyPlace);
@@ -306,6 +307,8 @@ public class Valley_PathManager : MonoBehaviour
             EndPath();
             ToolManager.EndLink(currentMarker);
             isNewPath = true;
+
+            currentMarker = null;
         }
     }
 

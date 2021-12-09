@@ -98,6 +98,7 @@ public class VisibleLink : MonoBehaviour
         if (line != null)
         {
             Destroy(line.gameObject);
+            line = null;
         }
     }
 

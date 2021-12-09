@@ -62,13 +62,11 @@ public abstract class ConstructionPreview : MonoBehaviour
         NavMeshHit hit;
         if (!NavMesh.SamplePosition(position, out hit, 1/navMeshSensitivity, NavMesh.AllAreas)) //Check si on est sur un terrain praticable
         {
-            Debug.Log("Blocking Navmesh");
             toReturn = false;
         }
 
         if(objectBlockingPose.Count > 0)
         {
-            Debug.Log("Blocking Obstacle");
             toReturn = false;
         }
 

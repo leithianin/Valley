@@ -648,10 +648,10 @@ PrefabInstance:
       propertyPath: PlayOnPathToolUnselected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 6590488071852739603, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
-      propertyPath: visitorsCounter
-      value: 
-      objectReference: {fileID: 1896063828}
+    - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: spawnRate
       value: 10
@@ -16752,17 +16752,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1896063828 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6095371865655148703, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
-  m_PrefabInstance: {fileID: 16402917}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1896191616
 GameObject:
   m_ObjectHideFlags: 0
