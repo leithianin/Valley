@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7303767966143133708}
   - component: {fileID: 7303767966143133711}
   m_Layer: 2
-  m_Name: Landmark_Tree
+  m_Name: Landmark_Tourist
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
