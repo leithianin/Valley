@@ -60,11 +60,11 @@ public class VisitorManager : MonoBehaviour
         OnVisitorsUpdate?.Invoke(instance.UsedVisitorNumber());
     }
 
-    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest)
+    public static Valley_PathData ChoosePath(PathPoint spawnPoint, List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest, out LandMarkType newObjective)
     {
         List<Valley_PathData> possiblesPath = Valley_PathManager.GetAllPossiblePath(spawnPoint);
 
-        return instance.GetMostInterestingPath(visitorObjectives, visitorInterest, possiblesPath);
+        return instance.GetMostInterestingPath(visitorObjectives, visitorInterest, possiblesPath, out newObjective);
     }
 
     public static bool ChooseNextDestination(VisitorData visitor)
@@ -127,9 +127,11 @@ public class VisitorManager : MonoBehaviour
         StartCoroutine(SpawnVisitorContinue());
     }
 
-    private Valley_PathData GetMostInterestingPath(List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath)
+    private Valley_PathData GetMostInterestingPath(List<LandMarkType> visitorObjectives, List<InterestPointType> visitorInterest, List<Valley_PathData> possiblesPath, out LandMarkType newObjective)
     {
         // REVOIR LES CALCULS DE CHEMINS //
+        newObjective = LandMarkType.None;
+
         List<Valley_PathData> firstPickPhase = new List<Valley_PathData>();
         for (int k = 0; k < visitorObjectives.Count; k++)
         {
@@ -143,16 +145,22 @@ public class VisitorManager : MonoBehaviour
 
             if(firstPickPhase.Count > 0)
             {
+                newObjective = visitorObjectives[k];
+
+                Debug.Log("First phase objective : " + k);
                 break;
             }
         }
 
         if (firstPickPhase.Count <= 0)
         {
+            Debug.Log("First phase null");
             firstPickPhase = new List<Valley_PathData>(possiblesPath);
         }
 
-        Valley_PathData toReturn = firstPickPhase[UnityEngine.Random.Range(0,possiblesPath.Count)];
+        Debug.Log("First phase count : " + firstPickPhase.Count);
+
+        Valley_PathData toReturn = firstPickPhase[UnityEngine.Random.Range(0, firstPickPhase.Count)];
         List<int> scores = new List<int>();
         int maxScore = 0;
 

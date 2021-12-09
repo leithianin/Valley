@@ -5,11 +5,8 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/SampleSceneAssets/Scenes/SampleScene.unity
-    guid: 3db1837cc97a95e4c98610966fac2b0b
   - enabled: 1
-    path: Assets/ValleyAssets/_Scenes/GP/ALC_Scene.unity
-    guid: bd1d859883b0b9d4f9c539b7a3b5be97
+    path: Assets/ValleyAssets/_Scenes/GP/TIL_Scene.unity
+    guid: 343b386a2a2b43d4697f6d74eab27fea
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e8094051cb3e66f49946c99239e7cc76, type: 2}
