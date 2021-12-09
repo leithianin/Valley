@@ -6986,7 +6986,7 @@ MonoBehaviour:
   buttonsList: {fileID: 3468025606637111272}
   _landInteraction: {fileID: 0}
   woodCounter: {fileID: 3468025606584744924}
-  visitorsCounter: {fileID: 0}
+  visitorsCounter: {fileID: 3468025606126546053}
   toolsList:
   - {fileID: 3468025606538549727}
   - {fileID: 3468025606302787730}
