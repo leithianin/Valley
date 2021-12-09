@@ -384,7 +384,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &4396013656849888267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +409,7 @@ MonoBehaviour:
       valleyAreaList: []
     noiseMade: 2
     satisfactionScore: 0
+    objective: 0
     wantedTargets: []
   currentArea:
     nom: 
@@ -457,7 +458,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 4396013656849888266}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
