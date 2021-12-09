@@ -120,6 +120,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - DepthWaterAlpha: 1
     - EdgeFoamAmount: 0.52
     - EdgeFoamCutoff: 1.57
     - EdgeFoamDetails: 100
@@ -130,6 +131,7 @@ Material:
     - FoamScale: 6.15
     - FoamSpeed: 0.52
     - FoamStrength: 0.12
+    - HighlightSensibility: 0.105
     - RefractionScale: 1
     - RefractionSpeed: 0
     - RefractionStrength: 2
@@ -144,11 +146,13 @@ Material:
     - RipplesStrength: 1
     - Roughness: 1
     - Scale: 9.24
+    - ShallowWaterAlpha: 0.1
     - Speed: 0.2
+    - Tiling: -1.7
     - WaterDepth: 0.79
-    - WavesAmount: 50
+    - WavesAmount: 256.6
     - WavesHeight: 0.001
-    - WavesSpeed: 0.01
+    - WavesSpeed: 0.001
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -267,9 +271,12 @@ Material:
     - EdgeFoamColor: {r: 1, g: 1, b: 1, a: 0.2901961}
     - FoamColor: {r: 0.6509434, g: 0.22414559, b: 0.5878936, a: 0.45490196}
     - HighlightColor: {r: 1, g: 1, b: 1, a: 1}
+    - HighlightColor01: {r: 1, g: 1, b: 1, a: 0}
+    - HighlightColor02: {r: 0, g: 0, b: 0, a: 0}
     - RippleColor: {r: 0.256408, g: 0.8113208, b: 0.8113208, a: 1}
     - RipplesColor: {r: 1, g: 0.627451, b: 0.71247643, a: 1}
     - ShallowWaterColor: {r: 0.63529414, g: 0.8431373, b: 0.8941177, a: 1}
+    - WavesDirection: {r: 0.001, g: 0.001, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
