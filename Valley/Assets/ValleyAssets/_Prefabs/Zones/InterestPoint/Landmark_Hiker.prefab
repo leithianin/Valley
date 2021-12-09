@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4401203529856771798}
   - component: {fileID: 4401203529856771799}
   m_Layer: 2
-  m_Name: Landmark_Lake
+  m_Name: Landmark_Hiker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
