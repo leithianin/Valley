@@ -160,6 +160,7 @@ MonoBehaviour:
   toMakeJump: {fileID: 7631005811846532816}
   startPosition: {fileID: 478209250244338241}
   jumpHeight: 1
+  jumpDuration: 2
 --- !u!1 &2915410980641749692
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +644,7 @@ MonoBehaviour:
   toMakeJump: {fileID: 5554907777652523862}
   startPosition: {fileID: 478209250244338241}
   jumpHeight: 1
+  jumpDuration: 0
 --- !u!1 &8909845928727213944
 GameObject:
   m_ObjectHideFlags: 0
