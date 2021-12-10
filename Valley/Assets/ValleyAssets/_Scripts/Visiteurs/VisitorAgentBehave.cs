@@ -121,9 +121,18 @@ public class VisitorAgentBehave : MonoBehaviour
 
     private void SetNextDestination(int pathIndex)
     {
-        Vector3 randomPosition = datas.wantedTargets[pathIndex] + UnityEngine.Random.insideUnitSphere * 2f;
+        Vector3 targetPosition = datas.wantedTargets[pathIndex];
 
-        datas.agent.destination = randomPosition;
+        if (Vector3.Distance(transform.position, targetPosition) <= 2f)
+        {
+            ReachDestination();
+        }
+        else
+        {
+            Vector3 randomPosition = datas.wantedTargets[pathIndex] + UnityEngine.Random.insideUnitSphere * 2f;
+
+            datas.agent.destination = randomPosition;
+        }
     }
 
     private void ReachDestination()

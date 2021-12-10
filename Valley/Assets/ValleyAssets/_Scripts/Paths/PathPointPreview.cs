@@ -11,13 +11,22 @@ public class PathPointPreview : ConstructionPreview
 
     protected override void OnAskToPlace(Vector3 position)
     {
-        if (VisibleLinkManager.GetLineLength() > maxDistanceFromLastPoint)
+        if (!IsInDistance(position))
         {
             PlayOnDistanceTooFar?.Invoke();
         }
     }
 
     protected override bool OnCanPlaceObject(Vector3 position)
+    {
+        if (IsInDistance(position))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool IsInDistance(Vector3 position)
     {
         if (VisibleLinkManager.GetLineLength() <= maxDistanceFromLastPoint)
         {

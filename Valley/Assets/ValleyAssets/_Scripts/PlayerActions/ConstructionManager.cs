@@ -43,10 +43,15 @@ public class ConstructionManager : MonoBehaviour
 
     public static void PlaceOnExistingConstruction(Construction existingConstruction, SelectedTools toolType)
     {
-        switch(toolType)
+        switch (toolType)
         {
             case SelectedTools.PathTool:
-                Valley_PathManager.PlaceOnPoint(existingConstruction as PathPoint);
+                PathPointPreview pointPreview = GetCurrentConstruction as PathPointPreview;
+
+                if (pointPreview.IsInDistance(existingConstruction.transform.position))
+                {
+                    Valley_PathManager.PlaceOnPoint(existingConstruction as PathPoint);
+                }
                 break;
         }
     }

@@ -99,7 +99,7 @@ public class VisitorManager : MonoBehaviour
 
     IEnumerator SpawnVisitorContinue() //CODE REVIEW : Voir comment on peut g�rer le spawn des visiteurs. Commencer � mettre des datas (Spawn rate, delay between spawn, ...)
     {
-        int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 3, ValleyManager.AttractivityLevel + 5);
+        int toSpawn = UnityEngine.Random.Range(ValleyManager.AttractivityLevel * 2, (ValleyManager.AttractivityLevel * 2) + 3);
 
         bool hasPlayFeedback = false;
 
