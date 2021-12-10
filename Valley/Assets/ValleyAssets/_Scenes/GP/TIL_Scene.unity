@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 40
+    agentSlope: 50
     agentClimb: 0.3
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -260,6 +260,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 242644307778831007, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 242644307778831007, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 520953231340923441, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -268,6 +276,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1105839202240177363, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 1105839202240177363, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
+    - target: {fileID: 2101384036197129849, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 2101384036197129849, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
+    - target: {fileID: 3164192245202264115, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 3164192245202264115, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 3285270402170529160, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -276,10 +308,26 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3886910920097349596, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 3886910920097349596, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 4291100423078736931, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5153089760151038046, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 5153089760151038046, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 5321149610227298020, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: areas.Array.data[2].interestPoints.Array.size
       value: 2
@@ -356,6 +404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base For Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 5628090528352487321, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 5628090528352487321, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 5628090528895349820, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -404,6 +460,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5998201294401063225, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 5998201294401063225, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 6095371864934706214, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: timeFeedback
       value: 0.2
@@ -661,6 +725,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: spawnRate
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: PlayOnVisitorSpawn.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -692,6 +760,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2.42
       objectReference: {fileID: 0}
+    - target: {fileID: 7920521199917554886, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923844886435130583, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 7923844886435130583, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
+    - target: {fileID: 8114072545180371513, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[1]
+      value: 
+      objectReference: {fileID: 1586727585530701467, guid: a737d795528f3894dbbe001619bd020b, type: 3}
+    - target: {fileID: 8114072545180371513, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: meshAliveTrees.Array.data[2]
+      value: 
+      objectReference: {fileID: -8203659514091884278, guid: ae4794c57ff47ff4b9ff591a95263fae, type: 3}
     - target: {fileID: 9099511347439476379, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -16481,7 +16569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b94b83a041334498db0c52203904cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLifespan: 10
+  dayLifespan: 120
   startRotation: {x: 50, y: -30, z: 0}
   rotationValueForOneDay: {x: 0, y: 360, z: 0}
   directionalLightTransform: {fileID: 1863567031}

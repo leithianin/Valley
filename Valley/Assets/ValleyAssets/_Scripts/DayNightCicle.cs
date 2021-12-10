@@ -30,8 +30,6 @@ public class DayNightCicle : MonoBehaviour
             currentDayHour -= dayLifespan;
         }
 
-        Debug.Log((rotationValueForOneDay.x * GetCurrentDayPercent) % 180);
-
         directionalLightTransform.eulerAngles = new Vector3((startRotation.x + rotationValueForOneDay.x * GetCurrentDayPercent) % 180, startRotation.y + rotationValueForOneDay.y * GetCurrentDayPercent, startRotation.z + rotationValueForOneDay.z * GetCurrentDayPercent);
 
         directionalLight.SetColor(gradient.Evaluate(GetCurrentDayPercent), temperatureVariation.Evaluate(GetCurrentDayPercent) * (maximalTemperature - minimalTemperature) + minimalTemperature);

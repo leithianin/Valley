@@ -11,6 +11,7 @@ public class S_Move : MonoBehaviour
     [SerializeField] private float axisSpeed;
     [SerializeField] private Transform cameraTransform;
 
+    [SerializeField] private AnimationCurve cameraSpeedCoef;
     [SerializeField] private AnimationCurve decelerationCurve;
     [SerializeField] private float decelerationSpeed = 0.3f;
     [SerializeField] private float angleByScroll = 10f;
@@ -33,6 +34,8 @@ public class S_Move : MonoBehaviour
     private float startLerp = 0;
 
     private Vector3 lastPosition;
+
+    private float ZoomPercent => (currentAngle - angleLimitDown) / (angleLimitUp - angleLimitDown);
 
     private void Awake()
     {
@@ -65,12 +68,15 @@ public class S_Move : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
         UpdateCameraZoom();
 
         _moveInput = _playerActions.Camera.Move.ReadValue<Vector2>();
         _moveInput.z = _moveInput.y;
         _moveInput.y = 0f;
-        _rbody.velocity = _moveInput * axisSpeed;
+
+        _rbody.velocity = _moveInput * (axisSpeed * cameraSpeedCoef.Evaluate(ZoomPercent));
     }
 
     private void UpdateCameraZoom()

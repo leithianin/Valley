@@ -15,7 +15,7 @@ MonoBehaviour:
   display:
   - {fileID: 6139987112678351261, guid: d42bd4545fb86184fb2aa4700b3d1252, type: 3}
   speed: 1.5
-  soundProduced: 2
+  soundProduced: 0.5
   objectives: 0100000002000000
   interestedActivities: 02000000
   satisfactionByTenSecond: 0.1

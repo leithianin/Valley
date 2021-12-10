@@ -146,19 +146,14 @@ public class VisitorManager : MonoBehaviour
             if(firstPickPhase.Count > 0)
             {
                 newObjective = visitorObjectives[k];
-
-                Debug.Log("First phase objective : " + k);
                 break;
             }
         }
 
         if (firstPickPhase.Count <= 0)
         {
-            Debug.Log("First phase null");
             firstPickPhase = new List<Valley_PathData>(possiblesPath);
         }
-
-        Debug.Log("First phase count : " + firstPickPhase.Count);
 
         Valley_PathData toReturn = firstPickPhase[UnityEngine.Random.Range(0, firstPickPhase.Count)];
         List<int> scores = new List<int>();
