@@ -168,7 +168,7 @@ public class UIManager : MonoBehaviour
         foreach (GameObject go in instance.toolsList)
         {
             ButtonsFeedbacks bf = go.GetComponent<ButtonsFeedbacks>();
-            bf.OnSelected();
+            bf.OnReset();
             bf.PlayOnPointerExit?.Invoke();
         }
     }

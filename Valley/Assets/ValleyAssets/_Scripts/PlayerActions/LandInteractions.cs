@@ -35,7 +35,7 @@ public class LandInteractions : MonoBehaviour
         {
             if (EventSystem.current.currentSelectedGameObject != null) // CODE REVIEW : A quoi ça sert ?
             {
-                Debug.Log("UI");
+                //Debug.Log("UI");
             }
             else
             {
@@ -57,6 +57,7 @@ public class LandInteractions : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             ToolManager.UnselectTool();
+            UIManager.ResetButtons();
         }
     }
 

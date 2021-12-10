@@ -26,13 +26,21 @@ public class ButtonsFeedbacks : MonoBehaviour
     {
         if (!isSelected)
         {
+            Debug.Log("Je selectionne");
             isSelected = true;
             PlayOnSelected?.Invoke();
         }
         else
         {
+            Debug.Log("Je Deselectionne");
             isSelected = false;
             PlayOnDeselected?.Invoke();
         }
+    }
+
+    public void OnReset()
+    {
+        isSelected = false;
+        PlayOnDeselected?.Invoke();
     }
 }

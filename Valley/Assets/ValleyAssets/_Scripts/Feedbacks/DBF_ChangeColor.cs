@@ -14,14 +14,15 @@ public class DBF_ChangeColor : MonoBehaviour
         img = GetComponent<Image>();
     }
 
-
     public void ChangeColor()
     {
+        Debug.Log("ChangeColor");
         img.color = color;
     }
 
     public void ResetColor()
     {
+        Debug.Log("ResetColor");
         img.color = baseColor;    
     }
 }
