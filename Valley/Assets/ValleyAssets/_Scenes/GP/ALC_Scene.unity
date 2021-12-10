@@ -6322,6 +6322,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0aeb52d41618a43bdd6bb4219cca87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &610314896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6095371866335671749, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+  m_PrefabInstance: {fileID: 16402917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &610314897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610314896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &654995167
 GameObject:
   m_ObjectHideFlags: 0
@@ -8870,6 +8899,35 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!1 &1136547367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6095371865173664745, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+  m_PrefabInstance: {fileID: 16402917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1136547368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136547367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1140514246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9780,6 +9838,35 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!1 &1200892262 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6095371864934706212, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+  m_PrefabInstance: {fileID: 16402917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1200892263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200892262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1204012099
 GameObject:
   m_ObjectHideFlags: 0
