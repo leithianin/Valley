@@ -660,6 +660,10 @@ PrefabInstance:
       propertyPath: curve.m_Curve.Array.data[1].outWeight
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 6590488071852739600, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: terrain
+      value: 
+      objectReference: {fileID: 1335264541}
     - target: {fileID: 6590488071852739602, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: PlayOnPathToolSelected.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -783,6 +787,22 @@ PrefabInstance:
     - target: {fileID: 9099511347439476379, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_RootOrder
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134374236615872013, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: cameraSpeedCoef.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134374236615872013, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: cameraSpeedCoef.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134374236615872013, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: cameraSpeedCoef.m_Curve.Array.data[0].value
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134374236615872013, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: cameraSpeedCoef.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
@@ -10670,6 +10690,11 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!218 &1335264541 stripped
+Terrain:
+  m_CorrespondingSourceObject: {fileID: 471463641119814752, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
+  m_PrefabInstance: {fileID: 2100081956}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1396856929
 GameObject:
   m_ObjectHideFlags: 0
@@ -19591,6 +19616,18 @@ PrefabInstance:
     - target: {fileID: 1649031608060928093, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
       propertyPath: m_Name
       value: LD_MaJ
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649031608625970535, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703366052453622081, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
+      propertyPath: m_Extents.x
+      value: 2.155
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703366052453622081, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
+      propertyPath: m_Extents.z
+      value: 3.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c05cd6fb74bccd4181e02e4cfbf4f60, type: 3}
