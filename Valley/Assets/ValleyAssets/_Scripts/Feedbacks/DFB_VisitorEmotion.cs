@@ -8,13 +8,14 @@ public class DFB_VisitorEmotion : MonoBehaviour
     [SerializeField] private Transform toMakeJump;
     [SerializeField] private Transform startPosition;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float jumpDuration;
 
     Tween jumpTween;
 
     public void PlayFeedback()
     {
         toMakeJump.gameObject.SetActive(true);
-        jumpTween = toMakeJump.DOLocalJump(startPosition.localPosition + new Vector3(0, jumpHeight, 0), 1f, 1, 1f).OnComplete(EndFeedback);
+        jumpTween = toMakeJump.DOLocalJump(startPosition.localPosition + new Vector3(0, jumpHeight, 0), 1f, 1, jumpDuration).OnComplete(EndFeedback);
     }
 
     private void EndFeedback()
