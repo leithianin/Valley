@@ -76,7 +76,6 @@ public class ToolManager : MonoBehaviour
         PlayOnPathToolUnselected?.Invoke();
 
         Valley_PathManager.CompletePath();
-        UIManager.ResetButtons();
         constructionPrevisualisation.SetSelectedTool(null);
         eventSystemKeepSelectedScript.RemoveLastSelected();
         EventSystem.current.SetSelectedGameObject(null);
