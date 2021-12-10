@@ -27,10 +27,14 @@ public class UIAttractivity : MonoBehaviour
                 starsList[i].fillAmount = 1f;
                 f -= 1f;
             }
+            else if(f <= 0f)
+            {
+                starsList[i].fillAmount = 0f;
+            }
             else
             {
                 starsList[i].fillAmount = f;
-                break;
+                f -= f;
             }
         }
     }
