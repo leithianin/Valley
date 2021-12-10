@@ -760,6 +760,10 @@ PrefabInstance:
       propertyPath: PlayOnVisitorSpawn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6899620366084183302, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d210f6696fc0bd24cb56ec30b3422b39, type: 2}
     - target: {fileID: 6899620366465865283, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.42
