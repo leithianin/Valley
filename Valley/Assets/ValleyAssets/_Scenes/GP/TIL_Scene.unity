@@ -260,10 +260,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 40975607110532144, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
-      propertyPath: seconds
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 520953231340923441, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -663,10 +659,6 @@ PrefabInstance:
     - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
-      propertyPath: spawnRate
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6590488071852739604, guid: 91c00b5df2c58c141895dcff8c109e45, type: 3}
       propertyPath: PlayOnVisitorSpawn.m_PersistentCalls.m_Calls.Array.size
