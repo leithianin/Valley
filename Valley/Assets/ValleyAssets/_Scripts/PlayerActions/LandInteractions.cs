@@ -77,7 +77,6 @@ public class LandInteractions : MonoBehaviour
 
             if (GetHitConstruction() != null)
             {
-
                 ConstructionManager.PlaceOnExistingConstruction(GetHitConstruction(), ToolManager._selectedTool);
             }
             else

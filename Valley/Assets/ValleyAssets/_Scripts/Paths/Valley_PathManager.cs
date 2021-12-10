@@ -187,6 +187,7 @@ public class Valley_PathManager : MonoBehaviour
         }
         else
         {
+            // CODE REVIEW : Voir pour merge le Else avec la fonction CreatePathWithoutMArker
             //Chemin = CurrentMarker LineRenderer
             //Check Zone Where the path pass
             ValleyAreaManager.GetZoneFromLineRenderer(currentMarker.GetLink.line);
@@ -260,6 +261,9 @@ public class Valley_PathManager : MonoBehaviour
             }
             else
             {
+                ValleyAreaManager.GetZoneFromLineRenderer(currentMarker.GetLink.line);
+                GetTerrainClosestPosition(currentMarker.GetLink.line);
+
                 LineRenderer line = new LineRenderer();
                 ToolManager.EndPreviousLink(markerAlreadyPlace, currentMarker, out line);
 
@@ -369,6 +373,10 @@ public class Valley_PathManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Enable the ModifyPath UI
+    /// </summary>
+    /// <param name="selectedMarker">The selected Path Point</param>
     private void CreateOrModifyPath(PathPoint selectedMarker)
     {
         CheckHowManyPathToModify(selectedMarker);
