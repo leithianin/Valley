@@ -158,18 +158,4 @@ public class UIManager : MonoBehaviour
         instance.visitorsCounter.text = visitorNb.ToString();
     }
     #endregion
-
-    /// <summary>
-    /// Play for all Tool Buttons the feedback PlayOnDeselected()
-    /// </summary>
-    public static void ResetButtons()
-    {
-        instance.OnHideButtons();                                               //Cache ModifyList/Create
-        foreach (GameObject go in instance.toolsList)
-        {
-            ButtonsFeedbacks bf = go.GetComponent<ButtonsFeedbacks>();
-            bf.OnSelected();
-            bf.PlayOnPointerExit?.Invoke();
-        }
-    }
 }

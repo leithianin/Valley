@@ -2875,6 +2875,7 @@ GameObject:
   - component: {fileID: 3468025606538549723}
   - component: {fileID: 3468025606538549724}
   - component: {fileID: 3468025606538549725}
+  - component: {fileID: 5836127664442808280}
   m_Layer: 5
   m_Name: Sign
   m_TagString: Untagged
@@ -2961,6 +2962,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5836127664442808280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468025606538549727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3468025606548992663
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,6 +4032,7 @@ GameObject:
   - component: {fileID: 3468025606849904698}
   - component: {fileID: 3468025606849904699}
   - component: {fileID: 3468025606849904700}
+  - component: {fileID: 8676676394113589632}
   m_Layer: 5
   m_Name: DropShelter
   m_TagString: Untagged
@@ -4093,6 +4119,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8676676394113589632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468025606849904702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3468025606909476891
 GameObject:
   m_ObjectHideFlags: 0
@@ -6467,6 +6517,7 @@ GameObject:
   - component: {fileID: 3468025607701303295}
   - component: {fileID: 3468025607701303280}
   - component: {fileID: 3468025607701303281}
+  - component: {fileID: 3425470145836679344}
   m_Layer: 5
   m_Name: Tent
   m_TagString: Untagged
@@ -6553,6 +6604,30 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3425470145836679344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468025607701303283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936b9bc885a40654fa4a28146995cae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayOnPointerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnPointerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  PlayOnDeselected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3468025607711070948
 GameObject:
   m_ObjectHideFlags: 0
