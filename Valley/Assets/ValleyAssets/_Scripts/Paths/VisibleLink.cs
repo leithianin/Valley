@@ -34,13 +34,14 @@ public class VisibleLink : MonoBehaviour
 
                 int j = 1;
 
-                //Debug.Log(path.corners.Length);
                 while (j < path.corners.Length)
                 {
                     line.positionCount = path.corners.Length;
                     points = new List<Vector3>(path.corners);
+
                     for (int k = 0; k < points.Count; k++)
                     {
+
                         line.SetPosition(k, points[k]);
                     }
 
@@ -86,7 +87,8 @@ public class VisibleLink : MonoBehaviour
 
     public void AddPoint(GameObject nextObjectToLink, out LineRenderer pathLine)
     {
-        line.SetPosition(index, nextObjectToLink.transform.position);
+        line.positionCount++;
+        line.SetPosition(line.positionCount-1,  nextObjectToLink.transform.position);
 
         pathLine = line;
 

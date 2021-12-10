@@ -27,6 +27,9 @@ public class ValleyAreaManager : MonoBehaviour
     [SerializeField] private Transform zoneDelimitationParent;
     [SerializeField] private LineRenderer zoneDelimitationPrefab;
 
+    public GameObject Debug;
+    public static GameObject GetDebug => instance.Debug;
+
     [ContextMenu("Set positions")]
     private void SetPositions()
     {
@@ -143,7 +146,7 @@ public class ValleyAreaManager : MonoBehaviour
             //Check PointsByPath points on a path
             for(int j = 1; j <= pointsByPath; j++)
             {
-                ValleyArea zone = instance.GetZoneFromPosition(GetVectorPoint(point1, point2, pointByPathValue * j));
+                ValleyArea zone = instance.GetZoneFromPosition(ValleyUtilities.GetVectorPoint2D(point1, point2, pointByPathValue * j));
                 if(zone != null)
                 {
                     CheckIfZoneAlreadySaved(zone);
@@ -160,16 +163,6 @@ public class ValleyAreaManager : MonoBehaviour
         }
         
         pathAreas.Clear();
-    }
-
-    public static Vector2 GetVectorPoint(Vector3 point1, Vector3 point2, float t)
-    {
-        float pointx = point1.x * (1 - t) + point2.x * t;
-        float pointz = point1.z * (1 - t) + point2.z * t;
-
-        Vector2 pointPlaced = new Vector2(pointx, pointz);
-
-        return pointPlaced;
     }
 
     public static void CheckIfZoneAlreadySaved(ValleyArea zone)

@@ -10,6 +10,10 @@ public class Valley_PathManager : MonoBehaviour
 
     [SerializeField] private List<Valley_PathData> existingPaths = new List<Valley_PathData>(); // Liste des points existants.
 
+    [SerializeField] private Terrain terrain;
+
+    [SerializeField] private Transform waterPlane;
+
     private static Valley_PathData currentPathOn;
     private bool isNewPath = true;
     private PathPoint firstMarker;   //Maybe Obsolete
@@ -186,6 +190,7 @@ public class Valley_PathManager : MonoBehaviour
             //Chemin = CurrentMarker LineRenderer
             //Check Zone Where the path pass
             ValleyAreaManager.GetZoneFromLineRenderer(currentMarker.GetLink.line);
+            GetTerrainClosestPosition(currentMarker.GetLink.line);
             //Close link précedent
             LineRenderer line = new LineRenderer();
             ToolManager.EndPreviousLink(toPlace, currentMarker, out line);
@@ -375,5 +380,43 @@ public class Valley_PathManager : MonoBehaviour
     private void CheckHowManyPathToModify(PathPoint pathPoint)
     {
         UIManager.ModifyPathCount(GetNumberOfPathPoints(pathPoint));
+    }
+
+    public void GetTerrainClosestPosition(LineRenderer line)
+    {
+        List<Vector3> posLineList = new List<Vector3>();
+        //Recupere le line
+        Vector3 newPos;
+
+        for (int i = 0; i < line.positionCount-1; i++)
+        {
+            //Place le i point dans une liste
+            newPos = line.GetPosition(i);
+            newPos.y = terrain.SampleHeight(newPos) + terrain.GetPosition().y + 0.3f;
+            posLineList.Add(newPos);
+
+            //Place 4 points entre le point i et i+1
+            for (int j = 1; j < 8; j++)
+            {
+                newPos = ValleyUtilities.GetVectorPoint3D(line.GetPosition(i), line.GetPosition(i + 1), 0.125f * (j));
+                //Instantiate(ValleyAreaManager.GetDebug, newPos, Quaternion.identity);
+
+                newPos.y = terrain.SampleHeight(newPos) + terrain.GetPosition().y + 0.3f;
+                posLineList.Add(newPos);
+            }
+        }
+        line.positionCount = 0;
+        SetLineRendererWithVector3List(line, posLineList);
+    }
+
+    public void SetLineRendererWithVector3List(LineRenderer line ,List<Vector3> listOfV3)
+    {
+        line.positionCount = listOfV3.Count-1;
+        line.SetPositions(listOfV3.ToArray());     
+
+        /*for(int i = 0; i < listOfV3.Count; i++)
+        {
+            line.SetPosition(i, listOfV3[i]);
+        }*/
     }
 }
