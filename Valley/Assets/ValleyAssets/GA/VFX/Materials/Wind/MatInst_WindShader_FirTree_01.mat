@@ -140,10 +140,14 @@ Material:
     - MaskGradient: 3
     - MaskHeight: -1.5
     - ShakeDensity: 0.14
+    - ShakeMaskGradient: 8
+    - ShakeMaskHeight: 0
     - ShakeSpeed: 25
     - ShakeStrength: 1
     - Smoothness: 0
     - WindDensity: 1
+    - WindMaskGradient: 2.5
+    - WindMaskHeight: -0.4
     - WindSpeed: 1
     - WindStrength: 0.06
     - _AORemapMax: 1
