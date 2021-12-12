@@ -22,10 +22,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MatInst_WindShader_FirTree_01
   m_Shader: {fileID: -6465566751694194690, guid: 9b644f3fa8f894742bab5735b7174d76, type: 3}
-  m_ShaderKeywords: ISTOUCHED _DISABLE_SSR_TRANSPARENT
+  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
@@ -136,12 +136,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - ISTOUCHED: 1
-    - MaskGradient: 8
-    - MaskHeight: -2.25
-    - ShakeDensity: 22.9
-    - ShakeSpeed: 0
-    - ShakeStrength: 120
+    - ISTOUCHED: 0
+    - MaskGradient: 3
+    - MaskHeight: -1.5
+    - ShakeDensity: 0.14
+    - ShakeSpeed: 25
+    - ShakeStrength: 1
     - Smoothness: 0
     - WindDensity: 1
     - WindSpeed: 1
@@ -163,8 +163,8 @@ Material:
     - _Anisotropy: 0
     - _BlendMode: 0
     - _CoatMask: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 1
@@ -175,7 +175,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
     - _EmissiveColorMode: 1
@@ -259,6 +259,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - RadialStrength: {r: 1, g: 1, b: 0, a: 10}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

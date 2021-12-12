@@ -124,9 +124,14 @@ Material:
     m_Ints: []
     m_Floats:
     - ISTOUCHED: 0
+    - MaskGradient: 0
+    - MaskHeight: 0
+    - ShakeDensity: 1
+    - ShakeSpeed: 0
+    - ShakeStrength: 2
     - Smoothness: 0
-    - WindDensity: 1
-    - WindSpeed: 1
+    - WindDensity: 1.5
+    - WindSpeed: 0.6
     - WindStrength: 0.06
     - _AORemapMax: 1
     - _AORemapMin: 0
