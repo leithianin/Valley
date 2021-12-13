@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: HDRISky
   m_EditorClassIdentifier: 
   active: 1
-  m_AdvancedMode: 0
+  m_AdvancedMode: 1
   rotation:
     m_OverrideState: 1
-    m_Value: 86
+    m_Value: 105
     min: 0
     max: 360
   skyIntensityMode:
@@ -24,7 +24,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 13
   multiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -37,8 +37,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: {x: 0.2966643, y: 0.37363875, z: 0.5}
   desiredLuxValue:
-    m_OverrideState: 0
-    m_Value: 20000
+    m_OverrideState: 1
+    m_Value: 20029.7
   updateMode:
     m_OverrideState: 1
     m_Value: 0
@@ -419,13 +419,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 0.91190344, y: 0.94657755, z: 1, w: 0.017108578}
+    m_Value: {x: 0.9728295, y: 0.96032476, z: 1, w: -0.119048744}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 0.9865414, y: 0.9873691, z: 1, w: -0.017108632}
+    m_Value: {x: 1, y: 0.98742104, z: 0.9885734, w: 0.013148551}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9349953, z: 0.77023244, w: 0.13686909}
+    m_Value: {x: 1, y: 0.96139836, z: 0.9675869, w: 0.2730264}
   shadowsStart:
     m_OverrideState: 1
     m_Value: 0

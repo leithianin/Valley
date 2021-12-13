@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Water_Diorama
-  m_Shader: {fileID: -6465566751694194690, guid: fb9111d9d48eba34cbd46d3dfbacdf5a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8bae10178c537794a815923c4f94183b, type: 3}
   m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _ENABLE_FOG_ON_TRANSPARENT _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -95,6 +95,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_274f6cce06fa422d8603b01534703c65_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 46588046704881b429c78ff69dfe17cd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_60db0bf5beac4266ab1db3a024135711_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d5641375464e89744984716232e32e00, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_71b60b8aa1ad481a83bcc83199aa6ac8_Texture_1:
+        m_Texture: {fileID: 2800000, guid: d282906681130244aa260f21d2619361, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_8a12a038395b42e2a039555b39f21662_Texture_1:
+        m_Texture: {fileID: 2800000, guid: e02027d2bb2ff6a43bff438a1625bb7d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecularColorMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -133,10 +149,30 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - ColoredRipplesSpeed: 0.2
+    - DepthRipplesSpeed: 0.05
+    - EdgeFoamAmount: 0
+    - EdgeFoamCutoff: 0.6
+    - EdgeFoamDetails: 1
+    - EdgeFoamScale: 9.58
+    - EdgeFoamSpeed: 1
+    - FoamAmount: 0
+    - FoamCutoff: 0
+    - FoamScale: 10
+    - FoamSpeed: 1
     - LerpA: 0.71
     - Lerp_B: -0.4
+    - NoisePower: 0.5
+    - NoiseSpeed: 1
+    - Roughness: 0
     - Speed: 0.002
+    - SurfaceRipplesSpeed: 0.1
     - TilingWater: 200
+    - Transparency: 0
+    - WaterDepth: 10
+    - WavesAmount: 10
+    - WavesHeight: 0.5
+    - WavesSpeed: 0.5
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -251,6 +287,14 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
+    - ColoredRipplesColor: {r: 0.9150943, g: 0.5481932, b: 0.6877595, a: 1}
+    - DeepWaterColor: {r: 0.1473389, g: 0.19779232, b: 0.4056604, a: 1}
+    - DepthRipplesColor: {r: 0.5625668, g: 0.6248397, b: 0.9245283, a: 1}
+    - EdgeFoamColor: {r: 1, g: 1, b: 1, a: 1}
+    - FoamColor: {r: 1, g: 1, b: 1, a: 0.8156863}
+    - ShallowWaterColor: {r: 0.026922394, g: 0.41883534, b: 0.5188679, a: 1}
+    - SurfaceRipplesColor: {r: 1, g: 1, b: 1, a: 0}
+    - WaterScale: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
