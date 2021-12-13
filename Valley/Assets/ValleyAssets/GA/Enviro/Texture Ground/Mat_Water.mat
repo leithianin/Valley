@@ -21,13 +21,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Water
-  m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT _NORMALMAP_TANGENT_SPACE
+  m_Shader: {fileID: -6465566751694194690, guid: 8bae10178c537794a815923c4f94183b, type: 3}
+  m_ShaderKeywords: _DISABLE_SSR_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
-  stringTagMap: {}
+  stringTagMap:
+    MotionVector: User
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -131,6 +132,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - EdgeFoamAmount: 1.54
+    - EdgeFoamCutoff: -0.3
+    - EdgeFoamDetails: 1
+    - EdgeFoamScale: 10
+    - EdgeFoamSpeed: 1
+    - Roughness: 0
+    - WaterDepth: 16.49
+    - WavesAmount: 0
+    - WavesHeight: 0
+    - WavesSpeed: 0
     - _AORemapMax: 1
     - _AORemapMin: 0
     - _ATDistance: 1
@@ -201,6 +212,8 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
+    - _RenderQueueType: 1
+    - _RequireSplitLighting: 0
     - _Smoothness: 0
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -210,10 +223,12 @@ Material:
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
+    - _StencilRefDistortionVec: 4
     - _StencilRefGBuffer: 10
     - _StencilRefMV: 40
     - _StencilWriteMask: 6
     - _StencilWriteMaskDepth: 8
+    - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
     - _SubsurfaceMask: 1
@@ -240,6 +255,9 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
+    - DeepWaterColor: {r: 0.06274508, g: 0.5215686, b: 0.7843138, a: 1}
+    - EdgeFoamColor: {r: 1, g: 1, b: 1, a: 0.7058824}
+    - ShallowWaterColor: {r: 0.462745, g: 0.7764707, b: 0.9058824, a: 1}
     - _BaseColor: {r: 0.35039157, g: 0.5560147, b: 0.5849056, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 0.35039154, g: 0.5560147, b: 0.5849056, a: 1}

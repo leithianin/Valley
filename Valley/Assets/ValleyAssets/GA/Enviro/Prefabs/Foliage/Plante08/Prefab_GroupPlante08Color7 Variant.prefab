@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8512517ceda515a43b84a13da8f0ffcb, type: 2}
+    - target: {fileID: 6051211523613347609, guid: 95daf563ad4f4fa46a41dbe5fa24a836, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.019237742
+      objectReference: {fileID: 0}
     - target: {fileID: 7594403310930377781, guid: 95daf563ad4f4fa46a41dbe5fa24a836, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -61,7 +65,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9156718369473076995, guid: 95daf563ad4f4fa46a41dbe5fa24a836, type: 3}
       propertyPath: m_Name
-      value: Prefab_GroupPlante08Color7
+      value: Prefab_GroupPlante08Color7 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9176204198363847085, guid: 95daf563ad4f4fa46a41dbe5fa24a836, type: 3}
+      propertyPath: m_LODs.Array.data[2].screenRelativeHeight
+      value: 0.01806479
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95daf563ad4f4fa46a41dbe5fa24a836, type: 3}
