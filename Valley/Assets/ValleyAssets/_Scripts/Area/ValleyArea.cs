@@ -20,20 +20,37 @@ public class ValleyArea
     [HideInInspector]
     public List<Vector2> borders;
 
+    // A list of all the visitor currently in the area.
     [HideInInspector]
     public List<VisitorAgentBehave> visitorInZone;
 
     private float noiseScore = 0;
 
-
+    /// <summary>
+    /// Return alist of all the borders of the area.
+    /// </summary>
     public List<Vector2> GetBorders => borders;
 
+    /// <summary>
+    /// Return a list of all the Display contained in the area.
+    /// </summary>
     public List<AreaDisplay> Displays => displays;
 
+    /// <summary>
+    /// Return a list of all the InterestPoints contained in the area.
+    /// </summary>
     public List<InterestPoint> InterestPoints => interestPoints;
 
+    /// <summary>
+    /// Return the noise score.
+    /// </summary>
     public float NoiseScore => Mathf.Clamp(noiseScore, 0, 20);
 
+    /// <summary>
+    /// Check if the area contains a certain type of Landmark.
+    /// </summary>
+    /// <param name="landmarkType">The Landmark to search.</param>
+    /// <returns>Return true if it contains the Landmark we search.</returns>
     public bool ContainsLandmarkType(LandMarkType landmarkType)
     {
         for (int i = 0; i < interestPoints.Count; i++)
@@ -46,6 +63,11 @@ public class ValleyArea
         return false;
     }
 
+    /// <summary>
+    /// Get the number of time an InterestPoint is contained in the area.
+    /// </summary>
+    /// <param name="interestType">The type of Interest Point we search.</param>
+    /// <returns>The number of Interest Point contained.</returns>
     public int GetNumberInterestType(InterestPointType interestType)
     {
         int toReturn = 0;
@@ -59,6 +81,10 @@ public class ValleyArea
         return toReturn;
     }
 
+    /// <summary>
+    /// Set the sound level of the area.
+    /// </summary>
+    /// <param name="soundLevel">The sound level to set.</param>
     public void SetSoundLevel(float soundLevel)
     {
         noiseScore = soundLevel;
@@ -68,6 +94,10 @@ public class ValleyArea
         }
     }
 
+    /// <summary>
+    /// Remove a visitor from the VisitorInZone list.
+    /// </summary>
+    /// <param name="toRemove">The visitor to remove.</param>
     public void RemoveVisitor(VisitorAgentBehave toRemove)
     {
         visitorInZone.Remove(toRemove);

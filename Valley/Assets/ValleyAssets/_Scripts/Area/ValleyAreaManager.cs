@@ -6,10 +6,14 @@ using Unity;
 public class ValleyAreaManager : MonoBehaviour
 {
     private static ValleyAreaManager instance;
+
+    // Liste des zones présentes dans la vallée avec toutes leurs data.
     [SerializeField] private List<ValleyArea> areas;
 
+    // Utilisé pour stocker tous les visiteurs actuellement dans la vallée.
     private List<VisitorAgentBehave> visitors = new List<VisitorAgentBehave>();
 
+    // Le nombre de visiteur qui sont utilisé pour mettre à jours les datas en une frame.
     [SerializeField] private int visitorByFrame = 20;
 
     private int visitorChecked = 0;
@@ -21,6 +25,9 @@ public class ValleyAreaManager : MonoBehaviour
     private static float pointsByPath = 4;
     private static float pointByPathValue;
 
+    /// <summary>
+    /// Permet de récupéré la liste de toutes les zones de la vallée.
+    /// </summary>
     public static List<ValleyArea> GetAreas => instance.areas;
 
     private List<LineRenderer> usedLineRenderer;
@@ -72,6 +79,9 @@ public class ValleyAreaManager : MonoBehaviour
         //gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Mets à jour les datas d'un visiteur.
+    /// </summary>
     private void Update()
     {
         visitors = VisitorManager.GetVisitors;
@@ -92,7 +102,7 @@ public class ValleyAreaManager : MonoBehaviour
                         toAdd.visitorInZone.Add(visitors[visitorIndex]);
                     }
 
-                    if (toAdd != null && !updatableArea.Contains(toAdd))
+                    if (toAdd != null && !updatableArea.Contains(toAdd)) // Stocke la zone du visiteur dans la liste des zones à mettre à jour.
                     {
                         updatableArea.Add(toAdd);
                     }
@@ -103,6 +113,9 @@ public class ValleyAreaManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update les datas de la première zone de la liste des zones à mettre à jour.
+    /// </summary>
     private void LateUpdate()
     {
         if (updatableArea.Count > 0)
@@ -118,6 +131,11 @@ public class ValleyAreaManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Récupère la zone en fonction d'une position donnée.
+    /// </summary>
+    /// <param name="toCheck">La position voulue.</param>
+    /// <returns>La zone contenant la position.</returns>
     private ValleyArea GetZoneFromPosition(Vector2 toCheck)
     {
         ValleyArea toReturn = null;
