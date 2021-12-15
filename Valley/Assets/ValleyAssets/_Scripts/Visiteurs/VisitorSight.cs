@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class VisitorSight : MonoBehaviour
 {
+    // The linked visitor.
     [SerializeField] private VisitorAgentBehave visitor;
 
+    /// <summary>
+    /// Detect when the visitor see an InterestPoint.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
 
